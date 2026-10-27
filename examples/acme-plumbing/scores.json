@@ -26,7 +26,8 @@
       "collected_at": "2026-10-26T10:01:00Z",
       "collector_version": "1.0.0",
       "field_completeness": 82,
-      "endpoint": "https://places.googleapis.com/v1/places/SYNTHETIC-PLACE-ACME-001"
+      "endpoint": "https://places.googleapis.com/v1/places/SYNTHETIC-PLACE-ACME-001",
+      "method": "GET"
     },
     {
       "id": "destination",
@@ -34,7 +35,8 @@
       "collected_at": "2026-10-26T10:04:00Z",
       "collector_version": "1.0.0",
       "field_completeness": 76,
-      "endpoint": "https://acme-plumbing.example/"
+      "endpoint": "https://acme-plumbing.example/",
+      "method": "GET"
     },
     {
       "id": "public_profile",
@@ -42,7 +44,8 @@
       "collected_at": "2026-10-26T10:06:00Z",
       "collector_version": "1.0.0",
       "field_completeness": 68,
-      "endpoint": ""
+      "endpoint": "",
+      "method": "GET"
     },
     {
       "id": "reviews",
@@ -50,7 +53,8 @@
       "collected_at": "2026-10-26T10:07:00Z",
       "collector_version": "1.0.0",
       "field_completeness": 64,
-      "endpoint": ""
+      "endpoint": "",
+      "method": "GET"
     },
     {
       "id": "media",
@@ -58,7 +62,8 @@
       "collected_at": "2026-10-26T10:08:00Z",
       "collector_version": "1.0.0",
       "field_completeness": 55,
-      "endpoint": ""
+      "endpoint": "",
+      "method": "GET"
     }
   ],
   "categories": [

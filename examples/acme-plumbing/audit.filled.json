@@ -41,7 +41,8 @@
       "collected_at": "2026-10-26T10:01:00Z",
       "collector_version": "1.0.0",
       "endpoint": "https://places.googleapis.com/v1/places/SYNTHETIC-PLACE-ACME-001",
-      "field_completeness": 82
+      "field_completeness": 82,
+      "method": "GET"
     },
     {
       "id": "destination",
@@ -49,28 +50,32 @@
       "collected_at": "2026-10-26T10:04:00Z",
       "collector_version": "1.0.0",
       "endpoint": "https://acme-plumbing.example/",
-      "field_completeness": 76
+      "field_completeness": 76,
+      "method": "GET"
     },
     {
       "id": "public_profile",
       "type": "public_profile",
       "collected_at": "2026-10-26T10:06:00Z",
       "collector_version": "1.0.0",
-      "field_completeness": 68
+      "field_completeness": 68,
+      "method": "GET"
     },
     {
       "id": "reviews",
       "type": "review_sample",
       "collected_at": "2026-10-26T10:07:00Z",
       "collector_version": "1.0.0",
-      "field_completeness": 64
+      "field_completeness": 64,
+      "method": "GET"
     },
     {
       "id": "media",
       "type": "media_sample",
       "collected_at": "2026-10-26T10:08:00Z",
       "collector_version": "1.0.0",
-      "field_completeness": 55
+      "field_completeness": 55,
+      "method": "GET"
     }
   ],
   "profile": {

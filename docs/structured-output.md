@@ -47,7 +47,7 @@ Key blocks:
 - **`run`**: run ID, timestamps, collector version, rubric version, source mode (`fixture` or `live`), synthetic flag.
 - **`business`**: name, trade, market, synthetic place ID, website, phone, address.
 - **`configuration`**: applicability booleans.
-- **`sources`**: source ID, type, collected time, collector version, field completeness, endpoint metadata without credentials.
+- **`sources`**: source ID, type, method, collected time, collector version, field completeness, endpoint metadata without credentials.
 - **`profile`**: status, name, categories, description, attributes, hours, location mode.
 - **`actions`**: phone, website, booking, messaging, directions, other, with presence, usability, and destination state.
 - **`handoff`**: HTTPS, resolution, final URL, identity match, title.

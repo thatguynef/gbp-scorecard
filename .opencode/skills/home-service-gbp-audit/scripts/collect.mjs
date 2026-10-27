@@ -273,13 +273,14 @@ async function fetchBounded(url, options = {}, timeoutMs = 10000, retries = 2) {
   throw lastError || new Error("request failed");
 }
 
-function source(id, type, endpoint, completeness) {
+function source(id, type, endpoint, completeness, method = "GET") {
   const record = {
     id,
     type,
     collected_at: nowIso,
     collector_version: COLLECTOR_VERSION,
     field_completeness: completeness,
+    method,
   };
   if (endpoint) record.endpoint = endpoint;
   return record;
@@ -597,10 +598,10 @@ async function liveCollect() {
   }
   const observations = buildObservations(place, destination);
   const sources = [
-    source("places", "places_api", `${PLACES_BASE}/places/${encodeURIComponent(place.id || match.id)}`, 84),
+    source("places", "places_api", `${PLACES_BASE}/places/${encodeURIComponent(place.id || match.id)}`, 84, "GET"),
   ];
   if (website) {
-    sources.push(source("destination", "destination_http", destination?.final_url || website, destination?.resolves ? 72 : 30));
+    sources.push(source("destination", "destination_http", destination?.final_url || website, destination?.resolves ? 72 : 30, "GET"));
   }
   return {
     business: {
@@ -647,7 +648,7 @@ function fixtureCollect() {
         collected_at: entry.collected_at || fixture.collected_at || "2026-01-01T00:00:00Z",
         collector_version: entry.collector_version || COLLECTOR_VERSION,
       }))
-    : [source("fixture", "fixture", null, 100)];
+    : [source("fixture", "fixture", null, 100, "FIXTURE")];
   return {
     business: fixture.business,
     configuration: fixture.configuration,

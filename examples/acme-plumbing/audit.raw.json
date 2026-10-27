@@ -40,6 +40,7 @@
       "type": "fixture",
       "collected_at": "2026-10-26T10:00:00Z",
       "field_completeness": 100,
+      "method": "FIXTURE",
       "collector_version": "1.0.0"
     }
   ],

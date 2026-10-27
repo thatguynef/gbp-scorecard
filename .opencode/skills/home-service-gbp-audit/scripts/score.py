@@ -171,6 +171,8 @@ def validate(audit: dict, rubric: dict) -> list[str]:
             for key in ["collected_at", "collector_version"]:
                 if not source.get(key):
                     errors.append(f"sources[{index}].{key} is required")
+            if "method" in source and not isinstance(source["method"], str):
+                errors.append(f"sources[{index}].method must be a string")
             completeness = source.get("field_completeness")
             if not is_number(completeness) or not 0 <= completeness <= 100:
                 errors.append(f"sources[{index}].field_completeness must be 0-100")
@@ -617,6 +619,7 @@ def compute(audit: dict, rubric: dict) -> dict:
                 "collector_version": entry.get("collector_version"),
                 "field_completeness": entry.get("field_completeness"),
                 "endpoint": entry.get("endpoint", ""),
+                "method": entry.get("method", ""),
             }
             for entry in audit["sources"]
         ],
