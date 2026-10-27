@@ -1,0 +1,913 @@
+{
+  "schema_version": "1.0",
+  "audit_mode": "public",
+  "run": {
+    "run_id": "2026-10-26T1000-acme",
+    "started_at": "2026-10-26T10:00:00Z",
+    "finished_at": "2026-10-26T10:12:00Z",
+    "collector_version": "1.0.0",
+    "rubric_version": "1.0.0",
+    "source_mode": "fixture",
+    "synthetic": true
+  },
+  "business": {
+    "name": "Acme Plumbing (synthetic)",
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "place_id": "SYNTHETIC-PLACE-ACME-001",
+    "website": "https://acme-plumbing.example/",
+    "phone": "(555) 010-0200",
+    "address": ""
+  },
+  "configuration": {
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "service_business": true,
+    "online_booking_expected": true,
+    "messaging_expected": false,
+    "emergency_service": true,
+    "physical_storefront": false,
+    "after_hours_expected": true,
+    "content_posts_expected": false,
+    "preferred_actions": [
+      "call",
+      "booking"
+    ]
+  },
+  "sources": [
+    {
+      "id": "places",
+      "type": "places_api",
+      "collected_at": "2026-10-26T10:01:00Z",
+      "collector_version": "1.0.0",
+      "endpoint": "https://places.googleapis.com/v1/places/SYNTHETIC-PLACE-ACME-001",
+      "field_completeness": 82
+    },
+    {
+      "id": "destination",
+      "type": "destination_http",
+      "collected_at": "2026-10-26T10:04:00Z",
+      "collector_version": "1.0.0",
+      "endpoint": "https://acme-plumbing.example/",
+      "field_completeness": 76
+    },
+    {
+      "id": "public_profile",
+      "type": "public_profile",
+      "collected_at": "2026-10-26T10:06:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 68
+    },
+    {
+      "id": "reviews",
+      "type": "review_sample",
+      "collected_at": "2026-10-26T10:07:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 64
+    },
+    {
+      "id": "media",
+      "type": "media_sample",
+      "collected_at": "2026-10-26T10:08:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 55
+    }
+  ],
+  "profile": {
+    "business_status": "OPERATIONAL",
+    "name": "Acme Plumbing",
+    "primary_category": "Plumber",
+    "additional_categories": [
+      "Drainage service",
+      "Water heater repair"
+    ],
+    "description": "Plumbing repairs and drain cleaning for Example County homeowners. Same-day appointments when available.",
+    "attributes": [],
+    "regular_hours": [
+      "Monday 07:00-19:00",
+      "Tuesday 07:00-19:00",
+      "Wednesday 07:00-19:00",
+      "Thursday 07:00-19:00",
+      "Friday 07:00-19:00",
+      "Saturday 07:00-19:00",
+      "Sunday closed"
+    ],
+    "location_mode": "service_area"
+  },
+  "actions": {
+    "phone": {
+      "present": true,
+      "usable": true,
+      "number": "(555) 010-0200"
+    },
+    "website": {
+      "present": true,
+      "usable": true,
+      "url": "https://acme-plumbing.example/",
+      "destination_state": "resolves"
+    },
+    "booking": {
+      "present": false,
+      "usable": false,
+      "is_primary": false,
+      "url": "",
+      "destination_state": "missing"
+    },
+    "messaging": {
+      "present": false,
+      "usable": false,
+      "url": ""
+    },
+    "directions": {
+      "present": false,
+      "usable": false,
+      "url": ""
+    },
+    "other": {
+      "present": true,
+      "usable": true,
+      "label": "Request an estimate on the website"
+    }
+  },
+  "handoff": {
+    "https": true,
+    "resolves": true,
+    "final_url": "https://acme-plumbing.example/",
+    "identity_match": true,
+    "destination_title": "Acme Plumbing \u2014 Example County",
+    "notes": "Synthetic destination resolves. Mobile first viewport has no visible action."
+  },
+  "reviews": {
+    "rating": 4.6,
+    "count": 38,
+    "owner_response_count": 0,
+    "distribution": {
+      "5": 25,
+      "4": 8,
+      "3": 3,
+      "2": 1,
+      "1": 1
+    },
+    "sample": [
+      {
+        "rating": 5,
+        "published_at": "2026-07-18",
+        "owner_response": false,
+        "owner_response_at": null,
+        "service_terms": [
+          "drain cleaning"
+        ]
+      },
+      {
+        "rating": 5,
+        "published_at": "2026-06-02",
+        "owner_response": false,
+        "service_terms": [],
+        "owner_response_at": null
+      },
+      {
+        "rating": 4,
+        "published_at": "2026-02-14",
+        "owner_response": false,
+        "service_terms": [
+          "water heater"
+        ],
+        "owner_response_at": null
+      },
+      {
+        "rating": 2,
+        "published_at": "2026-01-08",
+        "owner_response": false,
+        "owner_response_at": null,
+        "service_terms": [
+          "arrival window"
+        ]
+      },
+      {
+        "rating": 5,
+        "published_at": "2025-11-20",
+        "owner_response": false,
+        "service_terms": [],
+        "owner_response_at": null
+      }
+    ]
+  },
+  "media": {
+    "count": 6,
+    "business_owned_count": 2,
+    "recent_count": 1,
+    "categories": [
+      "job_photo",
+      "team_photo",
+      "stock_graphic",
+      "user_photo"
+    ]
+  },
+  "measurement": {
+    "website_source_parameter": null,
+    "booking_source_parameter": null,
+    "notes": "No observable profile-origin source parameter on the synthetic destination."
+  },
+  "facts": {
+    "profile_status": "OPERATIONAL",
+    "phone_action_usable": true,
+    "website_action_usable": true,
+    "booking_action_usable": false,
+    "other_action_usable": true,
+    "identity_consistent": true,
+    "website_destination_state": "resolves",
+    "booking_is_primary_action": false,
+    "booking_destination_state": "missing"
+  },
+  "checks": {
+    "GBP-ID-01": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Places API: businessStatus=OPERATIONAL; displayName=Acme Plumbing matches the destination title."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-ID-02": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Places API primaryType=plumber; destination H1 names plumbing repair and drain service. The category is specific and accurate."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-ID-03": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Places API types include plumber, drainage service, and water heater repair. Drainage is supported by the site; water-heater evidence is thin, so the set is not fully supported."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-ID-04": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Places API nationalPhoneNumber and destination tel: action both show (555) 010-0200."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-ID-05": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Places API websiteUri points to https://acme-plumbing.example/, the synthetic owned domain used throughout this fixture."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-ID-06": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Public profile and configuration: service-area business, no storefront address, Example County service area. The hidden address is correct, not a defect."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-ID-07": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Places API regularOpeningHours: Mon-Sat 07:00-19:00. The destination publishes the same window."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-ID-08": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Profile description names repairs, drain cleaning, and Example County, but does not state a customer outcome or differentiator."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-ID-09": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "No service-specific attributes are visible on the public profile beyond the category labels. Financing and emergency attributes are absent."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-SVC-01": {
+      "applicable": true,
+      "score": 3,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Profile service list names drain cleaning and water-heater repair; the destination also sells leak detection and repiping. One major line is missing from the profile."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-SVC-02": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile lists repair work but does not distinguish the highest-value repipe and water-heater jobs. Commercial priority is unclear."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-SVC-03": {
+      "applicable": true,
+      "score": 3,
+      "confidence": "verified",
+      "evidence": [
+        "Profile description states emergency plumbing service and the preferred call action is present. Urgent work is represented."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-SVC-04": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Service descriptions repeat category labels; they do not explain the customer problem or the work included."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-SVC-05": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Services are grouped as drain cleaning and water heaters. The grouping is scannable, though leak detection is absent."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-SVC-06": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Destination offers leak detection and repiping; the profile lists neither. The core plumbing offer matches, but one material line does not."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-SVC-07": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "No category-specific attribute explains emergency availability, financing, or service-area constraints."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CON-01": {
+      "applicable": true,
+      "score": 4,
+      "confidence": "verified",
+      "evidence": [
+        "Places API phone present and the destination uses a tel: link for the same synthetic number."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-CON-02": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Website action is labeled with the business name and points to the synthetic owned domain."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-CON-03": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "No booking or appointment action is present on the profile. The destination has a contact form, but that is not a booking action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-CON-04": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "na_reason": "condition not enabled: messaging_expected",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-CON-05": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "na_reason": "condition not enabled: physical_storefront",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-CON-06": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "The destination is usable at mobile width, but its contact form sits below a large stock hero image. One extra scroll adds friction, not a dead end."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CON-07": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Emergency service is named and the primary phone action is usable, so an urgent path exists."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-CON-08": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile states no after-hours policy. The destination says \u201ccall us\u201d but does not say whether anyone answers after 7pm."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CON-09": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Call is the clearest action; website and estimate request are secondary. The profile does not label a booking path."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CON-10": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Phone and website actions point to the same synthetic business. No conflicting booking or messaging destination is present."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-01": {
+      "applicable": true,
+      "score": 3,
+      "confidence": "verified",
+      "evidence": [
+        "Places API rating 4.6 across 38 reviews. This is above the synthetic local baseline for the example."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-02": {
+      "applicable": true,
+      "score": 3,
+      "confidence": "verified",
+      "evidence": [
+        "38 reviews is a plausible base for a service business of this synthetic age and category."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-03": {
+      "applicable": true,
+      "score": 3,
+      "confidence": "verified",
+      "evidence": [
+        "The public review sample has no review newer than 2026-07-18. At the 2026-10-27 audit date, recent proof is weak."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-04": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Review timestamps cluster in 2025 and early 2026, then stop. The sample does not show a steady recent cadence."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-05": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "One 2-star review in January 2026 cites a missed arrival window; the rest of the sample is positive. This is a small but relevant recent negative."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-06": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "No owner responses are visible in the public review sample, despite 38 published reviews."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-07": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "No owner responses are visible in the public review sample, so no recent relevant response can be assessed."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false
+    },
+    "GBP-TRU-08": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Two sampled reviews name drain cleaning and water-heater work. Service-specific proof exists but is not repeated across the sample."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CNT-01": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Places API reports profile and cover media. A logo and cover image are present."
+      ],
+      "evidence_refs": [
+        "places",
+        "media"
+      ],
+      "needs_review": false
+    },
+    "GBP-CNT-02": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Two of six sampled images are stock graphics. The set is mixed rather than clearly business-specific."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CNT-03": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "One job photo and one team photo are present; service variety is thin relative to the claimed services."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-CNT-04": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "Media metadata shows one recent upload. The rest of the set has no recent date or is undated."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "needs_review": false
+    },
+    "GBP-CNT-05": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Two images carry business attribution; the remaining images are user-contributed or unattributed."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "needs_review": false
+    },
+    "GBP-CNT-06": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "na_reason": "condition not enabled: content_posts_expected",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-HND-01": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "verified",
+      "evidence": [
+        "Destination fetch resolves over HTTPS with a valid certificate and no unrelated redirect."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-HND-02": {
+      "applicable": true,
+      "score": 2,
+      "confidence": "strong_signal",
+      "evidence": [
+        "Destination title and logo match Acme Plumbing, but the footer uses a shortened brand name."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-HND-03": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Phone and hours match; the destination adds leak detection not present on the profile. One material service inconsistency."
+      ],
+      "evidence_refs": [
+        "destination",
+        "places"
+      ],
+      "needs_review": false
+    },
+    "GBP-HND-04": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "na_reason": "not observable: booking_present",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-HND-05": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "strong_signal",
+      "evidence": [
+        "The destination has a contact form and phone link, but the first mobile viewport has no visible next action."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-HND-06": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile website URL has no source parameter and the destination redirect preserves none."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false,
+      "review": {
+        "method": "model_judgment",
+        "reviewer": "synthetic-fixture",
+        "reviewed_at": "2026-10-26T10:15:00Z"
+      }
+    },
+    "GBP-MSR-01": {
+      "applicable": true,
+      "score": 0,
+      "confidence": "verified",
+      "evidence": [
+        "No source or UTM parameter is observable on the profile website action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "needs_review": false
+    },
+    "GBP-MSR-02": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "na_reason": "not observable: booking_resolves",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-MSR-03": {
+      "applicable": true,
+      "score": 1,
+      "confidence": "verified",
+      "evidence": [
+        "Destination uses a stable root URL with no redirect chain that would strip query context."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "needs_review": false
+    }
+  },
+  "limitations": [
+    "Public mode cannot observe calls, messages, bookings, close rate, or revenue.",
+    "The review sample is illustrative and synthetic; real review coverage depends on the API sample available.",
+    "Service-area boundaries are not fully exposed by the public Places API.",
+    "Connected performance diagnostics are not part of the public score."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "synthetic": true,
+  "collected_at": "2026-10-26T10:00:00Z",
+  "business": {
+    "name": "Acme Plumbing (synthetic)",
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "place_id": "SYNTHETIC-PLACE-ACME-001",
+    "website": "https://acme-plumbing.example/",
+    "phone": "(555) 010-0200",
+    "address": ""
+  },
+  "configuration": {
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "service_business": true,
+    "online_booking_expected": true,
+    "messaging_expected": false,
+    "emergency_service": true,
+    "physical_storefront": false,
+    "after_hours_expected": true,
+    "content_posts_expected": false,
+    "preferred_actions": ["call", "booking"]
+  },
+  "sources": [
+    {
+      "id": "fixture",
+      "type": "fixture",
+      "collected_at": "2026-10-26T10:00:00Z",
+      "field_completeness": 100
+    }
+  ],
+  "observations": {
+    "profile": {
+      "business_status": "OPERATIONAL",
+      "name": "Acme Plumbing",
+      "primary_category": "Plumber",
+      "additional_categories": ["Drainage service", "Water heater repair"],
+      "description": "Plumbing repairs and drain cleaning for Example County homeowners. Same-day appointments when available.",
+      "attributes": [],
+      "regular_hours": ["Monday 07:00-19:00", "Tuesday 07:00-19:00", "Wednesday 07:00-19:00", "Thursday 07:00-19:00", "Friday 07:00-19:00", "Saturday 07:00-19:00", "Sunday closed"],
+      "location_mode": "service_area"
+    },
+    "actions": {
+      "phone": { "present": true, "usable": true, "number": "(555) 010-0200" },
+      "website": { "present": true, "usable": true, "url": "https://acme-plumbing.example/", "destination_state": "resolves" },
+      "booking": { "present": false, "usable": false, "is_primary": false, "url": "", "destination_state": "missing" },
+      "messaging": { "present": false, "usable": false, "url": "" },
+      "directions": { "present": false, "usable": false, "url": "" },
+      "other": { "present": true, "usable": true, "label": "Request an estimate on the website" }
+    },
+    "handoff": {
+      "https": true,
+      "resolves": true,
+      "final_url": "https://acme-plumbing.example/",
+      "identity_match": true,
+      "destination_title": "Acme Plumbing — Example County",
+      "notes": "Synthetic destination resolves. Mobile first viewport has no visible action."
+    },
+    "reviews": {
+      "rating": 4.6,
+      "count": 38,
+      "owner_response_count": 0,
+      "distribution": { "5": 25, "4": 8, "3": 3, "2": 1, "1": 1 },
+      "sample": [
+        { "rating": 5, "published_at": "2026-07-18", "owner_response": false, "owner_response_at": null, "service_terms": ["drain cleaning"] },
+        { "rating": 5, "published_at": "2026-06-02", "owner_response": false, "owner_response_at": null, "service_terms": [] },
+        { "rating": 4, "published_at": "2026-02-14", "owner_response": false, "owner_response_at": null, "service_terms": ["water heater"] },
+        { "rating": 2, "published_at": "2026-01-08", "owner_response": false, "owner_response_at": null, "service_terms": ["arrival window"] },
+        { "rating": 5, "published_at": "2025-11-20", "owner_response": false, "owner_response_at": null, "service_terms": [] }
+      ]
+    },
+    "media": {
+      "count": 6,
+      "business_owned_count": 2,
+      "recent_count": 1,
+      "categories": ["job_photo", "team_photo", "stock_graphic", "user_photo"]
+    },
+    "measurement": {
+      "website_source_parameter": null,
+      "booking_source_parameter": null,
+      "notes": "No observable profile-origin source parameter on the synthetic destination."
+    }
+  },
+  "notes": [
+    "Synthetic fixture for documentation and tests. No real business, customer, or API data.",
+    "Checks remain unset until a reviewer fills the worksheet."
+  ]
+}

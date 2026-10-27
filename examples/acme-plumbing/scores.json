@@ -1,0 +1,4625 @@
+{
+  "schema_version": "1.0",
+  "framework": "gbp-journey",
+  "audit_mode": "public",
+  "rubric_version": "1.0.0",
+  "rubric_title": "Google Business Profile Scorecard",
+  "scorer_version": "1.0.0",
+  "meta": {
+    "run_id": "2026-10-26T1000-acme",
+    "client": "Acme Plumbing (synthetic)",
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "audit_mode": "public",
+    "synthetic": true,
+    "rubric_version": "1.0.0",
+    "collector_version": "1.0.0",
+    "started_at": "2026-10-26T10:00:00Z",
+    "source_mode": "fixture",
+    "place_id": "SYNTHETIC-PLACE-ACME-001",
+    "website": "https://acme-plumbing.example/"
+  },
+  "sources": [
+    {
+      "id": "places",
+      "type": "places_api",
+      "collected_at": "2026-10-26T10:01:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 82,
+      "endpoint": "https://places.googleapis.com/v1/places/SYNTHETIC-PLACE-ACME-001"
+    },
+    {
+      "id": "destination",
+      "type": "destination_http",
+      "collected_at": "2026-10-26T10:04:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 76,
+      "endpoint": "https://acme-plumbing.example/"
+    },
+    {
+      "id": "public_profile",
+      "type": "public_profile",
+      "collected_at": "2026-10-26T10:06:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 68,
+      "endpoint": ""
+    },
+    {
+      "id": "reviews",
+      "type": "review_sample",
+      "collected_at": "2026-10-26T10:07:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 64,
+      "endpoint": ""
+    },
+    {
+      "id": "media",
+      "type": "media_sample",
+      "collected_at": "2026-10-26T10:08:00Z",
+      "collector_version": "1.0.0",
+      "field_completeness": 55,
+      "endpoint": ""
+    }
+  ],
+  "categories": [
+    {
+      "id": "A",
+      "name": "Identity & Accuracy",
+      "question": "Can a prospective customer confidently understand who this company is, where it operates, when it is available, and whether its public information is coherent?",
+      "earned": 13,
+      "max": 15,
+      "applicable_max": 15,
+      "normalized": 13.0,
+      "normalized_before_cap": 13.0,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [],
+      "percent": 86.7
+    },
+    {
+      "id": "B",
+      "name": "Relevance & Service Coverage",
+      "question": "Does the profile accurately communicate the services the business wants local customers to hire it for?",
+      "earned": 14,
+      "max": 18,
+      "applicable_max": 18,
+      "normalized": 14.0,
+      "normalized_before_cap": 14.0,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [],
+      "percent": 77.8
+    },
+    {
+      "id": "C",
+      "name": "Conversion & Actionability",
+      "question": "Can a ready-to-buy searcher take a useful next action with minimal friction?",
+      "earned": 12,
+      "max": 22,
+      "applicable_max": 18,
+      "normalized": 14.67,
+      "normalized_before_cap": 14.67,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [
+        "GBP-CON-04",
+        "GBP-CON-05"
+      ],
+      "percent": 66.7
+    },
+    {
+      "id": "D",
+      "name": "Reputation & Trust",
+      "question": "Does publicly observable reputation provide sufficient and current trust for a customer to act?",
+      "earned": 12,
+      "max": 20,
+      "applicable_max": 20,
+      "normalized": 12.0,
+      "normalized_before_cap": 12.0,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [],
+      "percent": 60.0
+    },
+    {
+      "id": "E",
+      "name": "Content & Freshness",
+      "question": "Does the profile visibly demonstrate an active, credible company performing the work it claims to perform?",
+      "earned": 5,
+      "max": 10,
+      "applicable_max": 9,
+      "normalized": 5.56,
+      "normalized_before_cap": 5.56,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [
+        "GBP-CNT-06"
+      ],
+      "percent": 55.6
+    },
+    {
+      "id": "F",
+      "name": "Handoff & Journey Continuity",
+      "question": "Does the customer journey remain coherent when the prospect leaves Google?",
+      "earned": 6,
+      "max": 10,
+      "applicable_max": 8,
+      "normalized": 7.5,
+      "normalized_before_cap": 7.5,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [
+        "GBP-HND-04"
+      ],
+      "percent": 75.0
+    },
+    {
+      "id": "G",
+      "name": "Measurement & Attribution",
+      "question": "Can activity originating from the profile be meaningfully measured?",
+      "earned": 1,
+      "max": 5,
+      "applicable_max": 3,
+      "normalized": 1.67,
+      "normalized_before_cap": 1.67,
+      "category_cap": null,
+      "applicable": true,
+      "na_checks": [
+        "GBP-MSR-02"
+      ],
+      "percent": 33.3
+    }
+  ],
+  "checks": [
+    {
+      "id": "GBP-ID-01",
+      "title": "Business status and identity",
+      "category": "A",
+      "stage": "identify",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API: businessStatus=OPERATIONAL; displayName=Acme Plumbing matches the destination title."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Confirm the profile status and legal trading name, then correct any mismatch.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-02",
+      "title": "Primary category fits the core business",
+      "category": "A",
+      "stage": "identify",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API primaryType=plumber; destination H1 names plumbing repair and drain service. The category is specific and accurate."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Choose the most specific accurate primary category for the core service.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-03",
+      "title": "Additional categories are relevant, not stuffed",
+      "category": "A",
+      "stage": "identify",
+      "max": 2,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Places API types include plumber, drainage service, and water heater repair. Drainage is supported by the site; water-heater evidence is thin, so the set is not fully supported."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "Remove unsupported categories and keep only services with real delivery evidence.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-04",
+      "title": "Primary phone is present and coherent",
+      "category": "A",
+      "stage": "identify",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API nationalPhoneNumber and destination tel: action both show (555) 010-0200."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Use one tracked or primary number and keep it consistent on the profile and site.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-05",
+      "title": "Website action is present and plausibly owned",
+      "category": "A",
+      "stage": "identify",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API websiteUri points to https://acme-plumbing.example/, the synthetic owned domain used throughout this fixture."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Point the profile at the business's own primary domain.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-06",
+      "title": "Location or service-area configuration is coherent",
+      "category": "A",
+      "stage": "understand",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Public profile and configuration: service-area business, no storefront address, Example County service area. The hidden address is correct, not a defect."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Make the location or service-area configuration match how the business actually sells.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-07",
+      "title": "Regular hours are present and coherent",
+      "category": "A",
+      "stage": "understand",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API regularOpeningHours: Mon-Sat 07:00-19:00. The destination publishes the same window."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Publish accurate regular hours and mirror them on the site.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-08",
+      "title": "Description is specific and accurate",
+      "category": "A",
+      "stage": "understand",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Profile description names repairs, drain cleaning, and Example County, but does not state a customer outcome or differentiator."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "Write a short description around services, customer, and service area.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-09",
+      "title": "Relevant attributes support the buying decision",
+      "category": "A",
+      "stage": "understand",
+      "max": 1,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "No service-specific attributes are visible on the public profile beyond the category labels. Financing and emergency attributes are absent."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "Add only attributes the business can verify and support.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-01",
+      "title": "Major services are explicit",
+      "category": "B",
+      "stage": "understand",
+      "max": 4,
+      "score": 3,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Profile service list names drain cleaning and water-heater repair; the destination also sells leak detection and repiping. One major line is missing from the profile."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "critical",
+      "recommendedIntervention": "Name the major services in the profile and keep them aligned with the site.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-02",
+      "title": "Commercially important services are represented",
+      "category": "B",
+      "stage": "understand",
+      "max": 3,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile lists repair work but does not distinguish the highest-value repipe and water-heater jobs. Commercial priority is unclear."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Put the highest-value services first and make them easy to recognize.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-03",
+      "title": "Emergency or urgent service is represented",
+      "category": "B",
+      "stage": "understand",
+      "max": 3,
+      "score": 3,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Profile description states emergency plumbing service and the preferred call action is present. Urgent work is represented."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "State emergency availability and connect it to one usable urgent action.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-04",
+      "title": "Service descriptions are clear",
+      "category": "B",
+      "stage": "understand",
+      "max": 3,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Service descriptions repeat category labels; they do not explain the customer problem or the work included."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Write one clear sentence per major service: problem, work, outcome.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-05",
+      "title": "Service organization is coherent",
+      "category": "B",
+      "stage": "understand",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Services are grouped as drain cleaning and water heaters. The grouping is scannable, though leak detection is absent."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "Group related services and remove duplicates.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-06",
+      "title": "Profile services match the website offering",
+      "category": "B",
+      "stage": "understand",
+      "max": 2,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Destination offers leak detection and repiping; the profile lists neither. The core plumbing offer matches, but one material line does not."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Align the profile and site service lists, then remove stale services.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-07",
+      "title": "Category-specific attributes add service context",
+      "category": "B",
+      "stage": "understand",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "No category-specific attribute explains emergency availability, financing, or service-area constraints."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "low",
+      "recommendedIntervention": "Add the category attributes that materially help a customer decide.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-01",
+      "title": "Phone action is usable",
+      "category": "C",
+      "stage": "act",
+      "max": 4,
+      "score": 4,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API phone present and the destination uses a tel: link for the same synthetic number."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Publish one primary number and make it tappable everywhere.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-02",
+      "title": "Website action is clear and labeled",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Website action is labeled with the business name and points to the synthetic owned domain."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Use the business's primary website and a clear label.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-03",
+      "title": "Booking or appointment action",
+      "category": "C",
+      "stage": "act",
+      "max": 3,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "No booking or appointment action is present on the profile. The destination has a contact form, but that is not a booking action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Add one direct booking action and make the destination relevant.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-04",
+      "title": "Messaging action",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": null,
+      "applicable": false,
+      "na_reason": "condition not enabled: messaging_expected",
+      "confidence": "not_applicable",
+      "evidence": [],
+      "evidence_refs": [],
+      "evaluation": "deterministic",
+      "severity": "medium",
+      "recommendedIntervention": "Add one business-owned messaging path with a clear response expectation.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-05",
+      "title": "Directions or location action",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": null,
+      "applicable": false,
+      "na_reason": "condition not enabled: physical_storefront",
+      "confidence": "not_applicable",
+      "evidence": [],
+      "evidence_refs": [],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Provide a correct address and directions action.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-06",
+      "title": "Mobile handoff is compatible",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "The destination is usable at mobile width, but its contact form sits below a large stock hero image. One extra scroll adds friction, not a dead end."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Make the first destination a mobile-usable page owned by the business.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-07",
+      "title": "Emergency action pathway",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Emergency service is named and the primary phone action is usable, so an urgent path exists."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Make one urgent action unmistakable.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-08",
+      "title": "After-hours path when observable",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile states no after-hours policy. The destination says “call us” but does not say whether anyone answers after 7pm."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "State after-hours availability and connect it to one action.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-09",
+      "title": "Preferred next action is clear",
+      "category": "C",
+      "stage": "act",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Call is the clearest action; website and estimate request are secondary. The profile does not label a booking path."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Choose one primary action per intent and let the others support it.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-10",
+      "title": "Contact paths do not conflict",
+      "category": "C",
+      "stage": "act",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Phone and website actions point to the same synthetic business. No conflicting booking or messaging destination is present."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "medium",
+      "recommendedIntervention": "Remove stale numbers, domains, and booking destinations.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-01",
+      "title": "Rating provides a credible baseline",
+      "category": "D",
+      "stage": "trust",
+      "max": 3,
+      "score": 3,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API rating 4.6 across 38 reviews. This is above the synthetic local baseline for the example."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Investigate recurring causes of low ratings; do not chase a number.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-02",
+      "title": "Review count provides enough context",
+      "category": "D",
+      "stage": "trust",
+      "max": 3,
+      "score": 3,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "38 reviews is a plausible base for a service business of this synthetic age and category."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Build a consistent review-request process; never buy reviews.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-03",
+      "title": "Recent reviews are present",
+      "category": "D",
+      "stage": "trust",
+      "max": 4,
+      "score": 3,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "The public review sample has no review newer than 2026-07-18. At the 2026-10-27 audit date, recent proof is weak."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Make review requests part of every completed job.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-04",
+      "title": "Review velocity is consistent",
+      "category": "D",
+      "stage": "trust",
+      "max": 3,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Review timestamps cluster in 2025 and early 2026, then stop. The sample does not show a steady recent cadence."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Use a repeatable post-job request instead of sporadic campaigns.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-05",
+      "title": "Recent rating distribution does not signal a trust problem",
+      "category": "D",
+      "stage": "trust",
+      "max": 3,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "One 2-star review in January 2026 cites a missed arrival window; the rest of the sample is positive. This is a small but relevant recent negative."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-06",
+      "title": "Owner responses are present",
+      "category": "D",
+      "stage": "trust",
+      "max": 2,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "No owner responses are visible in the public review sample, despite 38 published reviews."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "deterministic",
+      "severity": "medium",
+      "recommendedIntervention": "Respond to reviews, especially recent negative ones, in a calm, specific voice.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-07",
+      "title": "Owner responses are recent and relevant",
+      "category": "D",
+      "stage": "trust",
+      "max": 1,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "No owner responses are visible in the public review sample, so no recent relevant response can be assessed."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "deterministic",
+      "severity": "low",
+      "recommendedIntervention": "Write short, specific replies that acknowledge the job and the customer's concern.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-08",
+      "title": "Reviews contain service-specific proof",
+      "category": "D",
+      "stage": "trust",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Two sampled reviews name drain cleaning and water-heater work. Service-specific proof exists but is not repeated across the sample."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "low",
+      "recommendedIntervention": "Ask satisfied customers to mention the job and the result, without scripting a fake review.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-01",
+      "title": "Profile imagery is present",
+      "category": "E",
+      "stage": "trust",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Places API reports profile and cover media. A logo and cover image are present."
+      ],
+      "evidence_refs": [
+        "places",
+        "media"
+      ],
+      "evaluation": "deterministic",
+      "severity": "medium",
+      "recommendedIntervention": "Add a clear cover image and a recognizable profile image.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-02",
+      "title": "Imagery is business-relevant",
+      "category": "E",
+      "stage": "trust",
+      "max": 2,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Two of six sampled images are stock graphics. The set is mixed rather than clearly business-specific."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Replace stock imagery with real, permissioned job and team photos.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-03",
+      "title": "Useful job, team, vehicle, or before/after media",
+      "category": "E",
+      "stage": "trust",
+      "max": 3,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "One job photo and one team photo are present; service variety is thin relative to the claimed services."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Add captioned photos for each major service, including before/after where appropriate.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-04",
+      "title": "Media is recent",
+      "category": "E",
+      "stage": "trust",
+      "max": 1,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Media metadata shows one recent upload. The rest of the set has no recent date or is undated."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "evaluation": "deterministic",
+      "severity": "low",
+      "recommendedIntervention": "Add a small number of recent job photos each month.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-05",
+      "title": "Business-uploaded context is observable",
+      "category": "E",
+      "stage": "trust",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Two images carry business attribution; the remaining images are user-contributed or unattributed."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "evaluation": "deterministic",
+      "severity": "low",
+      "recommendedIntervention": "Upload a small, current set of owner-provided photos.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-06",
+      "title": "Recent posts or updates where applicable",
+      "category": "E",
+      "stage": "trust",
+      "max": 1,
+      "score": null,
+      "applicable": false,
+      "na_reason": "condition not enabled: content_posts_expected",
+      "confidence": "not_applicable",
+      "evidence": [],
+      "evidence_refs": [],
+      "evaluation": "deterministic",
+      "severity": "low",
+      "recommendedIntervention": "Publish occasional job or service updates that help a customer, not filler.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-01",
+      "title": "Website destination resolves over HTTPS",
+      "category": "F",
+      "stage": "handoff",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Destination fetch resolves over HTTPS with a valid certificate and no unrelated redirect."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Repair the destination and serve the site over HTTPS.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-02",
+      "title": "Destination identity matches the profile",
+      "category": "F",
+      "stage": "handoff",
+      "max": 2,
+      "score": 2,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "Destination title and logo match Acme Plumbing, but the footer uses a shortened brand name."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "high",
+      "recommendedIntervention": "Align the business name, logo, and location across Google and the site.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-03",
+      "title": "Phone, hours, and service signals stay consistent",
+      "category": "F",
+      "stage": "handoff",
+      "max": 2,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Phone and hours match; the destination adds leak detection not present on the profile. One material service inconsistency."
+      ],
+      "evidence_refs": [
+        "destination",
+        "places"
+      ],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Update the destination and profile from one source of truth.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-04",
+      "title": "Booking destination resolves and belongs to the business",
+      "category": "F",
+      "stage": "handoff",
+      "max": 2,
+      "score": null,
+      "applicable": false,
+      "na_reason": "not observable: booking_present",
+      "confidence": "not_applicable",
+      "evidence": [],
+      "evidence_refs": [],
+      "evaluation": "deterministic",
+      "severity": "critical",
+      "recommendedIntervention": "Repair or remove the booking action; use a branded, working destination.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-05",
+      "title": "No obvious dead end at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "The destination has a contact form and phone link, but the first mobile viewport has no visible next action."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "medium",
+      "recommendedIntervention": "Keep one visible action on the destination that matches the profile promise.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-06",
+      "title": "Source context is preserved at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "max": 1,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "strong_signal",
+      "evidence": [
+        "The profile website URL has no source parameter and the destination redirect preserves none."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "severity": "low",
+      "recommendedIntervention": "Use a consistent, non-breaking source parameter on profile and booking links.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-01",
+      "title": "Website action carries observable source context",
+      "category": "G",
+      "stage": "measure",
+      "max": 2,
+      "score": 0,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "No source or UTM parameter is observable on the profile website action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "medium",
+      "recommendedIntervention": "Use one consistent source parameter that survives redirects.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-02",
+      "title": "Booking action carries observable source context",
+      "category": "G",
+      "stage": "measure",
+      "max": 2,
+      "score": null,
+      "applicable": false,
+      "na_reason": "not observable: booking_resolves",
+      "confidence": "not_applicable",
+      "evidence": [],
+      "evidence_refs": [],
+      "evaluation": "deterministic",
+      "severity": "high",
+      "recommendedIntervention": "Preserve source context through the booking redirect or form.",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-03",
+      "title": "Destination structure allows profile-origin measurement",
+      "category": "G",
+      "stage": "measure",
+      "max": 1,
+      "score": 1,
+      "applicable": true,
+      "na_reason": "",
+      "confidence": "verified",
+      "evidence": [
+        "Destination uses a stable root URL with no redirect chain that would strip query context."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "severity": "low",
+      "recommendedIntervention": "Use stable landing URLs and avoid redirect chains that strip query context.",
+      "ownerData": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "GBP-CON-03",
+      "title": "Booking or appointment action",
+      "category": "C",
+      "stage": "act",
+      "score": 0,
+      "max": 3,
+      "lost": 3,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No booking or appointment action is present on the profile. The destination has a contact form, but that is not a booking action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Add one direct booking action and make the destination relevant.",
+      "fix": "Add one direct booking action with a relevant destination.",
+      "radModules": [
+        "online_booking"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-01",
+      "title": "Major services are explicit",
+      "category": "B",
+      "stage": "understand",
+      "score": 3,
+      "max": 4,
+      "lost": 1,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Profile service list names drain cleaning and water-heater repair; the destination also sells leak detection and repiping. One major line is missing from the profile."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Name the major services in the profile and keep them aligned with the site.",
+      "fix": "Name every major service line in the profile.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-03",
+      "title": "Recent reviews are present",
+      "category": "D",
+      "stage": "trust",
+      "score": 3,
+      "max": 4,
+      "lost": 1,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "The public review sample has no review newer than 2026-07-18. At the 2026-10-27 audit date, recent proof is weak."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Make review requests part of every completed job.",
+      "fix": "Ask every completed customer for a review through one process.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-01",
+      "title": "Phone action is usable",
+      "category": "C",
+      "stage": "act",
+      "score": 4,
+      "max": 4,
+      "lost": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API phone present and the destination uses a tel: link for the same synthetic number."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Publish one primary number and make it tappable everywhere.",
+      "fix": "Make the primary phone tappable everywhere.",
+      "radModules": [
+        "call_tracking"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-01",
+      "title": "Website destination resolves over HTTPS",
+      "category": "F",
+      "stage": "handoff",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Destination fetch resolves over HTTPS with a valid certificate and no unrelated redirect."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Repair the destination and serve the site over HTTPS.",
+      "fix": "Repair the destination and serve the site over HTTPS.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-01",
+      "title": "Business status and identity",
+      "category": "A",
+      "stage": "identify",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API: businessStatus=OPERATIONAL; displayName=Acme Plumbing matches the destination title."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Confirm the profile status and legal trading name, then correct any mismatch.",
+      "fix": "Confirm operational status and correct the public business name.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-04",
+      "title": "Primary phone is present and coherent",
+      "category": "A",
+      "stage": "identify",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API nationalPhoneNumber and destination tel: action both show (555) 010-0200."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Use one tracked or primary number and keep it consistent on the profile and site.",
+      "fix": "Publish one primary phone and make it tappable and consistent.",
+      "radModules": [
+        "call_tracking"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-05",
+      "title": "Website action is present and plausibly owned",
+      "category": "A",
+      "stage": "identify",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API websiteUri points to https://acme-plumbing.example/, the synthetic owned domain used throughout this fixture."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Point the profile at the business's own primary domain.",
+      "fix": "Point the website action at the business's own primary domain.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-03",
+      "title": "Useful job, team, vehicle, or before/after media",
+      "category": "E",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "One job photo and one team photo are present; service variety is thin relative to the claimed services."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Add captioned photos for each major service, including before/after where appropriate.",
+      "fix": "Add captioned photos for each major service, including before/after where appropriate.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-04",
+      "title": "Review velocity is consistent",
+      "category": "D",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Review timestamps cluster in 2025 and early 2026, then stop. The sample does not show a steady recent cadence."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Use a repeatable post-job request instead of sporadic campaigns.",
+      "fix": "Replace sporadic review campaigns with a repeatable post-job request.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-05",
+      "title": "Recent rating distribution does not signal a trust problem",
+      "category": "D",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "One 2-star review in January 2026 cites a missed arrival window; the rest of the sample is positive. This is a small but relevant recent negative."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "fix": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "radModules": [
+        "review_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-02",
+      "title": "Imagery is business-relevant",
+      "category": "E",
+      "stage": "trust",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Two of six sampled images are stock graphics. The set is mixed rather than clearly business-specific."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Replace stock imagery with real, permissioned job and team photos.",
+      "fix": "Replace stock imagery with real, permissioned business photos.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-06",
+      "title": "Mobile handoff is compatible",
+      "category": "C",
+      "stage": "act",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The destination is usable at mobile width, but its contact form sits below a large stock hero image. One extra scroll adds friction, not a dead end."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Make the first destination a mobile-usable page owned by the business.",
+      "fix": "Make the first destination mobile-usable and free of blocking interstitials.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-03",
+      "title": "Phone, hours, and service signals stay consistent",
+      "category": "F",
+      "stage": "handoff",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Phone and hours match; the destination adds leak detection not present on the profile. One material service inconsistency."
+      ],
+      "evidence_refs": [
+        "destination",
+        "places"
+      ],
+      "recommendedIntervention": "Update the destination and profile from one source of truth.",
+      "fix": "Update the profile and site from one source of truth.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-02",
+      "title": "Commercially important services are represented",
+      "category": "B",
+      "stage": "understand",
+      "score": 2,
+      "max": 3,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile lists repair work but does not distinguish the highest-value repipe and water-heater jobs. Commercial priority is unclear."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Put the highest-value services first and make them easy to recognize.",
+      "fix": "Prioritize the services the business most wants to sell.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-04",
+      "title": "Service descriptions are clear",
+      "category": "B",
+      "stage": "understand",
+      "score": 2,
+      "max": 3,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Service descriptions repeat category labels; they do not explain the customer problem or the work included."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Write one clear sentence per major service: problem, work, outcome.",
+      "fix": "Write one clear problem-work-outcome sentence per service.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-06",
+      "title": "Profile services match the website offering",
+      "category": "B",
+      "stage": "understand",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Destination offers leak detection and repiping; the profile lists neither. The core plumbing offer matches, but one material line does not."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Align the profile and site service lists, then remove stale services.",
+      "fix": "Align profile services with the website offering.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-02",
+      "title": "Website action is clear and labeled",
+      "category": "C",
+      "stage": "act",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Website action is labeled with the business name and points to the synthetic owned domain."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Use the business's primary website and a clear label.",
+      "fix": "Use a clear website action label and the own primary domain.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-07",
+      "title": "Emergency action pathway",
+      "category": "C",
+      "stage": "act",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Emergency service is named and the primary phone action is usable, so an urgent path exists."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "recommendedIntervention": "Make one urgent action unmistakable.",
+      "fix": "Make one urgent action unmistakable.",
+      "radModules": [
+        "emergency_routing"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-09",
+      "title": "Preferred next action is clear",
+      "category": "C",
+      "stage": "act",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Call is the clearest action; website and estimate request are secondary. The profile does not label a booking path."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Choose one primary action per intent and let the others support it.",
+      "fix": "Choose one primary action per intent and reduce competing actions.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-02",
+      "title": "Destination identity matches the profile",
+      "category": "F",
+      "stage": "handoff",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Destination title and logo match Acme Plumbing, but the footer uses a shortened brand name."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Align the business name, logo, and location across Google and the site.",
+      "fix": "Align the business name, logo, and location across Google and the site.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-02",
+      "title": "Primary category fits the core business",
+      "category": "A",
+      "stage": "identify",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Places API primaryType=plumber; destination H1 names plumbing repair and drain service. The category is specific and accurate."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Choose the most specific accurate primary category for the core service.",
+      "fix": "Choose the most specific accurate primary category.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-06",
+      "title": "Location or service-area configuration is coherent",
+      "category": "A",
+      "stage": "understand",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Public profile and configuration: service-area business, no storefront address, Example County service area. The hidden address is correct, not a defect."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "recommendedIntervention": "Make the location or service-area configuration match how the business actually sells.",
+      "fix": "Make the storefront or service-area configuration match the business model.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-07",
+      "title": "Regular hours are present and coherent",
+      "category": "A",
+      "stage": "understand",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API regularOpeningHours: Mon-Sat 07:00-19:00. The destination publishes the same window."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Publish accurate regular hours and mirror them on the site.",
+      "fix": "Publish accurate regular hours and mirror them on the site.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-03",
+      "title": "Emergency or urgent service is represented",
+      "category": "B",
+      "stage": "understand",
+      "score": 3,
+      "max": 3,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Profile description states emergency plumbing service and the preferred call action is present. Urgent work is represented."
+      ],
+      "evidence_refs": [
+        "public_profile",
+        "places"
+      ],
+      "recommendedIntervention": "State emergency availability and connect it to one usable urgent action.",
+      "fix": "State emergency availability and connect it to one urgent action.",
+      "radModules": [
+        "emergency_routing"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-01",
+      "title": "Rating provides a credible baseline",
+      "category": "D",
+      "stage": "trust",
+      "score": 3,
+      "max": 3,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API rating 4.6 across 38 reviews. This is above the synthetic local baseline for the example."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Investigate recurring causes of low ratings; do not chase a number.",
+      "fix": "Investigate recurring causes of low ratings; do not chase a number.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-02",
+      "title": "Review count provides enough context",
+      "category": "D",
+      "stage": "trust",
+      "score": 3,
+      "max": 3,
+      "lost": 0,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "38 reviews is a plausible base for a service business of this synthetic age and category."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Build a consistent review-request process; never buy reviews.",
+      "fix": "Build a consistent review-request process.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-08",
+      "title": "After-hours path when observable",
+      "category": "C",
+      "stage": "act",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile states no after-hours policy. The destination says “call us” but does not say whether anyone answers after 7pm."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "State after-hours availability and connect it to one action.",
+      "fix": "State the after-hours path and connect it to one action.",
+      "radModules": [
+        "after_hours"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-MSR-01",
+      "title": "Website action carries observable source context",
+      "category": "G",
+      "stage": "measure",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No source or UTM parameter is observable on the profile website action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Use one consistent source parameter that survives redirects.",
+      "fix": "Use one consistent source parameter that survives redirects.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-06",
+      "title": "Owner responses are present",
+      "category": "D",
+      "stage": "trust",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No owner responses are visible in the public review sample, despite 38 published reviews."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Respond to reviews, especially recent negative ones, in a calm, specific voice.",
+      "fix": "Respond to reviews, especially recent negative ones.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-03",
+      "title": "Additional categories are relevant, not stuffed",
+      "category": "A",
+      "stage": "identify",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Places API types include plumber, drainage service, and water heater repair. Drainage is supported by the site; water-heater evidence is thin, so the set is not fully supported."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Remove unsupported categories and keep only services with real delivery evidence.",
+      "fix": "Remove unsupported additional categories.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-09",
+      "title": "Relevant attributes support the buying decision",
+      "category": "A",
+      "stage": "understand",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "No service-specific attributes are visible on the public profile beyond the category labels. Financing and emergency attributes are absent."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "recommendedIntervention": "Add only attributes the business can verify and support.",
+      "fix": "Add verified attributes that answer practical buying questions.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-01",
+      "title": "Profile imagery is present",
+      "category": "E",
+      "stage": "trust",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Places API reports profile and cover media. A logo and cover image are present."
+      ],
+      "evidence_refs": [
+        "places",
+        "media"
+      ],
+      "recommendedIntervention": "Add a clear cover image and a recognizable profile image.",
+      "fix": "Add a clear profile image and cover image.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-10",
+      "title": "Contact paths do not conflict",
+      "category": "C",
+      "stage": "act",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Phone and website actions point to the same synthetic business. No conflicting booking or messaging destination is present."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Remove stale numbers, domains, and booking destinations.",
+      "fix": "Remove stale numbers, domains, and booking destinations.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-05",
+      "title": "No obvious dead end at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The destination has a contact form and phone link, but the first mobile viewport has no visible next action."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Keep one visible action on the destination that matches the profile promise.",
+      "fix": "Keep one visible next action on the destination that matches the profile promise.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-08",
+      "title": "Description is specific and accurate",
+      "category": "A",
+      "stage": "understand",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Profile description names repairs, drain cleaning, and Example County, but does not state a customer outcome or differentiator."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "recommendedIntervention": "Write a short description around services, customer, and service area.",
+      "fix": "Write a specific description around services, customer, and service area.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-05",
+      "title": "Service organization is coherent",
+      "category": "B",
+      "stage": "understand",
+      "score": 2,
+      "max": 2,
+      "lost": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Services are grouped as drain cleaning and water heaters. The grouping is scannable, though leak detection is absent."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Group related services and remove duplicates.",
+      "fix": "Group and order services so a customer can scan them.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-04",
+      "title": "Media is recent",
+      "category": "E",
+      "stage": "trust",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Media metadata shows one recent upload. The rest of the set has no recent date or is undated."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Add a small number of recent job photos each month.",
+      "fix": "Add a small number of recent job photos each month.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-06",
+      "title": "Source context is preserved at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile website URL has no source parameter and the destination redirect preserves none."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Use a consistent, non-breaking source parameter on profile and booking links.",
+      "fix": "Preserve one stable source parameter through the handoff.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-07",
+      "title": "Owner responses are recent and relevant",
+      "category": "D",
+      "stage": "trust",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No owner responses are visible in the public review sample, so no recent relevant response can be assessed."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Write short, specific replies that acknowledge the job and the customer's concern.",
+      "fix": "Write short, specific replies instead of generic acknowledgements.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-05",
+      "title": "Business-uploaded context is observable",
+      "category": "E",
+      "stage": "trust",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Two images carry business attribution; the remaining images are user-contributed or unattributed."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Upload a small, current set of owner-provided photos.",
+      "fix": "Upload a current set of owner-provided photos.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-MSR-03",
+      "title": "Destination structure allows profile-origin measurement",
+      "category": "G",
+      "stage": "measure",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Destination uses a stable root URL with no redirect chain that would strip query context."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Use stable landing URLs and avoid redirect chains that strip query context.",
+      "fix": "Use stable landing URLs and avoid redirect chains that strip query context.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-07",
+      "title": "Category-specific attributes add service context",
+      "category": "B",
+      "stage": "understand",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "No category-specific attribute explains emergency availability, financing, or service-area constraints."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "recommendedIntervention": "Add the category attributes that materially help a customer decide.",
+      "fix": "Add category attributes that materially help a customer decide.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-08",
+      "title": "Reviews contain service-specific proof",
+      "category": "D",
+      "stage": "trust",
+      "score": 1,
+      "max": 1,
+      "lost": 0,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Two sampled reviews name drain cleaning and water-heater work. Service-specific proof exists but is not repeated across the sample."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Ask satisfied customers to mention the job and the result, without scripting a fake review.",
+      "fix": "Ask customers to mention the job and result without scripting a fake review.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    }
+  ],
+  "verifiedFindings": [
+    {
+      "id": "GBP-CON-03",
+      "title": "Booking or appointment action",
+      "category": "C",
+      "stage": "act",
+      "score": 0,
+      "max": 3,
+      "lost": 3,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No booking or appointment action is present on the profile. The destination has a contact form, but that is not a booking action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Add one direct booking action and make the destination relevant.",
+      "fix": "Add one direct booking action with a relevant destination.",
+      "radModules": [
+        "online_booking"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-MSR-01",
+      "title": "Website action carries observable source context",
+      "category": "G",
+      "stage": "measure",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No source or UTM parameter is observable on the profile website action."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Use one consistent source parameter that survives redirects.",
+      "fix": "Use one consistent source parameter that survives redirects.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-04",
+      "title": "Review velocity is consistent",
+      "category": "D",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Review timestamps cluster in 2025 and early 2026, then stop. The sample does not show a steady recent cadence."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Use a repeatable post-job request instead of sporadic campaigns.",
+      "fix": "Replace sporadic review campaigns with a repeatable post-job request.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-05",
+      "title": "Recent rating distribution does not signal a trust problem",
+      "category": "D",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "One 2-star review in January 2026 cites a missed arrival window; the rest of the sample is positive. This is a small but relevant recent negative."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "fix": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "radModules": [
+        "review_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-06",
+      "title": "Owner responses are present",
+      "category": "D",
+      "stage": "trust",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No owner responses are visible in the public review sample, despite 38 published reviews."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Respond to reviews, especially recent negative ones, in a calm, specific voice.",
+      "fix": "Respond to reviews, especially recent negative ones.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-04",
+      "title": "Media is recent",
+      "category": "E",
+      "stage": "trust",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Media metadata shows one recent upload. The rest of the set has no recent date or is undated."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Add a small number of recent job photos each month.",
+      "fix": "Add a small number of recent job photos each month.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-03",
+      "title": "Phone, hours, and service signals stay consistent",
+      "category": "F",
+      "stage": "handoff",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Phone and hours match; the destination adds leak detection not present on the profile. One material service inconsistency."
+      ],
+      "evidence_refs": [
+        "destination",
+        "places"
+      ],
+      "recommendedIntervention": "Update the destination and profile from one source of truth.",
+      "fix": "Update the profile and site from one source of truth.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-09",
+      "title": "Relevant attributes support the buying decision",
+      "category": "A",
+      "stage": "understand",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "verified",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "No service-specific attributes are visible on the public profile beyond the category labels. Financing and emergency attributes are absent."
+      ],
+      "evidence_refs": [
+        "public_profile"
+      ],
+      "recommendedIntervention": "Add only attributes the business can verify and support.",
+      "fix": "Add verified attributes that answer practical buying questions.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-06",
+      "title": "Profile services match the website offering",
+      "category": "B",
+      "stage": "understand",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "Destination offers leak detection and repiping; the profile lists neither. The core plumbing offer matches, but one material line does not."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Align the profile and site service lists, then remove stale services.",
+      "fix": "Align profile services with the website offering.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-03",
+      "title": "Recent reviews are present",
+      "category": "D",
+      "stage": "trust",
+      "score": 3,
+      "max": 4,
+      "lost": 1,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "The public review sample has no review newer than 2026-07-18. At the 2026-10-27 audit date, recent proof is weak."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Make review requests part of every completed job.",
+      "fix": "Ask every completed customer for a review through one process.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-07",
+      "title": "Owner responses are recent and relevant",
+      "category": "D",
+      "stage": "trust",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "verified",
+      "evaluation": "deterministic",
+      "evidence": [
+        "No owner responses are visible in the public review sample, so no recent relevant response can be assessed."
+      ],
+      "evidence_refs": [
+        "reviews"
+      ],
+      "recommendedIntervention": "Write short, specific replies that acknowledge the job and the customer's concern.",
+      "fix": "Write short, specific replies instead of generic acknowledgements.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    }
+  ],
+  "strongSignals": [
+    {
+      "id": "GBP-CNT-03",
+      "title": "Useful job, team, vehicle, or before/after media",
+      "category": "E",
+      "stage": "trust",
+      "score": 1,
+      "max": 3,
+      "lost": 2,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "One job photo and one team photo are present; service variety is thin relative to the claimed services."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Add captioned photos for each major service, including before/after where appropriate.",
+      "fix": "Add captioned photos for each major service, including before/after where appropriate.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-08",
+      "title": "After-hours path when observable",
+      "category": "C",
+      "stage": "act",
+      "score": 0,
+      "max": 2,
+      "lost": 2,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile states no after-hours policy. The destination says “call us” but does not say whether anyone answers after 7pm."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "State after-hours availability and connect it to one action.",
+      "fix": "State the after-hours path and connect it to one action.",
+      "radModules": [
+        "after_hours"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-02",
+      "title": "Imagery is business-relevant",
+      "category": "E",
+      "stage": "trust",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Two of six sampled images are stock graphics. The set is mixed rather than clearly business-specific."
+      ],
+      "evidence_refs": [
+        "media"
+      ],
+      "recommendedIntervention": "Replace stock imagery with real, permissioned job and team photos.",
+      "fix": "Replace stock imagery with real, permissioned business photos.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-06",
+      "title": "Mobile handoff is compatible",
+      "category": "C",
+      "stage": "act",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The destination is usable at mobile width, but its contact form sits below a large stock hero image. One extra scroll adds friction, not a dead end."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Make the first destination a mobile-usable page owned by the business.",
+      "fix": "Make the first destination mobile-usable and free of blocking interstitials.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-06",
+      "title": "Source context is preserved at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "score": 0,
+      "max": 1,
+      "lost": 1,
+      "severity": "low",
+      "priority": "low",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile website URL has no source parameter and the destination redirect preserves none."
+      ],
+      "evidence_refs": [
+        "destination"
+      ],
+      "recommendedIntervention": "Use a consistent, non-breaking source parameter on profile and booking links.",
+      "fix": "Preserve one stable source parameter through the handoff.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-03",
+      "title": "Additional categories are relevant, not stuffed",
+      "category": "A",
+      "stage": "identify",
+      "score": 1,
+      "max": 2,
+      "lost": 1,
+      "severity": "medium",
+      "priority": "medium",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Places API types include plumber, drainage service, and water heater repair. Drainage is supported by the site; water-heater evidence is thin, so the set is not fully supported."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Remove unsupported categories and keep only services with real delivery evidence.",
+      "fix": "Remove unsupported additional categories.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-01",
+      "title": "Major services are explicit",
+      "category": "B",
+      "stage": "understand",
+      "score": 3,
+      "max": 4,
+      "lost": 1,
+      "severity": "critical",
+      "priority": "critical",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Profile service list names drain cleaning and water-heater repair; the destination also sells leak detection and repiping. One major line is missing from the profile."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Name the major services in the profile and keep them aligned with the site.",
+      "fix": "Name every major service line in the profile.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-02",
+      "title": "Commercially important services are represented",
+      "category": "B",
+      "stage": "understand",
+      "score": 2,
+      "max": 3,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "The profile lists repair work but does not distinguish the highest-value repipe and water-heater jobs. Commercial priority is unclear."
+      ],
+      "evidence_refs": [
+        "places",
+        "destination"
+      ],
+      "recommendedIntervention": "Put the highest-value services first and make them easy to recognize.",
+      "fix": "Prioritize the services the business most wants to sell.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-04",
+      "title": "Service descriptions are clear",
+      "category": "B",
+      "stage": "understand",
+      "score": 2,
+      "max": 3,
+      "lost": 1,
+      "severity": "high",
+      "priority": "high",
+      "confidence": "strong_signal",
+      "evaluation": "model_judgment",
+      "evidence": [
+        "Service descriptions repeat category labels; they do not explain the customer problem or the work included."
+      ],
+      "evidence_refs": [
+        "places"
+      ],
+      "recommendedIntervention": "Write one clear sentence per major service: problem, work, outcome.",
+      "fix": "Write one clear problem-work-outcome sentence per service.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "GBP-CON-03",
+      "title": "Booking or appointment action",
+      "category": "C",
+      "stage": "act",
+      "lost": 3,
+      "max": 3,
+      "score": 0,
+      "severity": "critical",
+      "priority": "critical",
+      "fix": "Add one direct booking action with a relevant destination.",
+      "radModules": [
+        "online_booking"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-01",
+      "title": "Major services are explicit",
+      "category": "B",
+      "stage": "understand",
+      "lost": 1,
+      "max": 4,
+      "score": 3,
+      "severity": "critical",
+      "priority": "critical",
+      "fix": "Name every major service line in the profile.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-03",
+      "title": "Recent reviews are present",
+      "category": "D",
+      "stage": "trust",
+      "lost": 1,
+      "max": 4,
+      "score": 3,
+      "severity": "critical",
+      "priority": "critical",
+      "fix": "Ask every completed customer for a review through one process.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-03",
+      "title": "Useful job, team, vehicle, or before/after media",
+      "category": "E",
+      "stage": "trust",
+      "lost": 2,
+      "max": 3,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Add captioned photos for each major service, including before/after where appropriate.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-04",
+      "title": "Review velocity is consistent",
+      "category": "D",
+      "stage": "trust",
+      "lost": 2,
+      "max": 3,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Replace sporadic review campaigns with a repeatable post-job request.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-05",
+      "title": "Recent rating distribution does not signal a trust problem",
+      "category": "D",
+      "stage": "trust",
+      "lost": 2,
+      "max": 3,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "radModules": [
+        "review_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-02",
+      "title": "Imagery is business-relevant",
+      "category": "E",
+      "stage": "trust",
+      "lost": 1,
+      "max": 2,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Replace stock imagery with real, permissioned business photos.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-06",
+      "title": "Mobile handoff is compatible",
+      "category": "C",
+      "stage": "act",
+      "lost": 1,
+      "max": 2,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Make the first destination mobile-usable and free of blocking interstitials.",
+      "radModules": [
+        "conversion_recovery"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-03",
+      "title": "Phone, hours, and service signals stay consistent",
+      "category": "F",
+      "stage": "handoff",
+      "lost": 1,
+      "max": 2,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Update the profile and site from one source of truth.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-02",
+      "title": "Commercially important services are represented",
+      "category": "B",
+      "stage": "understand",
+      "lost": 1,
+      "max": 3,
+      "score": 2,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Prioritize the services the business most wants to sell.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-04",
+      "title": "Service descriptions are clear",
+      "category": "B",
+      "stage": "understand",
+      "lost": 1,
+      "max": 3,
+      "score": 2,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Write one clear problem-work-outcome sentence per service.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-SVC-06",
+      "title": "Profile services match the website offering",
+      "category": "B",
+      "stage": "understand",
+      "lost": 1,
+      "max": 2,
+      "score": 1,
+      "severity": "high",
+      "priority": "high",
+      "fix": "Align profile services with the website offering.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CON-08",
+      "title": "After-hours path when observable",
+      "category": "C",
+      "stage": "act",
+      "lost": 2,
+      "max": 2,
+      "score": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "fix": "State the after-hours path and connect it to one action.",
+      "radModules": [
+        "after_hours"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-MSR-01",
+      "title": "Website action carries observable source context",
+      "category": "G",
+      "stage": "measure",
+      "lost": 2,
+      "max": 2,
+      "score": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "fix": "Use one consistent source parameter that survives redirects.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-06",
+      "title": "Owner responses are present",
+      "category": "D",
+      "stage": "trust",
+      "lost": 2,
+      "max": 2,
+      "score": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "fix": "Respond to reviews, especially recent negative ones.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-03",
+      "title": "Additional categories are relevant, not stuffed",
+      "category": "A",
+      "stage": "identify",
+      "lost": 1,
+      "max": 2,
+      "score": 1,
+      "severity": "medium",
+      "priority": "medium",
+      "fix": "Remove unsupported additional categories.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-ID-09",
+      "title": "Relevant attributes support the buying decision",
+      "category": "A",
+      "stage": "understand",
+      "lost": 1,
+      "max": 1,
+      "score": 0,
+      "severity": "medium",
+      "priority": "medium",
+      "fix": "Add verified attributes that answer practical buying questions.",
+      "radModules": [
+        "gbp_optimization"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-CNT-04",
+      "title": "Media is recent",
+      "category": "E",
+      "stage": "trust",
+      "lost": 1,
+      "max": 1,
+      "score": 0,
+      "severity": "low",
+      "priority": "low",
+      "fix": "Add a small number of recent job photos each month.",
+      "radModules": [
+        "content_production"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-HND-06",
+      "title": "Source context is preserved at handoff",
+      "category": "F",
+      "stage": "handoff",
+      "lost": 1,
+      "max": 1,
+      "score": 0,
+      "severity": "low",
+      "priority": "low",
+      "fix": "Preserve one stable source parameter through the handoff.",
+      "radModules": [
+        "advanced_attribution"
+      ],
+      "ownerDataRequired": false
+    },
+    {
+      "id": "GBP-TRU-07",
+      "title": "Owner responses are recent and relevant",
+      "category": "D",
+      "stage": "trust",
+      "lost": 1,
+      "max": 1,
+      "score": 0,
+      "severity": "low",
+      "priority": "low",
+      "fix": "Write short, specific replies instead of generic acknowledgements.",
+      "radModules": [
+        "review_automation"
+      ],
+      "ownerDataRequired": false
+    }
+  ],
+  "ownerDataRequired": [
+    {
+      "id": "OD-CALL-ANSWER-RATE",
+      "stage": "response",
+      "title": "Call answer rate",
+      "confidence": "owner_data_required",
+      "publicScoreImpact": "none",
+      "whyItMatters": "The profile can produce a call, but only the phone system can show whether it was answered.",
+      "questions": [
+        "How many profile-origin calls were answered, missed, or abandoned?",
+        "What is the median ring time and voicemail rate during business hours?"
+      ]
+    },
+    {
+      "id": "OD-SPEED-TO-LEAD",
+      "stage": "response",
+      "title": "Speed to lead",
+      "confidence": "owner_data_required",
+      "publicScoreImpact": "none",
+      "whyItMatters": "Response time affects whether a ready customer books; public data cannot prove it.",
+      "questions": [
+        "What is the median time from form, message, or missed call to first human contact?",
+        "Does the process change after hours?"
+      ]
+    },
+    {
+      "id": "OD-BOOKING-CONVERSION",
+      "stage": "book",
+      "title": "Booking conversion",
+      "confidence": "owner_data_required",
+      "publicScoreImpact": "none",
+      "whyItMatters": "A working booking link does not prove a booked job.",
+      "questions": [
+        "What share of profile-origin booking attempts become scheduled jobs?",
+        "Where do customers abandon the booking flow?"
+      ]
+    },
+    {
+      "id": "OD-REVIEW-REQUEST",
+      "stage": "review",
+      "title": "Review request operations",
+      "confidence": "owner_data_required",
+      "publicScoreImpact": "none",
+      "whyItMatters": "Public reviews show the result, not whether the request process is consistent or selective.",
+      "questions": [
+        "Is every completed job asked for a review through the same process?",
+        "Who owns follow-up, and how are negative experiences handled before a request?"
+      ]
+    },
+    {
+      "id": "OD-GBP-REVENUE",
+      "stage": "customer",
+      "title": "Profile-origin revenue",
+      "confidence": "owner_data_required",
+      "publicScoreImpact": "none",
+      "whyItMatters": "Only authorized CRM and financial data can connect profile activity to booked revenue.",
+      "questions": [
+        "Which jobs originated from the profile, and what revenue did they produce?",
+        "What is the close rate and average job value by profile-origin source?"
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "id": "identify",
+      "order": 1,
+      "label": "Identify",
+      "customerQuestion": "Is this the right business, in the right place, with a coherent public identity?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-03",
+        "GBP-ID-04",
+        "GBP-ID-05"
+      ],
+      "na_checks": [],
+      "ownerData": [],
+      "earned": 9,
+      "max": 10,
+      "percent": 90.0
+    },
+    {
+      "id": "understand",
+      "order": 2,
+      "label": "Understand",
+      "customerQuestion": "Do I understand what this business does, where, when, and for whom?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-ID-06",
+        "GBP-ID-07",
+        "GBP-ID-08",
+        "GBP-ID-09",
+        "GBP-SVC-01",
+        "GBP-SVC-02",
+        "GBP-SVC-03",
+        "GBP-SVC-04",
+        "GBP-SVC-05",
+        "GBP-SVC-06",
+        "GBP-SVC-07"
+      ],
+      "na_checks": [],
+      "ownerData": [],
+      "earned": 18,
+      "max": 23,
+      "percent": 78.3
+    },
+    {
+      "id": "trust",
+      "order": 3,
+      "label": "Trust",
+      "customerQuestion": "Does the public reputation and content give me enough confidence to act?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-TRU-01",
+        "GBP-TRU-02",
+        "GBP-TRU-03",
+        "GBP-TRU-04",
+        "GBP-TRU-05",
+        "GBP-TRU-06",
+        "GBP-TRU-07",
+        "GBP-TRU-08",
+        "GBP-CNT-01",
+        "GBP-CNT-02",
+        "GBP-CNT-03",
+        "GBP-CNT-04",
+        "GBP-CNT-05"
+      ],
+      "na_checks": [
+        "GBP-CNT-06"
+      ],
+      "ownerData": [],
+      "earned": 17,
+      "max": 29,
+      "percent": 58.6
+    },
+    {
+      "id": "act",
+      "order": 4,
+      "label": "Act",
+      "customerQuestion": "Can I take a useful next action with minimal friction?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-06",
+        "GBP-CON-07",
+        "GBP-CON-08",
+        "GBP-CON-09",
+        "GBP-CON-10"
+      ],
+      "na_checks": [
+        "GBP-CON-04",
+        "GBP-CON-05"
+      ],
+      "ownerData": [],
+      "earned": 12,
+      "max": 18,
+      "percent": 66.7
+    },
+    {
+      "id": "handoff",
+      "order": 5,
+      "label": "Handoff",
+      "customerQuestion": "Does the journey remain coherent when I leave Google?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03",
+        "GBP-HND-05",
+        "GBP-HND-06"
+      ],
+      "na_checks": [
+        "GBP-HND-04"
+      ],
+      "ownerData": [],
+      "earned": 6,
+      "max": 8,
+      "percent": 75.0
+    },
+    {
+      "id": "response",
+      "order": 6,
+      "label": "Response",
+      "customerQuestion": "What happens after I call or message, and how fast?",
+      "status": "owner_data_required",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "na_checks": [],
+      "ownerData": [
+        "OD-CALL-ANSWER-RATE",
+        "OD-SPEED-TO-LEAD"
+      ],
+      "earned": 0,
+      "max": 0,
+      "percent": null
+    },
+    {
+      "id": "book",
+      "order": 7,
+      "label": "Book",
+      "customerQuestion": "Does a booking request become a scheduled job?",
+      "status": "owner_data_required",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "na_checks": [],
+      "ownerData": [
+        "OD-BOOKING-CONVERSION"
+      ],
+      "earned": 0,
+      "max": 0,
+      "percent": null
+    },
+    {
+      "id": "customer",
+      "order": 8,
+      "label": "Customer",
+      "customerQuestion": "Which profile-origin customers became jobs, and what revenue did they produce?",
+      "status": "owner_data_required",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "na_checks": [],
+      "ownerData": [
+        "OD-GBP-REVENUE"
+      ],
+      "earned": 0,
+      "max": 0,
+      "percent": null
+    },
+    {
+      "id": "review",
+      "order": 9,
+      "label": "Review",
+      "customerQuestion": "Does every completed job feed a consistent review acquisition process?",
+      "status": "owner_data_required",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "na_checks": [],
+      "ownerData": [
+        "OD-REVIEW-REQUEST"
+      ],
+      "earned": 0,
+      "max": 0,
+      "percent": null
+    },
+    {
+      "id": "measure",
+      "order": 10,
+      "label": "Measure",
+      "customerQuestion": "Can profile-origin activity be distinguished and measured?",
+      "status": "scored",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-MSR-01",
+        "GBP-MSR-03"
+      ],
+      "na_checks": [
+        "GBP-MSR-02"
+      ],
+      "ownerData": [],
+      "earned": 1,
+      "max": 3,
+      "percent": 33.3
+    }
+  ],
+  "coverage": [
+    {
+      "id": "GBP-ID-01",
+      "name": "Business status and identity",
+      "category": "A",
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-02",
+      "name": "Primary category fits the core business",
+      "category": "A",
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-03",
+      "name": "Additional categories are relevant, not stuffed",
+      "category": "A",
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-04",
+      "name": "Primary phone is present and coherent",
+      "category": "A",
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-05",
+      "name": "Website action is present and plausibly owned",
+      "category": "A",
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-06",
+      "name": "Location or service-area configuration is coherent",
+      "category": "A",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-07",
+      "name": "Regular hours are present and coherent",
+      "category": "A",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-08",
+      "name": "Description is specific and accurate",
+      "category": "A",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-ID-09",
+      "name": "Relevant attributes support the buying decision",
+      "category": "A",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-01",
+      "name": "Major services are explicit",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-02",
+      "name": "Commercially important services are represented",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-03",
+      "name": "Emergency or urgent service is represented",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "emergency_service",
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-04",
+      "name": "Service descriptions are clear",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-05",
+      "name": "Service organization is coherent",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-06",
+      "name": "Profile services match the website offering",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-SVC-07",
+      "name": "Category-specific attributes add service context",
+      "category": "B",
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-01",
+      "name": "Phone action is usable",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-02",
+      "name": "Website action is clear and labeled",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-03",
+      "name": "Booking or appointment action",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "online_booking_expected",
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-04",
+      "name": "Messaging action",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "messaging_expected",
+      "requires": null,
+      "applicable": false,
+      "naReason": "condition not enabled: messaging_expected",
+      "severity": "medium",
+      "confidence": "not_applicable",
+      "scoring": "excluded",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-05",
+      "name": "Directions or location action",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "physical_storefront",
+      "requires": null,
+      "applicable": false,
+      "naReason": "condition not enabled: physical_storefront",
+      "severity": "high",
+      "confidence": "not_applicable",
+      "scoring": "excluded",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-06",
+      "name": "Mobile handoff is compatible",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "destination",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-07",
+      "name": "Emergency action pathway",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "emergency_service",
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-08",
+      "name": "After-hours path when observable",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "conditional",
+      "condition": "after_hours_expected",
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-09",
+      "name": "Preferred next action is clear",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CON-10",
+      "name": "Contact paths do not conflict",
+      "category": "C",
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-01",
+      "name": "Rating provides a credible baseline",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-02",
+      "name": "Review count provides enough context",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-03",
+      "name": "Recent reviews are present",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-04",
+      "name": "Review velocity is consistent",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-05",
+      "name": "Recent rating distribution does not signal a trust problem",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-06",
+      "name": "Owner responses are present",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-07",
+      "name": "Owner responses are recent and relevant",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-TRU-08",
+      "name": "Reviews contain service-specific proof",
+      "category": "D",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-01",
+      "name": "Profile imagery is present",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-02",
+      "name": "Imagery is business-relevant",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-03",
+      "name": "Useful job, team, vehicle, or before/after media",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-04",
+      "name": "Media is recent",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-05",
+      "name": "Business-uploaded context is observable",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": null,
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-CNT-06",
+      "name": "Recent posts or updates where applicable",
+      "category": "E",
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "content_posts_expected",
+      "requires": null,
+      "applicable": false,
+      "naReason": "condition not enabled: content_posts_expected",
+      "severity": "low",
+      "confidence": "not_applicable",
+      "scoring": "excluded",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-01",
+      "name": "Website destination resolves over HTTPS",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_present",
+      "applicable": true,
+      "naReason": "",
+      "severity": "critical",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-02",
+      "name": "Destination identity matches the profile",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-03",
+      "name": "Phone, hours, and service signals stay consistent",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination",
+        "api"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "high",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-04",
+      "name": "Booking destination resolves and belongs to the business",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "online_booking_expected",
+      "requires": "booking_present",
+      "applicable": false,
+      "naReason": "not observable: booking_present",
+      "severity": "critical",
+      "confidence": "not_applicable",
+      "scoring": "excluded",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-05",
+      "name": "No obvious dead end at handoff",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-HND-06",
+      "name": "Source context is preserved at handoff",
+      "category": "F",
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "strong_signal",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-01",
+      "name": "Website action carries observable source context",
+      "category": "G",
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "medium",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-02",
+      "name": "Booking action carries observable source context",
+      "category": "G",
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "condition": "online_booking_expected",
+      "requires": "booking_resolves",
+      "applicable": false,
+      "naReason": "not observable: booking_resolves",
+      "severity": "high",
+      "confidence": "not_applicable",
+      "scoring": "excluded",
+      "ownerData": false
+    },
+    {
+      "id": "GBP-MSR-03",
+      "name": "Destination structure allows profile-origin measurement",
+      "category": "G",
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "condition": null,
+      "requires": "website_resolves",
+      "applicable": true,
+      "naReason": "",
+      "severity": "low",
+      "confidence": "verified",
+      "scoring": "scored",
+      "ownerData": false
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "financing",
+      "label": "Financing",
+      "radModule": "financing",
+      "scored": false,
+      "recommended": false,
+      "why": "High-ticket trades may lose ready customers who cannot pay the full amount up front.",
+      "evidence": "Only recommend when the trade and average job value make financing relevant."
+    },
+    {
+      "id": "memberships",
+      "label": "Maintenance plans or memberships",
+      "radModule": "membership",
+      "scored": false,
+      "recommended": false,
+      "why": "Recurring service can increase customer lifetime value.",
+      "evidence": "A fit for HVAC, pest, plumbing, pool, and similar recurring needs; not a universal score requirement."
+    },
+    {
+      "id": "maintenance_plans",
+      "label": "Seasonal maintenance",
+      "radModule": "maintenance",
+      "scored": false,
+      "recommended": false,
+      "why": "Seasonal service can create repeat demand without a new acquisition cost.",
+      "evidence": "Recommend when the trade has a seasonal maintenance cycle."
+    },
+    {
+      "id": "emergency_routing",
+      "label": "Emergency routing",
+      "radModule": "emergency_routing",
+      "scored": false,
+      "recommended": false,
+      "why": "Urgent customers need one unmistakable path.",
+      "evidence": "Only when the business actually accepts emergency work."
+    },
+    {
+      "id": "sms",
+      "label": "Text/SMS path",
+      "radModule": "sms_messaging",
+      "scored": false,
+      "recommended": false,
+      "why": "Some customers will not call.",
+      "evidence": "Only when the business can respond to texts."
+    },
+    {
+      "id": "ai_receptionist",
+      "label": "AI or after-hours reception",
+      "radModule": "ai_receptionist",
+      "scored": false,
+      "recommended": false,
+      "why": "Missed after-hours demand can be captured.",
+      "evidence": "An operational choice, never a score penalty."
+    },
+    {
+      "id": "online_estimates",
+      "label": "Online estimate requests",
+      "radModule": "online_estimates",
+      "scored": false,
+      "recommended": false,
+      "why": "Complex jobs may need a scoped estimate before booking.",
+      "evidence": "Recommend when the job mix requires photos or scope."
+    },
+    {
+      "id": "review_automation",
+      "label": "Review request automation",
+      "radModule": "review_automation",
+      "scored": false,
+      "recommended": true,
+      "why": "Consistent requests produce more current proof.",
+      "evidence": "Recommend when recency or velocity is weak."
+    },
+    {
+      "id": "missed_call_recovery",
+      "label": "Missed-call recovery",
+      "radModule": "missed_call_recovery",
+      "scored": false,
+      "recommended": false,
+      "why": "A missed call is a ready customer.",
+      "evidence": "Owner-data opportunity; never inferred from public data alone."
+    },
+    {
+      "id": "advanced_attribution",
+      "label": "Advanced attribution",
+      "radModule": "advanced_attribution",
+      "scored": false,
+      "recommended": true,
+      "why": "Profile-origin demand should be separable from other channels.",
+      "evidence": "Recommend when source context is absent or fragile."
+    },
+    {
+      "id": "video",
+      "label": "Video or job walkthrough",
+      "radModule": "content_production",
+      "scored": false,
+      "recommended": true,
+      "why": "Video can show work quality and team credibility.",
+      "evidence": "Optional; absence is not a universal penalty."
+    },
+    {
+      "id": "content_cadence",
+      "label": "Enhanced content cadence",
+      "radModule": "content_production",
+      "scored": false,
+      "recommended": true,
+      "why": "Useful updates and recent job media support trust.",
+      "evidence": "Optional; score content usefulness, not raw volume."
+    }
+  ],
+  "normalization": {
+    "method": "applicability_aware_category_normalization_with_caps",
+    "applicable_weight": 100,
+    "raw_total": 68.4,
+    "na_checks": [
+      "GBP-CON-04",
+      "GBP-CON-05",
+      "GBP-CNT-06",
+      "GBP-HND-04",
+      "GBP-MSR-02"
+    ],
+    "category_caps": []
+  },
+  "caps": [
+    {
+      "id": "profile_closed",
+      "label": "The profile is marked permanently closed",
+      "scope": "overall",
+      "category": null,
+      "max": 25,
+      "active": false,
+      "binding": false,
+      "effect_before": 68.4,
+      "effect_after": 25,
+      "rationale": "A permanently closed profile can stop nearly every customer action. This is the only status cap; temporary closure is a strong signal, not a punitive cap.",
+      "triggered_by": [
+        "GBP-ID-01"
+      ]
+    },
+    {
+      "id": "no_action_path",
+      "label": "No meaningful customer action path",
+      "scope": "overall",
+      "category": null,
+      "max": 30,
+      "active": false,
+      "binding": false,
+      "effect_before": 68.4,
+      "effect_after": 30,
+      "rationale": "If a customer cannot call, visit the site, book, or use another action, the profile cannot complete its job.",
+      "triggered_by": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05"
+      ]
+    },
+    {
+      "id": "major_identity_mismatch",
+      "label": "Major business-identity mismatch",
+      "scope": "category",
+      "category": "A",
+      "max": 6,
+      "active": false,
+      "binding": false,
+      "effect_before": 13.0,
+      "effect_after": 6,
+      "rationale": "A material name, category, or destination mismatch makes every other identity signal unreliable. Caps Identity & Accuracy at 6/15.",
+      "triggered_by": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-05"
+      ]
+    },
+    {
+      "id": "primary_site_broken",
+      "label": "Broken primary website action",
+      "scope": "category",
+      "category": "F",
+      "max": 4,
+      "active": false,
+      "binding": false,
+      "effect_before": 7.5,
+      "effect_after": 4,
+      "rationale": "A broken primary website handoff is a handoff failure. It caps Handoff & Journey Continuity at 4/10 and is not also applied as a Conversion cap.",
+      "triggered_by": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03"
+      ]
+    },
+    {
+      "id": "dead_booking_primary",
+      "label": "Dead booking destination presented as a primary action",
+      "scope": "category",
+      "category": "C",
+      "max": 10,
+      "active": false,
+      "binding": false,
+      "effect_before": 14.67,
+      "effect_after": 10,
+      "rationale": "Advertising a dead booking destination is worse than not advertising booking. Caps Conversion & Actionability at 10/22.",
+      "triggered_by": [
+        "GBP-CON-03",
+        "GBP-CON-09"
+      ]
+    }
+  ],
+  "total": 68.4,
+  "total_max": 100,
+  "final": 68.4,
+  "display": 68,
+  "band": "C",
+  "band_label": "Average",
+  "cap": 100,
+  "cap_active": false,
+  "cap_binding": false,
+  "cap_applied": false
+}

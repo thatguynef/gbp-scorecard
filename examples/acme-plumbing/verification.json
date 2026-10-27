@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-26T1000-acme",
+  "verifier": "verify.mjs",
+  "date": "2026-10-27",
+  "rubric_version": "1.0.0",
+  "audit_mode": "public",
+  "result": "pass",
+  "checks": {
+    "I1": true,
+    "I2": true,
+    "I3": true,
+    "I4": true,
+    "I5": true,
+    "I6": true,
+    "I7": true,
+    "I8-I13": true,
+    "I14": true,
+    "I15": true,
+    "I16": true,
+    "I17": true,
+    "I18": true,
+    "I19": true,
+    "I20": true,
+    "I21": true,
+    "I22": true,
+    "I23": true,
+    "I24": true,
+    "I25": true,
+    "I26": true,
+    "I27": true,
+    "I28": true,
+    "I29": true,
+    "I30": true,
+    "I31": true,
+    "I32": true
+  },
+  "hard_failures": [],
+  "soft_failures": [],
+  "mutation_tests": "pass",
+  "mutations": [],
+  "fixture": {
+    "pass": true,
+    "expected": {
+      "display": 68,
+      "band": "C"
+    },
+    "actual": {
+      "display": 68,
+      "band": "C"
+    }
+  },
+  "score": 68,
+  "word_count": 1048,
+  "waivers": []
+}

@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatguynef.github.io/gbp-scorecard/schema/audit-v1.schema.json",
+  "title": "GBP Scorecard audit (public mode, v1)",
+  "description": "A raw or filled public-mode GBP audit. Credentials and auth metadata are forbidden. Owner-data questions are not scored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "audit_mode",
+    "run",
+    "business",
+    "configuration",
+    "sources",
+    "profile",
+    "actions",
+    "handoff",
+    "reviews",
+    "media",
+    "measurement",
+    "facts",
+    "checks"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "audit_mode": { "const": "public" },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "started_at", "collector_version", "rubric_version", "source_mode", "synthetic"],
+      "properties": {
+        "run_id": { "type": "string", "minLength": 1 },
+        "started_at": { "type": "string", "minLength": 1 },
+        "finished_at": { "type": "string" },
+        "collector_version": { "type": "string", "minLength": 1 },
+        "rubric_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "source_mode": { "enum": ["fixture", "live"] },
+        "synthetic": { "type": "boolean" }
+      }
+    },
+    "business": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "trade", "market"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "trade": { "type": "string", "minLength": 1 },
+        "market": { "type": "string", "minLength": 1 },
+        "place_id": { "type": "string" },
+        "website": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trade",
+        "market",
+        "service_business",
+        "online_booking_expected",
+        "messaging_expected",
+        "emergency_service",
+        "physical_storefront",
+        "after_hours_expected",
+        "content_posts_expected",
+        "preferred_actions"
+      ],
+      "properties": {
+        "trade": { "type": "string", "minLength": 1 },
+        "market": { "type": "string", "minLength": 1 },
+        "service_business": { "type": "boolean" },
+        "online_booking_expected": { "type": "boolean" },
+        "messaging_expected": { "type": "boolean" },
+        "emergency_service": { "type": "boolean" },
+        "physical_storefront": { "type": "boolean" },
+        "after_hours_expected": { "type": "boolean" },
+        "content_posts_expected": { "type": "boolean" },
+        "preferred_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["call", "website", "booking", "message", "directions"] }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "collected_at", "collector_version", "field_completeness"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+          "type": {
+            "enum": [
+              "places_api",
+              "destination_http",
+              "public_profile",
+              "review_sample",
+              "media_sample",
+              "fixture"
+            ]
+          },
+          "collected_at": { "type": "string", "minLength": 1 },
+          "collector_version": { "type": "string", "minLength": 1 },
+          "endpoint": { "type": "string" },
+          "field_completeness": { "type": "number", "minimum": 0, "maximum": 100 },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["business_status", "name", "primary_category", "additional_categories", "location_mode"],
+      "properties": {
+        "business_status": { "enum": ["OPERATIONAL", "CLOSED_TEMPORARILY", "CLOSED_PERMANENTLY", "UNKNOWN"] },
+        "name": { "type": "string" },
+        "primary_category": { "type": "string" },
+        "additional_categories": { "type": "array", "items": { "type": "string" } },
+        "description": { "type": "string" },
+        "attributes": { "type": "array", "items": { "type": "string" } },
+        "regular_hours": { "type": "array", "items": { "type": "string" } },
+        "location_mode": { "enum": ["storefront", "service_area", "unknown"] }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phone", "website", "booking", "messaging", "directions", "other"],
+      "properties": {
+        "phone": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "usable"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "number": { "type": "string" }
+          }
+        },
+        "website": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "destination_state", "usable"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "url": { "type": "string" },
+            "destination_state": { "enum": ["resolves", "dead", "unrelated", "insecure", "missing"] }
+          }
+        },
+        "booking": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "destination_state", "usable", "is_primary"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "is_primary": { "type": "boolean" },
+            "url": { "type": "string" },
+            "destination_state": { "enum": ["resolves", "dead", "unrelated", "missing", "not_observed"] }
+          }
+        },
+        "messaging": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "usable"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "url": { "type": "string" }
+          }
+        },
+        "directions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "usable"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "url": { "type": "string" }
+          }
+        },
+        "other": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "usable"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "usable": { "type": "boolean" },
+            "label": { "type": "string" }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["https", "resolves", "final_url", "identity_match"],
+      "properties": {
+        "https": { "type": "boolean" },
+        "resolves": { "type": "boolean" },
+        "final_url": { "type": "string" },
+        "identity_match": { "type": "boolean" },
+        "destination_title": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "reviews": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rating", "count", "sample", "owner_response_count", "distribution"],
+      "properties": {
+        "rating": { "type": ["number", "null"], "minimum": 0, "maximum": 5 },
+        "count": { "type": "integer", "minimum": 0 },
+        "owner_response_count": { "type": ["integer", "null"], "minimum": 0 },
+        "distribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "1": { "type": "integer", "minimum": 0 },
+            "2": { "type": "integer", "minimum": 0 },
+            "3": { "type": "integer", "minimum": 0 },
+            "4": { "type": "integer", "minimum": 0 },
+            "5": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "sample": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rating", "published_at", "owner_response"],
+            "properties": {
+              "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "published_at": { "type": "string", "minLength": 1 },
+              "owner_response": { "type": "boolean" },
+              "owner_response_at": { "type": ["string", "null"] },
+              "service_terms": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "business_owned_count", "recent_count", "categories"],
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "business_owned_count": { "type": "integer", "minimum": 0 },
+        "recent_count": { "type": "integer", "minimum": 0 },
+        "categories": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["website_source_parameter", "booking_source_parameter"],
+      "properties": {
+        "website_source_parameter": { "type": ["string", "null"] },
+        "booking_source_parameter": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_status",
+        "phone_action_usable",
+        "website_action_usable",
+        "booking_action_usable",
+        "other_action_usable",
+        "identity_consistent",
+        "website_destination_state",
+        "booking_is_primary_action",
+        "booking_destination_state"
+      ],
+      "properties": {
+        "profile_status": { "enum": ["OPERATIONAL", "CLOSED_TEMPORARILY", "CLOSED_PERMANENTLY", "UNKNOWN"] },
+        "phone_action_usable": { "type": "boolean" },
+        "website_action_usable": { "type": "boolean" },
+        "booking_action_usable": { "type": "boolean" },
+        "other_action_usable": { "type": "boolean" },
+        "identity_consistent": { "type": "boolean" },
+        "website_destination_state": { "enum": ["resolves", "dead", "unrelated", "insecure", "missing"] },
+        "booking_is_primary_action": { "type": "boolean" },
+        "booking_destination_state": { "enum": ["resolves", "dead", "unrelated", "missing", "not_observed"] }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^GBP-(?:ID|SVC|CON|TRU|CNT|HND|MSR)-[0-9]{2}$" },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["applicable", "score", "confidence", "na_reason"],
+            "properties": {
+              "applicable": { "const": false },
+              "score": { "type": "null" },
+              "confidence": { "const": "not_applicable" },
+              "na_reason": { "type": "string", "minLength": 1 },
+              "evidence": { "type": "array", "items": { "type": "string" } },
+              "evidence_refs": { "type": "array", "items": { "type": "string" } },
+              "notes": { "type": "string" }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["applicable", "score", "confidence", "evidence", "evidence_refs"],
+            "properties": {
+              "applicable": { "const": true },
+              "score": { "type": "integer", "minimum": 0, "maximum": 4 },
+              "confidence": { "enum": ["verified", "strong_signal"] },
+              "evidence": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+              "evidence_refs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "needs_review": { "const": false },
+              "notes": { "type": "string" },
+              "review": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "method": { "enum": ["deterministic", "model_judgment", "human_review"] },
+                  "reviewer": { "type": "string" },
+                  "reviewed_at": { "type": "string" }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  }
+}

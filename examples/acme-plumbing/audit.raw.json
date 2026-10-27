@@ -1,0 +1,677 @@
+{
+  "schema_version": "1.0",
+  "audit_mode": "public",
+  "run": {
+    "run_id": "2026-10-26T1000-acme",
+    "started_at": "2026-10-26T10:00:00Z",
+    "finished_at": "2026-10-26T10:00:00Z",
+    "collector_version": "1.0.0",
+    "rubric_version": "1.0.0",
+    "source_mode": "fixture",
+    "synthetic": true
+  },
+  "business": {
+    "name": "Acme Plumbing (synthetic)",
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "place_id": "SYNTHETIC-PLACE-ACME-001",
+    "website": "https://acme-plumbing.example/",
+    "phone": "(555) 010-0200",
+    "address": ""
+  },
+  "configuration": {
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "service_business": true,
+    "online_booking_expected": true,
+    "messaging_expected": false,
+    "emergency_service": true,
+    "physical_storefront": false,
+    "after_hours_expected": true,
+    "content_posts_expected": false,
+    "preferred_actions": [
+      "call",
+      "booking"
+    ]
+  },
+  "sources": [
+    {
+      "id": "fixture",
+      "type": "fixture",
+      "collected_at": "2026-10-26T10:00:00Z",
+      "field_completeness": 100,
+      "collector_version": "1.0.0"
+    }
+  ],
+  "observations": {
+    "profile": {
+      "business_status": "OPERATIONAL",
+      "name": "Acme Plumbing",
+      "primary_category": "Plumber",
+      "additional_categories": [
+        "Drainage service",
+        "Water heater repair"
+      ],
+      "description": "Plumbing repairs and drain cleaning for Example County homeowners. Same-day appointments when available.",
+      "attributes": [],
+      "regular_hours": [
+        "Monday 07:00-19:00",
+        "Tuesday 07:00-19:00",
+        "Wednesday 07:00-19:00",
+        "Thursday 07:00-19:00",
+        "Friday 07:00-19:00",
+        "Saturday 07:00-19:00",
+        "Sunday closed"
+      ],
+      "location_mode": "service_area"
+    },
+    "actions": {
+      "phone": {
+        "present": true,
+        "usable": true,
+        "number": "(555) 010-0200"
+      },
+      "website": {
+        "present": true,
+        "usable": true,
+        "url": "https://acme-plumbing.example/",
+        "destination_state": "resolves"
+      },
+      "booking": {
+        "present": false,
+        "usable": false,
+        "is_primary": false,
+        "url": "",
+        "destination_state": "missing"
+      },
+      "messaging": {
+        "present": false,
+        "usable": false,
+        "url": ""
+      },
+      "directions": {
+        "present": false,
+        "usable": false,
+        "url": ""
+      },
+      "other": {
+        "present": true,
+        "usable": true,
+        "label": "Request an estimate on the website"
+      }
+    },
+    "handoff": {
+      "https": true,
+      "resolves": true,
+      "final_url": "https://acme-plumbing.example/",
+      "identity_match": true,
+      "destination_title": "Acme Plumbing — Example County",
+      "notes": "Synthetic destination resolves. Mobile first viewport has no visible action."
+    },
+    "reviews": {
+      "rating": 4.6,
+      "count": 38,
+      "owner_response_count": 0,
+      "distribution": {
+        "1": 1,
+        "2": 1,
+        "3": 3,
+        "4": 8,
+        "5": 25
+      },
+      "sample": [
+        {
+          "rating": 5,
+          "published_at": "2026-07-18",
+          "owner_response": false,
+          "owner_response_at": null,
+          "service_terms": [
+            "drain cleaning"
+          ]
+        },
+        {
+          "rating": 5,
+          "published_at": "2026-06-02",
+          "owner_response": false,
+          "owner_response_at": null,
+          "service_terms": []
+        },
+        {
+          "rating": 4,
+          "published_at": "2026-02-14",
+          "owner_response": false,
+          "owner_response_at": null,
+          "service_terms": [
+            "water heater"
+          ]
+        },
+        {
+          "rating": 2,
+          "published_at": "2026-01-08",
+          "owner_response": false,
+          "owner_response_at": null,
+          "service_terms": [
+            "arrival window"
+          ]
+        },
+        {
+          "rating": 5,
+          "published_at": "2025-11-20",
+          "owner_response": false,
+          "owner_response_at": null,
+          "service_terms": []
+        }
+      ]
+    },
+    "media": {
+      "count": 6,
+      "business_owned_count": 2,
+      "recent_count": 1,
+      "categories": [
+        "job_photo",
+        "team_photo",
+        "stock_graphic",
+        "user_photo"
+      ]
+    },
+    "measurement": {
+      "website_source_parameter": null,
+      "booking_source_parameter": null,
+      "notes": "No observable profile-origin source parameter on the synthetic destination."
+    }
+  },
+  "review": {
+    "status": "pending",
+    "notes": [
+      "Synthetic fixture for documentation and tests. No real business, customer, or API data.",
+      "Checks remain unset until a reviewer fills the worksheet.",
+      "GBP-ID-01: businessStatus, displayName, destination title",
+      "GBP-ID-02: primaryType, website service language",
+      "GBP-ID-03: types, website service pages",
+      "GBP-ID-04: nationalPhoneNumber, destination tel: links",
+      "GBP-ID-05: websiteUri, domain, destination title",
+      "GBP-ID-06: formattedAddress, service-area indicators, business configuration",
+      "GBP-ID-07: regularOpeningHours, destination hours",
+      "GBP-ID-08: editorialSummary or profile description",
+      "GBP-ID-09: attributes, accessibility, payment, emergency signals",
+      "GBP-SVC-01: services, description, categories",
+      "GBP-SVC-02: services, service order, website service pages",
+      "GBP-SVC-03: profile services, 24/7 language, urgent action link",
+      "GBP-SVC-04: service descriptions, profile copy",
+      "GBP-SVC-05: service list and order",
+      "GBP-SVC-06: profile services, website service pages",
+      "GBP-SVC-07: category attributes, service model",
+      "GBP-CON-01: nationalPhoneNumber, tel: link",
+      "GBP-CON-02: websiteUri and action label",
+      "GBP-CON-03: booking link, destination state",
+      "GBP-CON-06: destination mobile checks, redirects",
+      "GBP-CON-07: urgent copy, call or booking path",
+      "GBP-CON-08: hours, after-hours copy, action links",
+      "GBP-CON-09: action order, labels, destination copy",
+      "GBP-CON-10: phone, website, booking, messaging, destination",
+      "GBP-TRU-01: rating, local category context",
+      "GBP-TRU-02: userRatingCount, business age when available",
+      "GBP-TRU-03: review publishTime sample",
+      "GBP-TRU-04: review timestamps",
+      "GBP-TRU-05: review ratings, recent sample",
+      "GBP-TRU-06: review responses sample",
+      "GBP-TRU-07: response timestamps and text",
+      "GBP-TRU-08: review text sample",
+      "GBP-CNT-01: photos, profile media",
+      "GBP-CNT-02: photo sample and captions",
+      "GBP-CNT-03: photo sample, service list",
+      "GBP-CNT-04: photo timestamps where available",
+      "GBP-CNT-05: photo attribution metadata",
+      "GBP-HND-01: destination fetch, final URL, certificate",
+      "GBP-HND-02: destination title, brand, contact details",
+      "GBP-HND-03: phone, hours, service pages",
+      "GBP-HND-05: destination action path",
+      "GBP-HND-06: URL parameters, landing structure",
+      "GBP-MSR-01: websiteUri query parameters",
+      "GBP-MSR-03: landing URL and redirect behavior"
+    ]
+  },
+  "checks": {
+    "GBP-ID-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-03": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-04": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-05": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-06": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-07": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-08": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-ID-09": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-03": {
+      "applicable": true,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-04": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-05": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-06": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-SVC-07": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-03": {
+      "applicable": true,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-04": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "needs_review": false,
+      "na_reason": "condition not enabled: messaging_expected",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-CON-05": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "needs_review": false,
+      "na_reason": "condition not enabled: physical_storefront",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-CON-06": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-07": {
+      "applicable": true,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-08": {
+      "applicable": true,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-09": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CON-10": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-03": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-04": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-05": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-06": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-07": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-TRU-08": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-03": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-04": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-05": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-CNT-06": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "needs_review": false,
+      "na_reason": "condition not enabled: content_posts_expected",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-HND-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-HND-02": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-HND-03": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-HND-04": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "needs_review": false,
+      "na_reason": "not observable: booking_present",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-HND-05": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-HND-06": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-MSR-01": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    },
+    "GBP-MSR-02": {
+      "applicable": false,
+      "score": null,
+      "confidence": "not_applicable",
+      "needs_review": false,
+      "na_reason": "not observable: booking_resolves",
+      "evidence": [],
+      "evidence_refs": []
+    },
+    "GBP-MSR-03": {
+      "applicable": null,
+      "score": null,
+      "confidence": "needs_review",
+      "needs_review": true,
+      "evidence": [],
+      "evidence_refs": [],
+      "notes": "Review the public profile and destination, then record a score, evidence, evidence_refs, and confidence."
+    }
+  }
+}

@@ -1,0 +1,1508 @@
+{
+  "categories": [
+    {
+      "checks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-03",
+        "GBP-ID-04",
+        "GBP-ID-05",
+        "GBP-ID-06",
+        "GBP-ID-07",
+        "GBP-ID-08",
+        "GBP-ID-09"
+      ],
+      "id": "A",
+      "max": 15,
+      "name": "Identity & Accuracy",
+      "questions": "Can a prospective customer confidently understand who this company is, where it operates, when it is available, and whether its public information is coherent?"
+    },
+    {
+      "checks": [
+        "GBP-SVC-01",
+        "GBP-SVC-02",
+        "GBP-SVC-03",
+        "GBP-SVC-04",
+        "GBP-SVC-05",
+        "GBP-SVC-06",
+        "GBP-SVC-07"
+      ],
+      "id": "B",
+      "max": 18,
+      "name": "Relevance & Service Coverage",
+      "questions": "Does the profile accurately communicate the services the business wants local customers to hire it for?"
+    },
+    {
+      "checks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05",
+        "GBP-CON-06",
+        "GBP-CON-07",
+        "GBP-CON-08",
+        "GBP-CON-09",
+        "GBP-CON-10"
+      ],
+      "id": "C",
+      "max": 22,
+      "name": "Conversion & Actionability",
+      "questions": "Can a ready-to-buy searcher take a useful next action with minimal friction?"
+    },
+    {
+      "checks": [
+        "GBP-TRU-01",
+        "GBP-TRU-02",
+        "GBP-TRU-03",
+        "GBP-TRU-04",
+        "GBP-TRU-05",
+        "GBP-TRU-06",
+        "GBP-TRU-07",
+        "GBP-TRU-08"
+      ],
+      "id": "D",
+      "max": 20,
+      "name": "Reputation & Trust",
+      "questions": "Does publicly observable reputation provide sufficient and current trust for a customer to act?"
+    },
+    {
+      "checks": [
+        "GBP-CNT-01",
+        "GBP-CNT-02",
+        "GBP-CNT-03",
+        "GBP-CNT-04",
+        "GBP-CNT-05",
+        "GBP-CNT-06"
+      ],
+      "id": "E",
+      "max": 10,
+      "name": "Content & Freshness",
+      "questions": "Does the profile visibly demonstrate an active, credible company performing the work it claims to perform?"
+    },
+    {
+      "checks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03",
+        "GBP-HND-04",
+        "GBP-HND-05",
+        "GBP-HND-06"
+      ],
+      "id": "F",
+      "max": 10,
+      "name": "Handoff & Journey Continuity",
+      "questions": "Does the customer journey remain coherent when the prospect leaves Google?"
+    },
+    {
+      "checks": [
+        "GBP-MSR-01",
+        "GBP-MSR-02",
+        "GBP-MSR-03"
+      ],
+      "id": "G",
+      "max": 5,
+      "name": "Measurement & Attribution",
+      "questions": "Can activity originating from the profile be meaningfully measured?"
+    }
+  ],
+  "checks": [
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-ID-01",
+      "journeyStage": "identify",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Business status and identity"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "id": "GBP-ID-02",
+      "journeyStage": "identify",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Primary category fits the core business"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "id": "GBP-ID-03",
+      "journeyStage": "identify",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Additional categories are relevant, not stuffed"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-ID-04",
+      "journeyStage": "identify",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Primary phone is present and coherent"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "id": "GBP-ID-05",
+      "journeyStage": "identify",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Website action is present and plausibly owned"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-ID-06",
+      "journeyStage": "understand",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Location or service-area configuration is coherent"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "id": "GBP-ID-07",
+      "journeyStage": "understand",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Regular hours are present and coherent"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-ID-08",
+      "journeyStage": "understand",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Description is specific and accurate"
+    },
+    {
+      "applicability": "required",
+      "category": "A",
+      "categoryName": "Identity & Accuracy",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-ID-09",
+      "journeyStage": "understand",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Relevant attributes support the buying decision"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-SVC-01",
+      "journeyStage": "understand",
+      "max": 4,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Major services are explicit"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "website_html"
+      ],
+      "id": "GBP-SVC-02",
+      "journeyStage": "understand",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Commercially important services are represented"
+    },
+    {
+      "applicability": "conditional",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": "emergency_service",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-SVC-03",
+      "journeyStage": "understand",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Emergency or urgent service is represented"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-SVC-04",
+      "journeyStage": "understand",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Service descriptions are clear"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-SVC-05",
+      "journeyStage": "understand",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Service organization is coherent"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "id": "GBP-SVC-06",
+      "journeyStage": "understand",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Profile services match the website offering"
+    },
+    {
+      "applicability": "required",
+      "category": "B",
+      "categoryName": "Relevance & Service Coverage",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-SVC-07",
+      "journeyStage": "understand",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Category-specific attributes add service context"
+    },
+    {
+      "applicability": "required",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-CON-01",
+      "journeyStage": "act",
+      "max": 4,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Phone action is usable"
+    },
+    {
+      "applicability": "required",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-CON-02",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Website action is clear and labeled"
+    },
+    {
+      "applicability": "conditional",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": "online_booking_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-CON-03",
+      "journeyStage": "act",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Booking or appointment action"
+    },
+    {
+      "applicability": "conditional",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": "messaging_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-CON-04",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Messaging action"
+    },
+    {
+      "applicability": "conditional",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": "physical_storefront",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-CON-05",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Directions or location action"
+    },
+    {
+      "applicability": "required",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "destination",
+        "public_profile"
+      ],
+      "id": "GBP-CON-06",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Mobile handoff is compatible"
+    },
+    {
+      "applicability": "conditional",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": "emergency_service",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-CON-07",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Emergency action pathway"
+    },
+    {
+      "applicability": "conditional",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": "after_hours_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-CON-08",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "After-hours path when observable"
+    },
+    {
+      "applicability": "required",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "id": "GBP-CON-09",
+      "journeyStage": "act",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Preferred next action is clear"
+    },
+    {
+      "applicability": "required",
+      "category": "C",
+      "categoryName": "Conversion & Actionability",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "id": "GBP-CON-10",
+      "journeyStage": "act",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Contact paths do not conflict"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-TRU-01",
+      "journeyStage": "trust",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Rating provides a credible baseline"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-TRU-02",
+      "journeyStage": "trust",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Review count provides enough context"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "id": "GBP-TRU-03",
+      "journeyStage": "trust",
+      "max": 4,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "critical",
+      "title": "Recent reviews are present"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "id": "GBP-TRU-04",
+      "journeyStage": "trust",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Review velocity is consistent"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "id": "GBP-TRU-05",
+      "journeyStage": "trust",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Recent rating distribution does not signal a trust problem"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "id": "GBP-TRU-06",
+      "journeyStage": "trust",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Owner responses are present"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "id": "GBP-TRU-07",
+      "journeyStage": "trust",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Owner responses are recent and relevant"
+    },
+    {
+      "applicability": "required",
+      "category": "D",
+      "categoryName": "Reputation & Trust",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "id": "GBP-TRU-08",
+      "journeyStage": "trust",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Reviews contain service-specific proof"
+    },
+    {
+      "applicability": "required",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-CNT-01",
+      "journeyStage": "trust",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "medium",
+      "title": "Profile imagery is present"
+    },
+    {
+      "applicability": "required",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "id": "GBP-CNT-02",
+      "journeyStage": "trust",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Imagery is business-relevant"
+    },
+    {
+      "applicability": "required",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "id": "GBP-CNT-03",
+      "journeyStage": "trust",
+      "max": 3,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "high",
+      "title": "Useful job, team, vehicle, or before/after media"
+    },
+    {
+      "applicability": "required",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "id": "GBP-CNT-04",
+      "journeyStage": "trust",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Media is recent"
+    },
+    {
+      "applicability": "required",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "id": "GBP-CNT-05",
+      "journeyStage": "trust",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Business-uploaded context is observable"
+    },
+    {
+      "applicability": "conditional",
+      "category": "E",
+      "categoryName": "Content & Freshness",
+      "condition": "content_posts_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "id": "GBP-CNT-06",
+      "journeyStage": "trust",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": null,
+      "severity": "low",
+      "title": "Recent posts or updates where applicable"
+    },
+    {
+      "applicability": "required",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-HND-01",
+      "journeyStage": "handoff",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_present",
+      "severity": "critical",
+      "title": "Website destination resolves over HTTPS"
+    },
+    {
+      "applicability": "required",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-HND-02",
+      "journeyStage": "handoff",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "high",
+      "title": "Destination identity matches the profile"
+    },
+    {
+      "applicability": "required",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination",
+        "api"
+      ],
+      "id": "GBP-HND-03",
+      "journeyStage": "handoff",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "high",
+      "title": "Phone, hours, and service signals stay consistent"
+    },
+    {
+      "applicability": "conditional",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": "online_booking_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-HND-04",
+      "journeyStage": "handoff",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "booking_present",
+      "severity": "critical",
+      "title": "Booking destination resolves and belongs to the business"
+    },
+    {
+      "applicability": "required",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-HND-05",
+      "journeyStage": "handoff",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "medium",
+      "title": "No obvious dead end at handoff"
+    },
+    {
+      "applicability": "required",
+      "category": "F",
+      "categoryName": "Handoff & Journey Continuity",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "model_judgment",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-HND-06",
+      "journeyStage": "handoff",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "low",
+      "title": "Source context is preserved at handoff"
+    },
+    {
+      "applicability": "required",
+      "category": "G",
+      "categoryName": "Measurement & Attribution",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-MSR-01",
+      "journeyStage": "measure",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "medium",
+      "title": "Website action carries observable source context"
+    },
+    {
+      "applicability": "conditional",
+      "category": "G",
+      "categoryName": "Measurement & Attribution",
+      "condition": "online_booking_expected",
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-MSR-02",
+      "journeyStage": "measure",
+      "max": 2,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "booking_resolves",
+      "severity": "high",
+      "title": "Booking action carries observable source context"
+    },
+    {
+      "applicability": "required",
+      "category": "G",
+      "categoryName": "Measurement & Attribution",
+      "condition": null,
+      "connectedMode": "unchanged; performance diagnostics are reported separately",
+      "evaluation": "deterministic",
+      "evidenceType": [
+        "destination"
+      ],
+      "id": "GBP-MSR-03",
+      "journeyStage": "measure",
+      "max": 1,
+      "ownerData": false,
+      "publicMode": "scored",
+      "requires": "website_resolves",
+      "severity": "low",
+      "title": "Destination structure allows profile-origin measurement"
+    }
+  ],
+  "crossScorecard": [
+    {
+      "gbp": "SCORE",
+      "question": "GBP category quality",
+      "visibility": "explanatory only",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "SCORE",
+      "question": "GBP service coverage",
+      "visibility": "explanatory only",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "SCORE",
+      "question": "GBP phone, website, booking, or messaging action present",
+      "visibility": "\u2014",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "SCORE handoff",
+      "question": "Website destination resolves",
+      "visibility": "\u2014",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "SCORE handoff",
+      "question": "Website HTTPS and certificate",
+      "visibility": "\u2014",
+      "website": "SCORE"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Website mobile form usability",
+      "visibility": "\u2014",
+      "website": "SCORE"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Website page speed",
+      "visibility": "\u2014",
+      "website": "SCORE"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Local Pack rank and grid visibility",
+      "visibility": "SCORE",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "SCORE",
+      "question": "Review recency and owner response",
+      "visibility": "\u2014",
+      "website": "explanatory only"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Review widget on the website",
+      "visibility": "\u2014",
+      "website": "SCORE"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Website conversion tracking",
+      "visibility": "\u2014",
+      "website": "SCORE"
+    },
+    {
+      "gbp": "SCORE",
+      "question": "GBP-origin source or UTM preservation",
+      "visibility": "\u2014",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "OWNER DATA REQUIRED or authorized connected diagnostics",
+      "question": "GBP call-click, direction, and booking volume",
+      "visibility": "\u2014",
+      "website": "\u2014"
+    },
+    {
+      "gbp": "\u2014",
+      "question": "Organic ranking and query performance",
+      "visibility": "SCORE",
+      "website": "\u2014"
+    }
+  ],
+  "framework": "gbp-journey",
+  "generated": true,
+  "journey": [
+    {
+      "applicableMax": 10,
+      "coverageStatus": "scored",
+      "customerQuestion": "Is this the right business, in the right place, with a coherent public identity?",
+      "id": "identify",
+      "label": "Identify",
+      "note": "Scored by the public profile rubric.",
+      "order": 1,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-03",
+        "GBP-ID-04",
+        "GBP-ID-05"
+      ]
+    },
+    {
+      "applicableMax": 23,
+      "coverageStatus": "scored",
+      "customerQuestion": "Do I understand what this business does, where, when, and for whom?",
+      "id": "understand",
+      "label": "Understand",
+      "note": "Scored by the public profile rubric.",
+      "order": 2,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-ID-06",
+        "GBP-ID-07",
+        "GBP-ID-08",
+        "GBP-ID-09",
+        "GBP-SVC-01",
+        "GBP-SVC-02",
+        "GBP-SVC-03",
+        "GBP-SVC-04",
+        "GBP-SVC-05",
+        "GBP-SVC-06",
+        "GBP-SVC-07"
+      ]
+    },
+    {
+      "applicableMax": 30,
+      "coverageStatus": "scored",
+      "customerQuestion": "Does the public reputation and content give me enough confidence to act?",
+      "id": "trust",
+      "label": "Trust",
+      "note": "Scored by the public profile rubric.",
+      "order": 3,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-TRU-01",
+        "GBP-TRU-02",
+        "GBP-TRU-03",
+        "GBP-TRU-04",
+        "GBP-TRU-05",
+        "GBP-TRU-06",
+        "GBP-TRU-07",
+        "GBP-TRU-08",
+        "GBP-CNT-01",
+        "GBP-CNT-02",
+        "GBP-CNT-03",
+        "GBP-CNT-04",
+        "GBP-CNT-05",
+        "GBP-CNT-06"
+      ]
+    },
+    {
+      "applicableMax": 22,
+      "coverageStatus": "scored",
+      "customerQuestion": "Can I take a useful next action with minimal friction?",
+      "id": "act",
+      "label": "Act",
+      "note": "Scored by the public profile rubric.",
+      "order": 4,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05",
+        "GBP-CON-06",
+        "GBP-CON-07",
+        "GBP-CON-08",
+        "GBP-CON-09",
+        "GBP-CON-10"
+      ]
+    },
+    {
+      "applicableMax": 10,
+      "coverageStatus": "scored",
+      "customerQuestion": "Does the journey remain coherent when I leave Google?",
+      "id": "handoff",
+      "label": "Handoff",
+      "note": "Scored by the public profile rubric.",
+      "order": 5,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03",
+        "GBP-HND-04",
+        "GBP-HND-05",
+        "GBP-HND-06"
+      ]
+    },
+    {
+      "applicableMax": 0,
+      "coverageStatus": "owner_data_required",
+      "customerQuestion": "What happens after I call or message, and how fast?",
+      "id": "response",
+      "label": "Response",
+      "note": "Owner-data stages are diagnosed, never scored.",
+      "order": 6,
+      "ownerData": [
+        "OD-CALL-ANSWER-RATE",
+        "OD-SPEED-TO-LEAD"
+      ],
+      "scoredChecks": []
+    },
+    {
+      "applicableMax": 0,
+      "coverageStatus": "owner_data_required",
+      "customerQuestion": "Does a booking request become a scheduled job?",
+      "id": "book",
+      "label": "Book",
+      "note": "Owner-data stages are diagnosed, never scored.",
+      "order": 7,
+      "ownerData": [
+        "OD-BOOKING-CONVERSION"
+      ],
+      "scoredChecks": []
+    },
+    {
+      "applicableMax": 0,
+      "coverageStatus": "owner_data_required",
+      "customerQuestion": "Which profile-origin customers became jobs, and what revenue did they produce?",
+      "id": "customer",
+      "label": "Customer",
+      "note": "Owner-data stages are diagnosed, never scored.",
+      "order": 8,
+      "ownerData": [
+        "OD-GBP-REVENUE"
+      ],
+      "scoredChecks": []
+    },
+    {
+      "applicableMax": 0,
+      "coverageStatus": "owner_data_required",
+      "customerQuestion": "Does every completed job feed a consistent review acquisition process?",
+      "id": "review",
+      "label": "Review",
+      "note": "Owner-data stages are diagnosed, never scored.",
+      "order": 9,
+      "ownerData": [
+        "OD-REVIEW-REQUEST"
+      ],
+      "scoredChecks": []
+    },
+    {
+      "applicableMax": 5,
+      "coverageStatus": "scored",
+      "customerQuestion": "Can profile-origin activity be distinguished and measured?",
+      "id": "measure",
+      "label": "Measure",
+      "note": "Scored by the public profile rubric.",
+      "order": 10,
+      "ownerData": [],
+      "scoredChecks": [
+        "GBP-MSR-01",
+        "GBP-MSR-02",
+        "GBP-MSR-03"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "financing",
+      "label": "Financing",
+      "radModule": "financing",
+      "scored": false,
+      "why": "High-ticket trades may lose ready customers who cannot pay the full amount up front."
+    },
+    {
+      "id": "memberships",
+      "label": "Maintenance plans or memberships",
+      "radModule": "membership",
+      "scored": false,
+      "why": "Recurring service can increase customer lifetime value."
+    },
+    {
+      "id": "maintenance_plans",
+      "label": "Seasonal maintenance",
+      "radModule": "maintenance",
+      "scored": false,
+      "why": "Seasonal service can create repeat demand without a new acquisition cost."
+    },
+    {
+      "id": "emergency_routing",
+      "label": "Emergency routing",
+      "radModule": "emergency_routing",
+      "scored": false,
+      "why": "Urgent customers need one unmistakable path."
+    },
+    {
+      "id": "sms",
+      "label": "Text/SMS path",
+      "radModule": "sms_messaging",
+      "scored": false,
+      "why": "Some customers will not call."
+    },
+    {
+      "id": "ai_receptionist",
+      "label": "AI or after-hours reception",
+      "radModule": "ai_receptionist",
+      "scored": false,
+      "why": "Missed after-hours demand can be captured."
+    },
+    {
+      "id": "online_estimates",
+      "label": "Online estimate requests",
+      "radModule": "online_estimates",
+      "scored": false,
+      "why": "Complex jobs may need a scoped estimate before booking."
+    },
+    {
+      "id": "review_automation",
+      "label": "Review request automation",
+      "radModule": "review_automation",
+      "scored": false,
+      "why": "Consistent requests produce more current proof."
+    },
+    {
+      "id": "missed_call_recovery",
+      "label": "Missed-call recovery",
+      "radModule": "missed_call_recovery",
+      "scored": false,
+      "why": "A missed call is a ready customer."
+    },
+    {
+      "id": "advanced_attribution",
+      "label": "Advanced attribution",
+      "radModule": "advanced_attribution",
+      "scored": false,
+      "why": "Profile-origin demand should be separable from other channels."
+    },
+    {
+      "id": "video",
+      "label": "Video or job walkthrough",
+      "radModule": "content_production",
+      "scored": false,
+      "why": "Video can show work quality and team credibility."
+    },
+    {
+      "id": "content_cadence",
+      "label": "Enhanced content cadence",
+      "radModule": "content_production",
+      "scored": false,
+      "why": "Useful updates and recent job media support trust."
+    }
+  ],
+  "ownerData": [
+    {
+      "id": "OD-CALL-ANSWER-RATE",
+      "journeyStage": "response",
+      "publicMode": "owner_data_required",
+      "questions": [
+        "How many profile-origin calls were answered, missed, or abandoned?",
+        "What is the median ring time and voicemail rate during business hours?"
+      ],
+      "scored": false,
+      "title": "Call answer rate"
+    },
+    {
+      "id": "OD-SPEED-TO-LEAD",
+      "journeyStage": "response",
+      "publicMode": "owner_data_required",
+      "questions": [
+        "What is the median time from form, message, or missed call to first human contact?",
+        "Does the process change after hours?"
+      ],
+      "scored": false,
+      "title": "Speed to lead"
+    },
+    {
+      "id": "OD-BOOKING-CONVERSION",
+      "journeyStage": "book",
+      "publicMode": "owner_data_required",
+      "questions": [
+        "What share of profile-origin booking attempts become scheduled jobs?",
+        "Where do customers abandon the booking flow?"
+      ],
+      "scored": false,
+      "title": "Booking conversion"
+    },
+    {
+      "id": "OD-REVIEW-REQUEST",
+      "journeyStage": "review",
+      "publicMode": "owner_data_required",
+      "questions": [
+        "Is every completed job asked for a review through the same process?",
+        "Who owns follow-up, and how are negative experiences handled before a request?"
+      ],
+      "scored": false,
+      "title": "Review request operations"
+    },
+    {
+      "id": "OD-GBP-REVENUE",
+      "journeyStage": "customer",
+      "publicMode": "owner_data_required",
+      "questions": [
+        "Which jobs originated from the profile, and what revenue did they produce?",
+        "What is the close rate and average job value by profile-origin source?"
+      ],
+      "scored": false,
+      "title": "Profile-origin revenue"
+    }
+  ],
+  "publicMode": {
+    "auditMode": "public",
+    "credentials": "GOOGLE_MAPS_API_KEY for the Places API (New), optional",
+    "mutation": "none",
+    "ownerDataInScore": false
+  },
+  "rubric_version": "1.0.0",
+  "schema_version": "1.0",
+  "source": "references/rubric.json",
+  "statusDefinitions": {
+    "conditional": "Scored only when its configured condition applies.",
+    "diagnostic": "Observed and reported, but not a universal scored penalty.",
+    "not_applicable": "Does not reasonably apply to this business, category, geography, configuration, or audit mode.",
+    "observed_unscored": "Reported for context only.",
+    "owner_data_required": "Requires business, CRM, call, messaging, scheduling, or financial data; never reduces the public score.",
+    "scored": "Contributes to the public score."
+  },
+  "total": 100
+}

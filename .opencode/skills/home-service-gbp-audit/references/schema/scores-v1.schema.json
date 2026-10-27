@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatguynef.github.io/gbp-scorecard/schema/scores-v1.schema.json",
+  "title": "GBP Scorecard scores (v1)",
+  "description": "Deterministic output of score.py. Owner-data prompts are present but never contribute to the score.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "framework",
+    "audit_mode",
+    "rubric_version",
+    "rubric_title",
+    "scorer_version",
+    "meta",
+    "categories",
+    "checks",
+    "findings",
+    "verifiedFindings",
+    "strongSignals",
+    "recommendations",
+    "ownerDataRequired",
+    "journey",
+    "coverage",
+    "opportunities",
+    "normalization",
+    "caps",
+    "total",
+    "total_max",
+    "final",
+    "display",
+    "band",
+    "band_label",
+    "cap",
+    "cap_active",
+    "cap_binding",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "framework": {
+      "const": "gbp-journey"
+    },
+    "audit_mode": {
+      "const": "public"
+    },
+    "rubric_version": {
+      "type": "string"
+    },
+    "rubric_title": {
+      "type": "string"
+    },
+    "scorer_version": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "run_id",
+        "client",
+        "trade",
+        "market",
+        "audit_mode",
+        "synthetic",
+        "rubric_version",
+        "collector_version"
+      ],
+      "properties": {
+        "run_id": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "trade": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        },
+        "audit_mode": {
+          "const": "public"
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "rubric_version": {
+          "type": "string"
+        },
+        "collector_version": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "source_mode": {
+          "enum": [
+            "fixture",
+            "live"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "max",
+          "earned",
+          "applicable_max",
+          "normalized",
+          "percent",
+          "applicable",
+          "na_checks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "max": {
+            "type": "number"
+          },
+          "earned": {
+            "type": "number"
+          },
+          "applicable_max": {
+            "type": "number"
+          },
+          "normalized": {
+            "type": "number"
+          },
+          "normalized_before_cap": {
+            "type": "number"
+          },
+          "category_cap": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "applicable": {
+            "type": "boolean"
+          },
+          "na_checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "percent": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "verifiedFindings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "strongSignals": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "ownerDataRequired": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "journey": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "opportunities": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "normalization": {
+      "type": "object",
+      "required": [
+        "method",
+        "applicable_weight",
+        "raw_total",
+        "na_checks"
+      ],
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "applicable_weight": {
+          "type": "number"
+        },
+        "raw_total": {
+          "type": "number"
+        },
+        "na_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category_caps": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "caps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "total": {
+      "type": "number"
+    },
+    "total_max": {
+      "const": 100
+    },
+    "final": {
+      "type": "number"
+    },
+    "display": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "band": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    "band_label": {
+      "type": "string"
+    },
+    "cap": {
+      "type": "number"
+    },
+    "cap_active": {
+      "type": "boolean"
+    },
+    "cap_binding": {
+      "type": "boolean"
+    },
+    "cap_applied": {
+      "type": "boolean"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

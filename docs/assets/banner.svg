@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title">
+  <title id="title">GBP Scorecard — find where the public profile leaks ready local customers</title>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="92%" cy="0%" r="80%">
+      <stop offset="0" stop-color="#FF3B3B" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#FF3B3B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="#0B0B0C"/>
+  <rect width="1200" height="320" fill="url(#grid)"/>
+  <rect width="1200" height="320" fill="url(#glow)"/>
+  <g transform="translate(64 56)">
+    <path d="M18 0C8.1 0 0 8.1 0 18c0 13.5 18 34 18 34s18-20.5 18-34C36 8.1 27.9 0 18 0Z" fill="#FF3B3B"/>
+    <circle cx="18" cy="18" r="6" fill="#0B0B0C"/>
+  </g>
+  <text x="120" y="92" fill="#FF8F8F" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" letter-spacing="4">GBP SCORECARD</text>
+  <text x="64" y="166" fill="#F7F7F5" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">Find where the public profile</text>
+  <text x="64" y="218" fill="#F7F7F5" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">leaks ready local customers.</text>
+  <text x="64" y="270" fill="#A6A6AA" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18">Identity · Services · Reputation · Content · Conversion · Handoff · Measurement</text>
+  <text x="1136" y="270" text-anchor="end" fill="#FF8F8F" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="2">PUBLIC MODE</text>
+
+</svg>

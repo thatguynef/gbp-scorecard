@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatguynef.github.io/gbp-scorecard/schema/verification-v1.schema.json",
+  "title": "GBP Scorecard verification record (v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "verifier",
+    "date",
+    "rubric_version",
+    "audit_mode",
+    "result",
+    "checks",
+    "hard_failures",
+    "soft_failures",
+    "mutation_tests",
+    "mutations",
+    "waivers"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "run_id": { "type": "string" },
+    "verifier": { "type": "string" },
+    "date": { "type": "string" },
+    "rubric_version": { "type": "string" },
+    "audit_mode": { "const": "public" },
+    "result": { "enum": ["pass", "fail"] },
+    "checks": { "type": "object", "additionalProperties": { "type": "boolean" } },
+    "hard_failures": { "type": "array", "items": { "type": "object" } },
+    "soft_failures": { "type": "array", "items": { "type": "object" } },
+    "mutation_tests": { "enum": ["pass", "fail", "not_run"] },
+    "mutations": { "type": "array", "items": { "type": "string" } },
+    "fixture": { "type": ["object", "null"] },
+    "score": { "type": "integer" },
+    "word_count": { "type": ["integer", "null"] },
+    "waivers": { "type": "array", "items": { "type": "string" } }
+  }
+}

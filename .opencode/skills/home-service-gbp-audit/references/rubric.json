@@ -1,0 +1,2494 @@
+{
+  "version": "1.0.0",
+  "schema_version": "1.0",
+  "framework": "gbp-journey",
+  "updated": "2026-10-27",
+  "total": 100,
+  "title": "Google Business Profile Scorecard",
+  "subtitle": "Evidence-based diagnosis of the public Google Business Profile journey",
+  "scoring": {
+    "model": "applicability_aware_category_normalization_with_caps",
+    "formula": "For each category: normalized = category.max * earned / applicable_max. Total = sum(normalized) * 100 / sum(category.max for categories with applicable checks). Category caps apply to normalized category points; overall caps apply to the total. Final = min(total, overall cap).",
+    "rounding": "Category normalized values are rounded to 2 decimals. Total and final are rounded to 1 decimal. Display = final rounded to the nearest integer. Bands use the display score.",
+    "owner_data": "Owner-data questions are never scored and never reduce the public score.",
+    "connected_mode": "Connected performance diagnostics are reported separately and do not silently change the Public Mode score.",
+    "evidence": "Every applicable check needs evidence and confidence verified or strong_signal. A deterministic check must be verified.",
+    "caps": "Only five caps exist in V1. Each trigger is deterministic and tested. Category caps are applied once, before the overall cap."
+  },
+  "categories": [
+    {
+      "id": "A",
+      "name": "Identity & Accuracy",
+      "max": 15,
+      "question": "Can a prospective customer confidently understand who this company is, where it operates, when it is available, and whether its public information is coherent?"
+    },
+    {
+      "id": "B",
+      "name": "Relevance & Service Coverage",
+      "max": 18,
+      "question": "Does the profile accurately communicate the services the business wants local customers to hire it for?"
+    },
+    {
+      "id": "C",
+      "name": "Conversion & Actionability",
+      "max": 22,
+      "question": "Can a ready-to-buy searcher take a useful next action with minimal friction?"
+    },
+    {
+      "id": "D",
+      "name": "Reputation & Trust",
+      "max": 20,
+      "question": "Does publicly observable reputation provide sufficient and current trust for a customer to act?"
+    },
+    {
+      "id": "E",
+      "name": "Content & Freshness",
+      "max": 10,
+      "question": "Does the profile visibly demonstrate an active, credible company performing the work it claims to perform?"
+    },
+    {
+      "id": "F",
+      "name": "Handoff & Journey Continuity",
+      "max": 10,
+      "question": "Does the customer journey remain coherent when the prospect leaves Google?"
+    },
+    {
+      "id": "G",
+      "name": "Measurement & Attribution",
+      "max": 5,
+      "question": "Can activity originating from the profile be meaningfully measured?"
+    }
+  ],
+  "bands": [
+    {
+      "min": 90,
+      "band": "A",
+      "label": "Elite"
+    },
+    {
+      "min": 75,
+      "band": "B",
+      "label": "Strong"
+    },
+    {
+      "min": 60,
+      "band": "C",
+      "label": "Average"
+    },
+    {
+      "min": 40,
+      "band": "D",
+      "label": "Weak"
+    },
+    {
+      "min": 0,
+      "band": "F",
+      "label": "Critical"
+    }
+  ],
+  "caps": [
+    {
+      "id": "profile_closed",
+      "label": "The profile is marked permanently closed",
+      "scope": "overall",
+      "max": 25,
+      "trigger": {
+        "all": [
+          {
+            "fact": "profile_status",
+            "equals": "CLOSED_PERMANENTLY"
+          }
+        ]
+      },
+      "rationale": "A permanently closed profile can stop nearly every customer action. This is the only status cap; temporary closure is a strong signal, not a punitive cap.",
+      "checks": [
+        "GBP-ID-01"
+      ]
+    },
+    {
+      "id": "no_action_path",
+      "label": "No meaningful customer action path",
+      "scope": "overall",
+      "max": 30,
+      "trigger": {
+        "all": [
+          {
+            "fact": "phone_action_usable",
+            "equals": false
+          },
+          {
+            "fact": "website_action_usable",
+            "equals": false
+          },
+          {
+            "fact": "booking_action_usable",
+            "equals": false
+          },
+          {
+            "fact": "other_action_usable",
+            "equals": false
+          }
+        ]
+      },
+      "rationale": "If a customer cannot call, visit the site, book, or use another action, the profile cannot complete its job.",
+      "checks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05"
+      ]
+    },
+    {
+      "id": "major_identity_mismatch",
+      "label": "Major business-identity mismatch",
+      "scope": "category",
+      "category": "A",
+      "max": 6,
+      "trigger": {
+        "all": [
+          {
+            "fact": "identity_consistent",
+            "equals": false
+          }
+        ]
+      },
+      "rationale": "A material name, category, or destination mismatch makes every other identity signal unreliable. Caps Identity & Accuracy at 6/15.",
+      "checks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-05"
+      ]
+    },
+    {
+      "id": "primary_site_broken",
+      "label": "Broken primary website action",
+      "scope": "category",
+      "category": "F",
+      "max": 4,
+      "trigger": {
+        "all": [
+          {
+            "fact": "website_destination_state",
+            "in": [
+              "dead",
+              "unrelated",
+              "insecure"
+            ]
+          }
+        ]
+      },
+      "rationale": "A broken primary website handoff is a handoff failure. It caps Handoff & Journey Continuity at 4/10 and is not also applied as a Conversion cap.",
+      "checks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03"
+      ]
+    },
+    {
+      "id": "dead_booking_primary",
+      "label": "Dead booking destination presented as a primary action",
+      "scope": "category",
+      "category": "C",
+      "max": 10,
+      "trigger": {
+        "all": [
+          {
+            "fact": "booking_is_primary_action",
+            "equals": true
+          },
+          {
+            "fact": "booking_destination_state",
+            "in": [
+              "dead",
+              "unrelated"
+            ]
+          }
+        ]
+      },
+      "rationale": "Advertising a dead booking destination is worse than not advertising booking. Caps Conversion & Actionability at 10/22.",
+      "checks": [
+        "GBP-CON-03",
+        "GBP-CON-09"
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "id": "identify",
+      "order": 1,
+      "label": "Identify",
+      "customerQuestion": "Is this the right business, in the right place, with a coherent public identity?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-03",
+        "GBP-ID-04",
+        "GBP-ID-05"
+      ],
+      "ownerData": []
+    },
+    {
+      "id": "understand",
+      "order": 2,
+      "label": "Understand",
+      "customerQuestion": "Do I understand what this business does, where, when, and for whom?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-ID-06",
+        "GBP-ID-07",
+        "GBP-ID-08",
+        "GBP-ID-09",
+        "GBP-SVC-01",
+        "GBP-SVC-02",
+        "GBP-SVC-03",
+        "GBP-SVC-04",
+        "GBP-SVC-05",
+        "GBP-SVC-06",
+        "GBP-SVC-07"
+      ],
+      "ownerData": []
+    },
+    {
+      "id": "trust",
+      "order": 3,
+      "label": "Trust",
+      "customerQuestion": "Does the public reputation and content give me enough confidence to act?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-TRU-01",
+        "GBP-TRU-02",
+        "GBP-TRU-03",
+        "GBP-TRU-04",
+        "GBP-TRU-05",
+        "GBP-TRU-06",
+        "GBP-TRU-07",
+        "GBP-TRU-08",
+        "GBP-CNT-01",
+        "GBP-CNT-02",
+        "GBP-CNT-03",
+        "GBP-CNT-04",
+        "GBP-CNT-05",
+        "GBP-CNT-06"
+      ],
+      "ownerData": []
+    },
+    {
+      "id": "act",
+      "order": 4,
+      "label": "Act",
+      "customerQuestion": "Can I take a useful next action with minimal friction?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05",
+        "GBP-CON-06",
+        "GBP-CON-07",
+        "GBP-CON-08",
+        "GBP-CON-09",
+        "GBP-CON-10"
+      ],
+      "ownerData": []
+    },
+    {
+      "id": "handoff",
+      "order": 5,
+      "label": "Handoff",
+      "customerQuestion": "Does the journey remain coherent when I leave Google?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03",
+        "GBP-HND-04",
+        "GBP-HND-05",
+        "GBP-HND-06"
+      ],
+      "ownerData": []
+    },
+    {
+      "id": "response",
+      "order": 6,
+      "label": "Response",
+      "customerQuestion": "What happens after I call or message, and how fast?",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "ownerData": [
+        "OD-CALL-ANSWER-RATE",
+        "OD-SPEED-TO-LEAD"
+      ]
+    },
+    {
+      "id": "book",
+      "order": 7,
+      "label": "Book",
+      "customerQuestion": "Does a booking request become a scheduled job?",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "ownerData": [
+        "OD-BOOKING-CONVERSION"
+      ]
+    },
+    {
+      "id": "customer",
+      "order": 8,
+      "label": "Customer",
+      "customerQuestion": "Which profile-origin customers became jobs, and what revenue did they produce?",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "ownerData": [
+        "OD-GBP-REVENUE"
+      ]
+    },
+    {
+      "id": "review",
+      "order": 9,
+      "label": "Review",
+      "customerQuestion": "Does every completed job feed a consistent review acquisition process?",
+      "coverageStatus": "owner_data_required",
+      "checks": [],
+      "ownerData": [
+        "OD-REVIEW-REQUEST"
+      ]
+    },
+    {
+      "id": "measure",
+      "order": 10,
+      "label": "Measure",
+      "customerQuestion": "Can profile-origin activity be distinguished and measured?",
+      "coverageStatus": "scored",
+      "checks": [
+        "GBP-MSR-01",
+        "GBP-MSR-02",
+        "GBP-MSR-03"
+      ],
+      "ownerData": []
+    }
+  ],
+  "supportingSystems": [
+    {
+      "id": "identity",
+      "label": "Identity and accuracy",
+      "checks": [
+        "GBP-ID-01",
+        "GBP-ID-02",
+        "GBP-ID-03",
+        "GBP-ID-04",
+        "GBP-ID-05",
+        "GBP-ID-06",
+        "GBP-ID-07",
+        "GBP-ID-08",
+        "GBP-ID-09"
+      ]
+    },
+    {
+      "id": "services",
+      "label": "Service coverage",
+      "checks": [
+        "GBP-SVC-01",
+        "GBP-SVC-02",
+        "GBP-SVC-03",
+        "GBP-SVC-04",
+        "GBP-SVC-05",
+        "GBP-SVC-06",
+        "GBP-SVC-07"
+      ]
+    },
+    {
+      "id": "conversion",
+      "label": "Conversion and actionability",
+      "checks": [
+        "GBP-CON-01",
+        "GBP-CON-02",
+        "GBP-CON-03",
+        "GBP-CON-04",
+        "GBP-CON-05",
+        "GBP-CON-06",
+        "GBP-CON-07",
+        "GBP-CON-08",
+        "GBP-CON-09",
+        "GBP-CON-10"
+      ]
+    },
+    {
+      "id": "reputation",
+      "label": "Reputation and trust",
+      "checks": [
+        "GBP-TRU-01",
+        "GBP-TRU-02",
+        "GBP-TRU-03",
+        "GBP-TRU-04",
+        "GBP-TRU-05",
+        "GBP-TRU-06",
+        "GBP-TRU-07",
+        "GBP-TRU-08"
+      ]
+    },
+    {
+      "id": "content",
+      "label": "Content and freshness",
+      "checks": [
+        "GBP-CNT-01",
+        "GBP-CNT-02",
+        "GBP-CNT-03",
+        "GBP-CNT-04",
+        "GBP-CNT-05",
+        "GBP-CNT-06"
+      ]
+    },
+    {
+      "id": "handoff",
+      "label": "Handoff and continuity",
+      "checks": [
+        "GBP-HND-01",
+        "GBP-HND-02",
+        "GBP-HND-03",
+        "GBP-HND-04",
+        "GBP-HND-05",
+        "GBP-HND-06"
+      ]
+    },
+    {
+      "id": "measurement",
+      "label": "Measurement and attribution",
+      "checks": [
+        "GBP-MSR-01",
+        "GBP-MSR-02",
+        "GBP-MSR-03"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "key": "online_booking_expected",
+      "label": "Online booking expected",
+      "description": "Enables the booking action, booking handoff, and booking attribution checks."
+    },
+    {
+      "key": "messaging_expected",
+      "label": "Messaging expected",
+      "description": "Enables the messaging action check."
+    },
+    {
+      "key": "emergency_service",
+      "label": "Emergency service",
+      "description": "Enables the emergency service coverage and urgent action checks."
+    },
+    {
+      "key": "physical_storefront",
+      "label": "Physical storefront",
+      "description": "Enables the directions action check. Service-area businesses are N/A."
+    },
+    {
+      "key": "after_hours_expected",
+      "label": "After-hours demand",
+      "description": "Enables the after-hours path check."
+    },
+    {
+      "key": "content_posts_expected",
+      "label": "Posts expected",
+      "description": "Enables the recent posts check. Posts are optional for many trades."
+    }
+  ],
+  "ownerData": [
+    {
+      "id": "OD-CALL-ANSWER-RATE",
+      "journeyStage": "response",
+      "title": "Call answer rate",
+      "serviceMapping": "reception",
+      "whyItMatters": "The profile can produce a call, but only the phone system can show whether it was answered.",
+      "questions": [
+        "How many profile-origin calls were answered, missed, or abandoned?",
+        "What is the median ring time and voicemail rate during business hours?"
+      ]
+    },
+    {
+      "id": "OD-SPEED-TO-LEAD",
+      "journeyStage": "response",
+      "title": "Speed to lead",
+      "serviceMapping": "revenue_recovery",
+      "whyItMatters": "Response time affects whether a ready customer books; public data cannot prove it.",
+      "questions": [
+        "What is the median time from form, message, or missed call to first human contact?",
+        "Does the process change after hours?"
+      ]
+    },
+    {
+      "id": "OD-BOOKING-CONVERSION",
+      "journeyStage": "book",
+      "title": "Booking conversion",
+      "serviceMapping": "online_booking",
+      "whyItMatters": "A working booking link does not prove a booked job.",
+      "questions": [
+        "What share of profile-origin booking attempts become scheduled jobs?",
+        "Where do customers abandon the booking flow?"
+      ]
+    },
+    {
+      "id": "OD-REVIEW-REQUEST",
+      "journeyStage": "review",
+      "title": "Review request operations",
+      "serviceMapping": "review_automation",
+      "whyItMatters": "Public reviews show the result, not whether the request process is consistent or selective.",
+      "questions": [
+        "Is every completed job asked for a review through the same process?",
+        "Who owns follow-up, and how are negative experiences handled before a request?"
+      ]
+    },
+    {
+      "id": "OD-GBP-REVENUE",
+      "journeyStage": "customer",
+      "title": "Profile-origin revenue",
+      "serviceMapping": "advanced_attribution",
+      "whyItMatters": "Only authorized CRM and financial data can connect profile activity to booked revenue.",
+      "questions": [
+        "Which jobs originated from the profile, and what revenue did they produce?",
+        "What is the close rate and average job value by profile-origin source?"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "financing",
+      "label": "Financing",
+      "radModule": "financing",
+      "why": "High-ticket trades may lose ready customers who cannot pay the full amount up front.",
+      "evidence": "Only recommend when the trade and average job value make financing relevant."
+    },
+    {
+      "id": "memberships",
+      "label": "Maintenance plans or memberships",
+      "radModule": "membership",
+      "why": "Recurring service can increase customer lifetime value.",
+      "evidence": "A fit for HVAC, pest, plumbing, pool, and similar recurring needs; not a universal score requirement."
+    },
+    {
+      "id": "maintenance_plans",
+      "label": "Seasonal maintenance",
+      "radModule": "maintenance",
+      "why": "Seasonal service can create repeat demand without a new acquisition cost.",
+      "evidence": "Recommend when the trade has a seasonal maintenance cycle."
+    },
+    {
+      "id": "emergency_routing",
+      "label": "Emergency routing",
+      "radModule": "emergency_routing",
+      "why": "Urgent customers need one unmistakable path.",
+      "evidence": "Only when the business actually accepts emergency work."
+    },
+    {
+      "id": "sms",
+      "label": "Text/SMS path",
+      "radModule": "sms_messaging",
+      "why": "Some customers will not call.",
+      "evidence": "Only when the business can respond to texts."
+    },
+    {
+      "id": "ai_receptionist",
+      "label": "AI or after-hours reception",
+      "radModule": "ai_receptionist",
+      "why": "Missed after-hours demand can be captured.",
+      "evidence": "An operational choice, never a score penalty."
+    },
+    {
+      "id": "online_estimates",
+      "label": "Online estimate requests",
+      "radModule": "online_estimates",
+      "why": "Complex jobs may need a scoped estimate before booking.",
+      "evidence": "Recommend when the job mix requires photos or scope."
+    },
+    {
+      "id": "review_automation",
+      "label": "Review request automation",
+      "radModule": "review_automation",
+      "why": "Consistent requests produce more current proof.",
+      "evidence": "Recommend when recency or velocity is weak."
+    },
+    {
+      "id": "missed_call_recovery",
+      "label": "Missed-call recovery",
+      "radModule": "missed_call_recovery",
+      "why": "A missed call is a ready customer.",
+      "evidence": "Owner-data opportunity; never inferred from public data alone."
+    },
+    {
+      "id": "advanced_attribution",
+      "label": "Advanced attribution",
+      "radModule": "advanced_attribution",
+      "why": "Profile-origin demand should be separable from other channels.",
+      "evidence": "Recommend when source context is absent or fragile."
+    },
+    {
+      "id": "video",
+      "label": "Video or job walkthrough",
+      "radModule": "content_production",
+      "why": "Video can show work quality and team credibility.",
+      "evidence": "Optional; absence is not a universal penalty."
+    },
+    {
+      "id": "content_cadence",
+      "label": "Enhanced content cadence",
+      "radModule": "content_production",
+      "why": "Useful updates and recent job media support trust.",
+      "evidence": "Optional; score content usefulness, not raw volume."
+    }
+  ],
+  "fixes": [
+    {
+      "checkId": "GBP-ID-01",
+      "priority": "critical",
+      "fix": "Confirm operational status and correct the public business name.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-02",
+      "priority": "high",
+      "fix": "Choose the most specific accurate primary category.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-03",
+      "priority": "medium",
+      "fix": "Remove unsupported additional categories.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-04",
+      "priority": "critical",
+      "fix": "Publish one primary phone and make it tappable and consistent.",
+      "radModules": [
+        "call_tracking"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-05",
+      "priority": "critical",
+      "fix": "Point the website action at the business's own primary domain.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-06",
+      "priority": "high",
+      "fix": "Make the storefront or service-area configuration match the business model.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-07",
+      "priority": "high",
+      "fix": "Publish accurate regular hours and mirror them on the site.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-08",
+      "priority": "medium",
+      "fix": "Write a specific description around services, customer, and service area.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-ID-09",
+      "priority": "medium",
+      "fix": "Add verified attributes that answer practical buying questions.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-01",
+      "priority": "critical",
+      "fix": "Name every major service line in the profile.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-02",
+      "priority": "high",
+      "fix": "Prioritize the services the business most wants to sell.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-03",
+      "priority": "high",
+      "fix": "State emergency availability and connect it to one urgent action.",
+      "radModules": [
+        "emergency_routing"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-04",
+      "priority": "high",
+      "fix": "Write one clear problem-work-outcome sentence per service.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-05",
+      "priority": "medium",
+      "fix": "Group and order services so a customer can scan them.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-06",
+      "priority": "high",
+      "fix": "Align profile services with the website offering.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-SVC-07",
+      "priority": "low",
+      "fix": "Add category attributes that materially help a customer decide.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-01",
+      "priority": "critical",
+      "fix": "Make the primary phone tappable everywhere.",
+      "radModules": [
+        "call_tracking"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-02",
+      "priority": "high",
+      "fix": "Use a clear website action label and the own primary domain.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-03",
+      "priority": "critical",
+      "fix": "Add one direct booking action with a relevant destination.",
+      "radModules": [
+        "online_booking"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-04",
+      "priority": "medium",
+      "fix": "Add one business-owned messaging path with a response expectation.",
+      "radModules": [
+        "sms_messaging"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-05",
+      "priority": "high",
+      "fix": "Provide a correct address and directions action for a storefront.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-06",
+      "priority": "high",
+      "fix": "Make the first destination mobile-usable and free of blocking interstitials.",
+      "radModules": [
+        "conversion_recovery"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-07",
+      "priority": "high",
+      "fix": "Make one urgent action unmistakable.",
+      "radModules": [
+        "emergency_routing"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-08",
+      "priority": "medium",
+      "fix": "State the after-hours path and connect it to one action.",
+      "radModules": [
+        "after_hours"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-09",
+      "priority": "high",
+      "fix": "Choose one primary action per intent and reduce competing actions.",
+      "radModules": [
+        "conversion_recovery"
+      ]
+    },
+    {
+      "checkId": "GBP-CON-10",
+      "priority": "medium",
+      "fix": "Remove stale numbers, domains, and booking destinations.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-01",
+      "priority": "high",
+      "fix": "Investigate recurring causes of low ratings; do not chase a number.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-02",
+      "priority": "high",
+      "fix": "Build a consistent review-request process.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-03",
+      "priority": "critical",
+      "fix": "Ask every completed customer for a review through one process.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-04",
+      "priority": "high",
+      "fix": "Replace sporadic review campaigns with a repeatable post-job request.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-05",
+      "priority": "high",
+      "fix": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "radModules": [
+        "review_recovery"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-06",
+      "priority": "medium",
+      "fix": "Respond to reviews, especially recent negative ones.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-07",
+      "priority": "low",
+      "fix": "Write short, specific replies instead of generic acknowledgements.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-TRU-08",
+      "priority": "low",
+      "fix": "Ask customers to mention the job and result without scripting a fake review.",
+      "radModules": [
+        "review_automation"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-01",
+      "priority": "medium",
+      "fix": "Add a clear profile image and cover image.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-02",
+      "priority": "high",
+      "fix": "Replace stock imagery with real, permissioned business photos.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-03",
+      "priority": "high",
+      "fix": "Add captioned photos for each major service, including before/after where appropriate.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-04",
+      "priority": "low",
+      "fix": "Add a small number of recent job photos each month.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-05",
+      "priority": "low",
+      "fix": "Upload a current set of owner-provided photos.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-CNT-06",
+      "priority": "low",
+      "fix": "Publish occasional useful job or service updates.",
+      "radModules": [
+        "content_production"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-01",
+      "priority": "critical",
+      "fix": "Repair the destination and serve the site over HTTPS.",
+      "radModules": [
+        "conversion_recovery"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-02",
+      "priority": "high",
+      "fix": "Align the business name, logo, and location across Google and the site.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-03",
+      "priority": "high",
+      "fix": "Update the profile and site from one source of truth.",
+      "radModules": [
+        "gbp_optimization"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-04",
+      "priority": "critical",
+      "fix": "Repair or remove the booking action; use a branded working destination.",
+      "radModules": [
+        "online_booking"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-05",
+      "priority": "medium",
+      "fix": "Keep one visible next action on the destination that matches the profile promise.",
+      "radModules": [
+        "conversion_recovery"
+      ]
+    },
+    {
+      "checkId": "GBP-HND-06",
+      "priority": "low",
+      "fix": "Preserve one stable source parameter through the handoff.",
+      "radModules": [
+        "advanced_attribution"
+      ]
+    },
+    {
+      "checkId": "GBP-MSR-01",
+      "priority": "medium",
+      "fix": "Use one consistent source parameter that survives redirects.",
+      "radModules": [
+        "advanced_attribution"
+      ]
+    },
+    {
+      "checkId": "GBP-MSR-02",
+      "priority": "high",
+      "fix": "Preserve source context through the booking redirect or form.",
+      "radModules": [
+        "advanced_attribution"
+      ]
+    },
+    {
+      "checkId": "GBP-MSR-03",
+      "priority": "low",
+      "fix": "Use stable landing URLs and avoid redirect chains that strip query context.",
+      "radModules": [
+        "advanced_attribution"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "GBP-ID-01",
+      "cat": "A",
+      "title": "Business status and identity",
+      "max": 2,
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The profile is operational and the business name matches the trade and destination website.",
+        "1": "The profile is temporarily closed, or status/name cannot be verified from available public data.",
+        "0": "The profile is marked permanently closed, or the name belongs to a different business."
+      },
+      "evidence": "businessStatus, displayName, destination title",
+      "principle": "A closed or misidentified listing cannot serve a customer.",
+      "recommendedIntervention": "Confirm the profile status and legal trading name, then correct any mismatch.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-02",
+      "cat": "A",
+      "title": "Primary category fits the core business",
+      "max": 2,
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The primary category accurately names the main service a customer would hire.",
+        "1": "The primary category is broader, narrower, or adjacent enough to create ambiguity.",
+        "0": "The primary category describes a different business or a service the business does not sell."
+      },
+      "evidence": "primaryType, website service language",
+      "principle": "Category is the strongest relevance signal in Maps.",
+      "recommendedIntervention": "Choose the most specific accurate primary category for the core service.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-03",
+      "cat": "A",
+      "title": "Additional categories are relevant, not stuffed",
+      "max": 2,
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "Additional categories reflect services the business actually sells and can support.",
+        "1": "One or more additional categories are adjacent or weakly supported.",
+        "0": "Additional categories are unrelated, duplicated, or clearly used as keyword inventory."
+      },
+      "evidence": "types, website service pages",
+      "principle": "Category stuffing dilutes relevance and can mislead customers.",
+      "recommendedIntervention": "Remove unsupported categories and keep only services with real delivery evidence.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-04",
+      "cat": "A",
+      "title": "Primary phone is present and coherent",
+      "max": 2,
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A usable primary phone is present and matches the main public phone on the destination.",
+        "1": "A phone is present but formatted inconsistently, unverified, or different in one public location.",
+        "0": "No phone is present, or the profile phone clearly belongs to another business."
+      },
+      "evidence": "nationalPhoneNumber, destination tel: links",
+      "principle": "A customer must be able to call the business the profile describes.",
+      "recommendedIntervention": "Use one tracked or primary number and keep it consistent on the profile and site.",
+      "radModule": "call_tracking"
+    },
+    {
+      "id": "GBP-ID-05",
+      "cat": "A",
+      "title": "Website action is present and plausibly owned",
+      "max": 2,
+      "journeyStage": "identify",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A website action is present and the domain plausibly belongs to the business.",
+        "1": "A website is present but generic, mismatched, or weakly connected to the profile identity.",
+        "0": "No website action is present, or it points to an unrelated domain."
+      },
+      "evidence": "websiteUri, domain, destination title",
+      "principle": "The website action is the primary path to deeper information.",
+      "recommendedIntervention": "Point the profile at the business's own primary domain.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-06",
+      "cat": "A",
+      "title": "Location or service-area configuration is coherent",
+      "max": 2,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A storefront address is coherent, or a service-area business correctly hides its address and communicates a plausible service area.",
+        "1": "The location signal is incomplete or ambiguous, without contradicting the business model.",
+        "0": "The profile presents a false storefront, a contradictory address, or no usable location signal for a local service."
+      },
+      "evidence": "formattedAddress, service-area indicators, business configuration",
+      "principle": "Service-area businesses should not be penalized for hiding an address.",
+      "recommendedIntervention": "Make the location or service-area configuration match how the business actually sells.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-07",
+      "cat": "A",
+      "title": "Regular hours are present and coherent",
+      "max": 1,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Regular hours are present and consistent with the destination.",
+        "0": "No regular hours are present, or they contradict the destination."
+      },
+      "evidence": "regularOpeningHours, destination hours",
+      "principle": "Hours set the expectation for when a customer can reach the business.",
+      "recommendedIntervention": "Publish accurate regular hours and mirror them on the site.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-ID-08",
+      "cat": "A",
+      "title": "Description is specific and accurate",
+      "max": 1,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "The description names the services, customer, and local context in plain language.",
+        "0": "There is no description, or it makes claims the business cannot support."
+      },
+      "evidence": "editorialSummary or profile description",
+      "principle": "A specific description helps a customer confirm fit.",
+      "recommendedIntervention": "Write a short description around services, customer, and service area.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-ID-09",
+      "cat": "A",
+      "title": "Relevant attributes support the buying decision",
+      "max": 1,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Relevant attributes are present and consistent with the business.",
+        "0": "No relevant attributes are present, or they contradict the service model."
+      },
+      "evidence": "attributes, accessibility, payment, emergency signals",
+      "principle": "Attributes answer practical questions without a click.",
+      "recommendedIntervention": "Add only attributes the business can verify and support.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-SVC-01",
+      "cat": "B",
+      "title": "Major services are explicit",
+      "max": 4,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        4,
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "4": "Every major service line the business sells is named clearly in the profile.",
+        "3": "Most major service lines are present, but one material line is missing or vague.",
+        "1": "Only a generic category is present, or major services are absent.",
+        "0": "The profile communicates no usable service coverage."
+      },
+      "evidence": "services, description, categories",
+      "principle": "A customer cannot hire a service they cannot identify.",
+      "recommendedIntervention": "Name the major services in the profile and keep them aligned with the site.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-SVC-02",
+      "cat": "B",
+      "title": "Commercially important services are represented",
+      "max": 3,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "website_html"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "The profile highlights the services the business most wants to sell, not just every possible task.",
+        "2": "The profile includes the main services but does not distinguish the commercially important ones.",
+        "1": "The profile omits the commercially important services or buries them under generic categories.",
+        "0": "There is no usable service prioritization."
+      },
+      "evidence": "services, service order, website service pages",
+      "principle": "Coverage is not the same as commercial clarity.",
+      "recommendedIntervention": "Put the highest-value services first and make them easy to recognize.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-SVC-03",
+      "cat": "B",
+      "title": "Emergency or urgent service is represented",
+      "max": 3,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "high",
+      "allowed": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "Emergency or urgent service is clearly named and an urgent path is visible.",
+        "2": "Urgent service is implied but not clearly named, or the path is incomplete.",
+        "1": "The business sells emergency work but the profile does not show an urgent path.",
+        "0": "Emergency work is not part of the business, so this check does not apply."
+      },
+      "evidence": "profile services, 24/7 language, urgent action link",
+      "principle": "A customer with an urgent problem needs a fast, explicit path.",
+      "recommendedIntervention": "State emergency availability and connect it to one usable urgent action.",
+      "condition": "emergency_service",
+      "radModule": "emergency_routing"
+    },
+    {
+      "id": "GBP-SVC-04",
+      "cat": "B",
+      "title": "Service descriptions are clear",
+      "max": 3,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "Service descriptions explain the job, the customer problem, and the outcome in plain language.",
+        "2": "Descriptions are present but generic, duplicated, or too thin to help.",
+        "1": "Service descriptions are absent or are keyword lists with no customer meaning.",
+        "0": "The profile has no usable service descriptions."
+      },
+      "evidence": "service descriptions, profile copy",
+      "principle": "A service name alone may not answer what the job includes.",
+      "recommendedIntervention": "Write one clear sentence per major service: problem, work, outcome.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-SVC-05",
+      "cat": "B",
+      "title": "Service organization is coherent",
+      "max": 2,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "Services are grouped and ordered in a way a customer can scan.",
+        "1": "Services are present but duplication or ordering creates some confusion.",
+        "0": "Services are a disorganized list that obscures what the business does."
+      },
+      "evidence": "service list and order",
+      "principle": "Organization affects whether a customer finds the right service.",
+      "recommendedIntervention": "Group related services and remove duplicates.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-SVC-06",
+      "cat": "B",
+      "title": "Profile services match the website offering",
+      "max": 2,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "website_html"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The profile and destination name the same core services, with no material contradiction.",
+        "1": "There is a minor mismatch that does not change the core offer.",
+        "0": "A material service mismatch would send a customer to a business that does not sell what the profile promises."
+      },
+      "evidence": "profile services, website service pages",
+      "principle": "A mismatch breaks confidence at the handoff.",
+      "recommendedIntervention": "Align the profile and site service lists, then remove stale services.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-SVC-07",
+      "cat": "B",
+      "title": "Category-specific attributes add service context",
+      "max": 1,
+      "journeyStage": "understand",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Category-specific attributes clarify the service model (for example emergency, financing, accessibility).",
+        "0": "No category-specific context is present, leaving the offer ambiguous."
+      },
+      "evidence": "category attributes, service model",
+      "principle": "Attributes can answer fit questions at a glance.",
+      "recommendedIntervention": "Add the category attributes that materially help a customer decide.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-CON-01",
+      "cat": "C",
+      "title": "Phone action is usable",
+      "max": 4,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        4,
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "4": "A tel: action is present, usable on mobile, and the number is not obviously invalid.",
+        "3": "A phone action is present but less accessible, inconsistently formatted, or not directly tappable.",
+        "1": "A number is shown as plain text only, with no usable call action.",
+        "0": "No phone action exists."
+      },
+      "evidence": "nationalPhoneNumber, tel: link",
+      "principle": "A phone call is the most common high-intent action in home services.",
+      "recommendedIntervention": "Publish one primary number and make it tappable everywhere.",
+      "radModule": "call_tracking"
+    },
+    {
+      "id": "GBP-CON-02",
+      "cat": "C",
+      "title": "Website action is clear and labeled",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The website action is present, clearly labeled, and points to a plausible destination.",
+        "1": "The website action is present but weakly labeled or points to a generic page.",
+        "0": "No website action is present."
+      },
+      "evidence": "websiteUri and action label",
+      "principle": "The action must be recognizable before it is tapped.",
+      "recommendedIntervention": "Use the business's primary website and a clear label.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-CON-03",
+      "cat": "C",
+      "title": "Booking or appointment action",
+      "max": 3,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "critical",
+      "allowed": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "A booking action is present, clearly labeled, and resolves to a relevant booking experience.",
+        "2": "A booking action is present but indirect, ambiguous, or requires unnecessary steps.",
+        "1": "The business expects online booking but offers no visible booking action.",
+        "0": "The business does not expect online booking, so this check does not apply."
+      },
+      "evidence": "booking link, destination state",
+      "principle": "A ready customer should be able to book without a scavenger hunt.",
+      "recommendedIntervention": "Add one direct booking action and make the destination relevant.",
+      "condition": "online_booking_expected",
+      "radModule": "online_booking"
+    },
+    {
+      "id": "GBP-CON-04",
+      "cat": "C",
+      "title": "Messaging action",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A messaging action is present, usable, and clearly owned by the business.",
+        "1": "Messaging is present but could route to a generic or slow channel.",
+        "0": "Messaging is not part of the intended contact mix, so this check does not apply."
+      },
+      "evidence": "message action, destination state",
+      "principle": "Some customers will not call; a usable message path captures them.",
+      "recommendedIntervention": "Add one business-owned messaging path with a clear response expectation.",
+      "condition": "messaging_expected",
+      "radModule": "sms_messaging"
+    },
+    {
+      "id": "GBP-CON-05",
+      "cat": "C",
+      "title": "Directions or location action",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A storefront business exposes a coherent directions action and address.",
+        "1": "A directions action exists but the address or destination is unclear.",
+        "0": "This is a service-area business without a public storefront, so directions are not applicable."
+      },
+      "evidence": "address, maps link, business configuration",
+      "principle": "A storefront customer needs a reliable way to arrive.",
+      "recommendedIntervention": "Provide a correct address and directions action.",
+      "condition": "physical_storefront",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-CON-06",
+      "cat": "C",
+      "title": "Mobile handoff is compatible",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "destination",
+        "public_profile"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The primary action destinations are usable at mobile width, with no blocking interstitials or app-only dead ends.",
+        "1": "One destination has friction that may cause some mobile customers to abandon.",
+        "0": "A primary action sends mobile customers to a broken, blocked, or clearly unusable destination."
+      },
+      "evidence": "destination mobile checks, redirects",
+      "principle": "Most local searches happen on a phone.",
+      "recommendedIntervention": "Make the first destination a mobile-usable page owned by the business.",
+      "radModule": "conversion_recovery"
+    },
+    {
+      "id": "GBP-CON-07",
+      "cat": "C",
+      "title": "Emergency action pathway",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "Emergency work is clearly paired with one usable urgent action.",
+        "1": "An urgent path exists but is ambiguous or competes with non-urgent actions.",
+        "0": "Emergency work is not part of the business, so this check does not apply."
+      },
+      "evidence": "urgent copy, call or booking path",
+      "principle": "Urgency amplifies friction.",
+      "recommendedIntervention": "Make one urgent action unmistakable.",
+      "condition": "emergency_service",
+      "radModule": "emergency_routing"
+    },
+    {
+      "id": "GBP-CON-08",
+      "cat": "C",
+      "title": "After-hours path when observable",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "conditional",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The profile or destination states what happens after hours and offers a usable path.",
+        "1": "An after-hours path is mentioned but incomplete or hard to find.",
+        "0": "After-hours demand is not expected, so this check does not apply."
+      },
+      "evidence": "hours, after-hours copy, action links",
+      "principle": "A customer outside business hours still needs a next step.",
+      "recommendedIntervention": "State after-hours availability and connect it to one action.",
+      "condition": "after_hours_expected",
+      "radModule": "after_hours"
+    },
+    {
+      "id": "GBP-CON-09",
+      "cat": "C",
+      "title": "Preferred next action is clear",
+      "max": 2,
+      "journeyStage": "act",
+      "evidenceType": [
+        "public_profile",
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "One preferred action is clearly dominant and appropriate to the customer's likely intent.",
+        "1": "Several actions compete, but a customer can still infer a reasonable next step.",
+        "0": "The profile presents no clear preferred action or creates choice paralysis."
+      },
+      "evidence": "action order, labels, destination copy",
+      "principle": "Clarity reduces decision friction.",
+      "recommendedIntervention": "Choose one primary action per intent and let the others support it.",
+      "radModule": "conversion_recovery"
+    },
+    {
+      "id": "GBP-CON-10",
+      "cat": "C",
+      "title": "Contact paths do not conflict",
+      "max": 1,
+      "journeyStage": "act",
+      "evidenceType": [
+        "api",
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Phone, website, booking, and messaging actions point to one coherent business.",
+        "0": "Two or more public contact paths conflict in a way that could misdirect a customer."
+      },
+      "evidence": "phone, website, booking, messaging, destination",
+      "principle": "Conflicting paths create dead ends and distrust.",
+      "recommendedIntervention": "Remove stale numbers, domains, and booking destinations.",
+      "radModule": "gbp_optimization"
+    },
+    {
+      "id": "GBP-TRU-01",
+      "cat": "D",
+      "title": "Rating provides a credible baseline",
+      "max": 3,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "The rating is at or above the local category baseline, or the profile has too few reviews for a rating to be meaningful.",
+        "1": "The rating is below the baseline but not severely.",
+        "0": "The rating is materially below the local category baseline."
+      },
+      "evidence": "rating, local category context",
+      "principle": "Rating is a first-pass trust signal, not a quality proof.",
+      "recommendedIntervention": "Investigate recurring causes of low ratings; do not chase a number.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-02",
+      "cat": "D",
+      "title": "Review count provides enough context",
+      "max": 3,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "The review count is sufficient for the local category and consistent with business age.",
+        "1": "The review count is thin but not necessarily a trust failure.",
+        "0": "The profile has very few reviews relative to its age or local category."
+      },
+      "evidence": "userRatingCount, business age when available",
+      "principle": "Count alone is not quality, but near-zero social proof weakens trust.",
+      "recommendedIntervention": "Build a consistent review-request process; never buy reviews.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-03",
+      "cat": "D",
+      "title": "Recent reviews are present",
+      "max": 4,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        4,
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "4": "A review was published within the recent window expected for the category.",
+        "3": "The most recent review is older than expected but within a plausible seasonal window.",
+        "1": "The most recent review is stale enough that current trust cannot be inferred.",
+        "0": "No reviews are available to assess."
+      },
+      "evidence": "review publishTime sample",
+      "principle": "Recent proof matters more than a historical average.",
+      "recommendedIntervention": "Make review requests part of every completed job.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-04",
+      "cat": "D",
+      "title": "Review velocity is consistent",
+      "max": 3,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "Reviews arrive at a reasonably steady rate for the business's job volume.",
+        "1": "Review velocity is uneven or slowing, but recent proof exists.",
+        "0": "Review acquisition appears to have stopped or occurred in one implausible burst."
+      },
+      "evidence": "review timestamps",
+      "principle": "A sudden stop or burst is a signal worth investigating.",
+      "recommendedIntervention": "Use a repeatable post-job request instead of sporadic campaigns.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-05",
+      "cat": "D",
+      "title": "Recent rating distribution does not signal a trust problem",
+      "max": 3,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "Recent ratings are broadly consistent with the overall rating.",
+        "1": "There is a modest recent dip or a small cluster of complaints.",
+        "0": "Recent one-star reviews or a sharp distribution change suggest an unresolved service problem."
+      },
+      "evidence": "review ratings, recent sample",
+      "principle": "A historic average can hide a current problem.",
+      "recommendedIntervention": "Read recent negatives, fix the recurring cause, and respond publicly where appropriate.",
+      "radModule": "review_recovery"
+    },
+    {
+      "id": "GBP-TRU-06",
+      "cat": "D",
+      "title": "Owner responses are present",
+      "max": 2,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The owner visibly responds to a meaningful share of reviews.",
+        "1": "Some responses are present, but coverage is thin or inconsistent.",
+        "0": "No owner responses are observable."
+      },
+      "evidence": "review responses sample",
+      "principle": "A response shows the business is present after the job.",
+      "recommendedIntervention": "Respond to reviews, especially recent negative ones, in a calm, specific voice.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-07",
+      "cat": "D",
+      "title": "Owner responses are recent and relevant",
+      "max": 1,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Responses are recent and address the specific review content.",
+        "0": "No recent, relevant owner response is observable."
+      },
+      "evidence": "response timestamps and text",
+      "principle": "Generic responses can feel automated and reduce trust.",
+      "recommendedIntervention": "Write short, specific replies that acknowledge the job and the customer's concern.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-TRU-08",
+      "cat": "D",
+      "title": "Reviews contain service-specific proof",
+      "max": 1,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "review_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "Reviews repeatedly mention specific services, jobs, or outcomes.",
+        "0": "Reviews are too generic to support the claimed service quality."
+      },
+      "evidence": "review text sample",
+      "principle": "Specific proof is more credible than a star average.",
+      "recommendedIntervention": "Ask satisfied customers to mention the job and the result, without scripting a fake review.",
+      "radModule": "review_automation"
+    },
+    {
+      "id": "GBP-CNT-01",
+      "cat": "E",
+      "title": "Profile imagery is present",
+      "max": 2,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "A profile image or cover image is present and usable.",
+        "1": "Imagery is present but sparse or low quality.",
+        "0": "No usable profile imagery is present."
+      },
+      "evidence": "photos, profile media",
+      "principle": "Imagery is often the first visual trust cue.",
+      "recommendedIntervention": "Add a clear cover image and a recognizable profile image.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-CNT-02",
+      "cat": "E",
+      "title": "Imagery is business-relevant",
+      "max": 2,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "Images show the actual business, team, work, vehicles, or job context.",
+        "1": "Some relevant images are mixed with generic stock or graphics.",
+        "0": "Images are generic, unrelated, or visibly misleading."
+      },
+      "evidence": "photo sample and captions",
+      "principle": "A real job photo is stronger than a generic graphic.",
+      "recommendedIntervention": "Replace stock imagery with real, permissioned job and team photos.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-CNT-03",
+      "cat": "E",
+      "title": "Useful job, team, vehicle, or before/after media",
+      "max": 3,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "media_sample"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "3": "The media set shows enough real work variety to support the claimed services.",
+        "2": "Some useful media is present, but variety or service coverage is thin.",
+        "1": "The media set is too thin or generic to support the claimed work.",
+        "0": "There is no useful media to assess."
+      },
+      "evidence": "photo sample, service list",
+      "principle": "Useful media demonstrates capability, not just activity.",
+      "recommendedIntervention": "Add captioned photos for each major service, including before/after where appropriate.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-CNT-04",
+      "cat": "E",
+      "title": "Media is recent",
+      "max": 1,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "New media was added within the recent window expected for the category.",
+        "0": "Media appears years old, with no recent proof of activity."
+      },
+      "evidence": "photo timestamps where available",
+      "principle": "Recent media suggests the business is active.",
+      "recommendedIntervention": "Add a small number of recent job photos each month.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-CNT-05",
+      "cat": "E",
+      "title": "Business-uploaded context is observable",
+      "max": 1,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "media_sample"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "At least some media is attributable to the business rather than only customers.",
+        "0": "Only generic or user-contributed media is visible, with no business context."
+      },
+      "evidence": "photo attribution metadata",
+      "principle": "Owner media signals intentional presentation.",
+      "recommendedIntervention": "Upload a small, current set of owner-provided photos.",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-CNT-06",
+      "cat": "E",
+      "title": "Recent posts or updates where applicable",
+      "max": 1,
+      "journeyStage": "trust",
+      "evidenceType": [
+        "api",
+        "public_profile"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "A recent post or update is visible and relevant to the service.",
+        "0": "Posts are not part of the intended profile strategy, so this check does not apply."
+      },
+      "evidence": "posts, update timestamps",
+      "principle": "Fresh, useful updates can support trust and activity.",
+      "recommendedIntervention": "Publish occasional job or service updates that help a customer, not filler.",
+      "condition": "content_posts_expected",
+      "radModule": "content_production"
+    },
+    {
+      "id": "GBP-HND-01",
+      "cat": "F",
+      "title": "Website destination resolves over HTTPS",
+      "max": 2,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "critical",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The primary website destination resolves successfully over HTTPS, with a valid certificate and no unrelated redirect.",
+        "1": "The destination resolves but has a slow, insecure, or confusing redirect.",
+        "0": "The destination is dead, unreachable, or redirects to unrelated content."
+      },
+      "evidence": "destination fetch, final URL, certificate",
+      "principle": "A broken handoff loses the customer at the moment of highest intent.",
+      "recommendedIntervention": "Repair the destination and serve the site over HTTPS.",
+      "radModule": "conversion_recovery",
+      "requires": "website_present"
+    },
+    {
+      "id": "GBP-HND-02",
+      "cat": "F",
+      "title": "Destination identity matches the profile",
+      "max": 2,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The destination clearly represents the same business name, brand, and location.",
+        "1": "The connection is plausible but one identity signal is weak or missing.",
+        "0": "The destination appears to belong to a different business or a directory."
+      },
+      "evidence": "destination title, brand, contact details",
+      "principle": "Identity continuity is trust continuity.",
+      "recommendedIntervention": "Align the business name, logo, and location across Google and the site.",
+      "radModule": "gbp_optimization",
+      "requires": "website_resolves"
+    },
+    {
+      "id": "GBP-HND-03",
+      "cat": "F",
+      "title": "Phone, hours, and service signals stay consistent",
+      "max": 2,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination",
+        "api"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "Phone, hours, and core service language match between the profile and destination.",
+        "1": "One signal is inconsistent without changing the core offer.",
+        "0": "A material inconsistency would make a customer question whether they reached the right business."
+      },
+      "evidence": "phone, hours, service pages",
+      "principle": "Public inconsistency creates hesitation.",
+      "recommendedIntervention": "Update the destination and profile from one source of truth.",
+      "radModule": "gbp_optimization",
+      "requires": "website_resolves"
+    },
+    {
+      "id": "GBP-HND-04",
+      "cat": "F",
+      "title": "Booking destination resolves and belongs to the business",
+      "max": 2,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "critical",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The booking destination resolves, is usable, and is clearly branded for the business.",
+        "1": "The booking destination works but is generic or requires avoidable steps.",
+        "0": "Online booking is not expected, so this check does not apply."
+      },
+      "evidence": "booking destination state",
+      "principle": "A dead booking link is worse than no booking link.",
+      "recommendedIntervention": "Repair or remove the booking action; use a branded, working destination.",
+      "condition": "online_booking_expected",
+      "radModule": "online_booking",
+      "requires": "booking_present"
+    },
+    {
+      "id": "GBP-HND-05",
+      "cat": "F",
+      "title": "No obvious dead end at handoff",
+      "max": 1,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "The destination offers a clear next action appropriate to the profile intent.",
+        "0": "The destination is a dead end for the likely intent."
+      },
+      "evidence": "destination action path",
+      "principle": "The handoff must continue the journey.",
+      "recommendedIntervention": "Keep one visible action on the destination that matches the profile promise.",
+      "radModule": "conversion_recovery",
+      "requires": "website_resolves"
+    },
+    {
+      "id": "GBP-HND-06",
+      "cat": "F",
+      "title": "Source context is preserved at handoff",
+      "max": 1,
+      "journeyStage": "handoff",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "model_judgment",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "The handoff preserves useful source context (campaign parameters, booking source, or a coherent landing structure).",
+        "0": "The handoff discards all observable source context."
+      },
+      "evidence": "URL parameters, landing structure",
+      "principle": "Without source context, profile-driven demand cannot be measured.",
+      "recommendedIntervention": "Use a consistent, non-breaking source parameter on profile and booking links.",
+      "radModule": "advanced_attribution",
+      "requires": "website_resolves"
+    },
+    {
+      "id": "GBP-MSR-01",
+      "cat": "G",
+      "title": "Website action carries observable source context",
+      "max": 2,
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "medium",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The website action includes a stable, non-breaking source parameter that distinguishes profile traffic.",
+        "1": "A parameter exists but is inconsistent or likely to be stripped.",
+        "0": "No observable source parameter distinguishes profile traffic."
+      },
+      "evidence": "websiteUri query parameters",
+      "principle": "Profile-origin demand needs a measurable entry point.",
+      "recommendedIntervention": "Use one consistent source parameter that survives redirects.",
+      "radModule": "advanced_attribution",
+      "requires": "website_resolves"
+    },
+    {
+      "id": "GBP-MSR-02",
+      "cat": "G",
+      "title": "Booking action carries observable source context",
+      "max": 2,
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "conditional",
+      "severity": "high",
+      "allowed": [
+        2,
+        1,
+        0
+      ],
+      "anchors": {
+        "2": "The booking action carries a source parameter or a booking source field that identifies profile traffic.",
+        "1": "Some attribution context exists but is incomplete.",
+        "0": "Online booking is not expected, so this check does not apply."
+      },
+      "evidence": "booking URL parameters, booking form fields",
+      "principle": "A booking that cannot be attributed cannot be evaluated.",
+      "recommendedIntervention": "Preserve source context through the booking redirect or form.",
+      "condition": "online_booking_expected",
+      "radModule": "advanced_attribution",
+      "requires": "booking_resolves"
+    },
+    {
+      "id": "GBP-MSR-03",
+      "cat": "G",
+      "title": "Destination structure allows profile-origin measurement",
+      "max": 1,
+      "journeyStage": "measure",
+      "evidenceType": [
+        "destination"
+      ],
+      "evaluation": "deterministic",
+      "applicability": "required",
+      "severity": "low",
+      "allowed": [
+        1,
+        0
+      ],
+      "anchors": {
+        "1": "The destination structure supports clean measurement without breaking the customer experience.",
+        "0": "The destination structure prevents meaningful profile-origin measurement."
+      },
+      "evidence": "landing URL and redirect behavior",
+      "principle": "Attribution should be observable without harming the handoff.",
+      "recommendedIntervention": "Use stable landing URLs and avoid redirect chains that strip query context.",
+      "radModule": "advanced_attribution",
+      "requires": "website_resolves"
+    }
+  ],
+  "crossScorecard": [
+    {
+      "question": "GBP category quality",
+      "gbp": "SCORE",
+      "website": "\u2014",
+      "visibility": "explanatory only"
+    },
+    {
+      "question": "GBP service coverage",
+      "gbp": "SCORE",
+      "website": "\u2014",
+      "visibility": "explanatory only"
+    },
+    {
+      "question": "GBP phone, website, booking, or messaging action present",
+      "gbp": "SCORE",
+      "website": "\u2014",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Website destination resolves",
+      "gbp": "SCORE handoff",
+      "website": "\u2014",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Website HTTPS and certificate",
+      "gbp": "SCORE handoff",
+      "website": "SCORE",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Website mobile form usability",
+      "gbp": "\u2014",
+      "website": "SCORE",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Website page speed",
+      "gbp": "\u2014",
+      "website": "SCORE",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Local Pack rank and grid visibility",
+      "gbp": "\u2014",
+      "website": "\u2014",
+      "visibility": "SCORE"
+    },
+    {
+      "question": "Review recency and owner response",
+      "gbp": "SCORE",
+      "website": "explanatory only",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Review widget on the website",
+      "gbp": "\u2014",
+      "website": "SCORE",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Website conversion tracking",
+      "gbp": "\u2014",
+      "website": "SCORE",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "GBP-origin source or UTM preservation",
+      "gbp": "SCORE",
+      "website": "\u2014",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "GBP call-click, direction, and booking volume",
+      "gbp": "OWNER DATA REQUIRED or authorized connected diagnostics",
+      "website": "\u2014",
+      "visibility": "\u2014"
+    },
+    {
+      "question": "Organic ranking and query performance",
+      "gbp": "\u2014",
+      "website": "\u2014",
+      "visibility": "SCORE"
+    }
+  ]
+}

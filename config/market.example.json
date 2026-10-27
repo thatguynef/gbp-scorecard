@@ -1,0 +1,12 @@
+{
+  "trade": "plumbing",
+  "market": "Example County, CA",
+  "service_business": true,
+  "online_booking_expected": true,
+  "messaging_expected": false,
+  "emergency_service": true,
+  "physical_storefront": false,
+  "after_hours_expected": true,
+  "content_posts_expected": false,
+  "preferred_actions": ["call", "booking"]
+}

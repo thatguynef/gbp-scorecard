@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-10-26T1000-acme",
+  "schema_version": "1.0",
+  "audit_mode": "public",
+  "source_mode": "fixture",
+  "synthetic": true,
+  "collector_version": "1.0.0",
+  "rubric_version": "1.0.0",
+  "started_at": "2026-10-26T10:00:00Z",
+  "finished_at": "2026-10-26T10:00:00Z",
+  "business": {
+    "name": "Acme Plumbing (synthetic)",
+    "trade": "plumbing",
+    "market": "Example County, CA",
+    "place_id": "SYNTHETIC-PLACE-ACME-001",
+    "website": "https://acme-plumbing.example/",
+    "phone": "(555) 010-0200",
+    "address": ""
+  },
+  "sources": [
+    {
+      "id": "fixture",
+      "type": "fixture",
+      "field_completeness": 100
+    }
+  ],
+  "non_destructive": true,
+  "review_required": true
+}
