@@ -244,7 +244,7 @@ function ownerData(limit = null) {
   let entries = (scores.ownerDataRequired || []).map((entry) => ({ ...entry, ...(supplied.get(entry.id) || {}) }));
   if (limit) entries = entries.slice(0, limit);
   if (!entries.length) return "_No owner-data opportunities supplied._";
-  return entries
+  return "**OWNER DATA REQUIRED — not scored.**\n\n" + entries
     .map((entry) => {
       const questions = (entry.questions || []).map((question) => `  - ${question}`).join("\n");
       const head = `**${entry.title}**${entry.stage ? ` (${entry.stage})` : ""} — ${entry.why || entry.whyItMatters || ""}`;
@@ -284,7 +284,9 @@ function findingsTable() {
     const observed = check.applicable
       ? finding.observed || (check.evidence || []).join("; ")
       : `N/A: ${check.na_reason || "not applicable"}`;
-    const fix = check.applicable ? finding.fix || check.recommendedIntervention || "—" : "—";
+    const fix = check.applicable
+      ? (finding.fix || (check.score === check.max ? "—" : check.recommendedIntervention) || "—")
+      : "—";
     lines.push(
       `| ${check.id} | ${stageName(check.stage)} | ${scoreValue(check)} | ${check.applicable ? confidenceLabel(check.confidence) : "NOT APPLICABLE"} | ${escapeCell(observed)} | ${escapeCell(fix)} |`
     );
@@ -372,6 +374,7 @@ let output = template;
 for (const [key, value] of Object.entries(replacements)) {
   output = output.replaceAll(`{{${key}}}`, String(value));
 }
+output = output.replace(/\n{3,}/g, "\n\n");
 if (/\{\{[A-Z0-9_]+\}\}/.test(output)) {
   const missing = [...output.matchAll(/\{\{([A-Z0-9_]+)\}\}/g)].map((match) => match[1]);
   console.error(`error: unfilled template placeholder(s): ${[...new Set(missing)].join(", ")}`);

@@ -6,8 +6,6 @@
 
 # 68 / 100 — C (Average)
 
-
-
 **A credible profile with a strong local reputation and a usable call path, but it gives a ready customer too few ways to act and no observable after-hours or attribution path.**
 
 ---
@@ -121,6 +119,8 @@ The booking action and after-hours line remove the two clearest dead ends in the
 ---
 
 ## Revenue Opportunities to Investigate
+
+**OWNER DATA REQUIRED — not scored.**
 
 **Call answer rate** (response) — The profile can produce a call, but only the phone system can show whether it was answered.
   - How many profile-origin calls were answered, missed, or abandoned?

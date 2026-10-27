@@ -428,7 +428,14 @@ function mutationSuite(data) {
       d.filled.profile.business_status = "CLOSED_PERMANENTLY";
       d.filled.facts.profile_status = "CLOSED_PERMANENTLY";
     }],
-    ["remove synthetic label", (d) => { d.onePage = d.onePage.replace(/synthetic/gi, "sample"); d.report = d.report.replace(/synthetic/gi, "sample"); }],
+    [data.scores.meta?.synthetic ? "remove synthetic label" : "remove owner-data label", (d) => {
+      if (d.scores.meta?.synthetic) {
+        d.onePage = d.onePage.replace(/synthetic/gi, "sample");
+        d.report = d.report.replace(/synthetic/gi, "sample");
+      } else {
+        d.onePage = d.onePage.replace(/OWNER DATA REQUIRED/gi, "QUESTIONS");
+      }
+    }],
     ["wrong one-page total", (d) => { d.onePage = d.onePage.replace("| **Total** | **", "| **Total** | **9"); }],
     ["remove report finding row", (d) => { d.report = d.report.replace(/^\| GBP-.*$/m, ""); }],
     ["score an owner-data id", (d) => { d.scores.checks.push({ id: "OD-CALL-ANSWER-RATE", score: 1 }); }],

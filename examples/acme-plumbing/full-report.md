@@ -6,8 +6,6 @@
 
 # 68 / 100 — C (Average)
 
-
-
 **A credible profile with a strong local reputation and a usable call path, but it gives a ready customer too few ways to act and no observable after-hours or attribution path.**
 
 ---
@@ -78,55 +76,55 @@
 
 | ID | Stage | Score | Confidence | What was observed | Fix |
 |---|---|---|---|---|---|
-| GBP-ID-01 | Identify | 2/2 | VERIFIED | Places API: businessStatus=OPERATIONAL; displayName=Acme Plumbing matches the destination title. | Confirm the profile status and legal trading name, then correct any mismatch. |
-| GBP-ID-02 | Identify | 2/2 | VERIFIED | Places API primaryType=plumber; destination H1 names plumbing repair and drain service. The category is specific and accurate. | Choose the most specific accurate primary category for the core service. |
+| GBP-ID-01 | Identify | 2/2 | VERIFIED | Places API: businessStatus=OPERATIONAL; displayName=Acme Plumbing matches the destination title. | — |
+| GBP-ID-02 | Identify | 2/2 | VERIFIED | Places API primaryType=plumber; destination H1 names plumbing repair and drain service. The category is specific and accurate. | — |
 | GBP-ID-03 | Identify | 1/2 | STRONG SIGNAL | Places API types include plumber, drainage service, and water heater repair. Drainage is supported by the site; water-heater evidence is thin, so the set is not fully supported. | Remove unsupported categories and keep only services with real delivery evidence. |
-| GBP-ID-04 | Identify | 2/2 | VERIFIED | Places API nationalPhoneNumber and destination tel: action both show (555) 010-0200. | Use one tracked or primary number and keep it consistent on the profile and site. |
-| GBP-ID-05 | Identify | 2/2 | VERIFIED | Places API websiteUri points to https://acme-plumbing.example/, the synthetic owned domain used throughout this fixture. | Point the profile at the business's own primary domain. |
-| GBP-ID-06 | Understand | 2/2 | VERIFIED | Public profile and configuration: service-area business, no storefront address, Example County service area. The hidden address is correct, not a defect. | Make the location or service-area configuration match how the business actually sells. |
-| GBP-ID-07 | Understand | 1/1 | VERIFIED | Places API regularOpeningHours: Mon-Sat 07:00-19:00. The destination publishes the same window. | Publish accurate regular hours and mirror them on the site. |
-| GBP-ID-08 | Understand | 1/1 | STRONG SIGNAL | Profile description names repairs, drain cleaning, and Example County, but does not state a customer outcome or differentiator. | Write a short description around services, customer, and service area. |
+| GBP-ID-04 | Identify | 2/2 | VERIFIED | Places API nationalPhoneNumber and destination tel: action both show (555) 010-0200. | — |
+| GBP-ID-05 | Identify | 2/2 | VERIFIED | Places API websiteUri points to https://acme-plumbing.example/, the synthetic owned domain used throughout this fixture. | — |
+| GBP-ID-06 | Understand | 2/2 | VERIFIED | Public profile and configuration: service-area business, no storefront address, Example County service area. The hidden address is correct, not a defect. | — |
+| GBP-ID-07 | Understand | 1/1 | VERIFIED | Places API regularOpeningHours: Mon-Sat 07:00-19:00. The destination publishes the same window. | — |
+| GBP-ID-08 | Understand | 1/1 | STRONG SIGNAL | Profile description names repairs, drain cleaning, and Example County, but does not state a customer outcome or differentiator. | — |
 | GBP-ID-09 | Understand | 0/1 | VERIFIED | No practical attributes are visible beyond the category labels. | Add verified emergency and service-area attributes. |
 | GBP-SVC-01 | Understand | 3/4 | STRONG SIGNAL | Leak detection and repiping are on the website but absent from the profile. | Complete the major service list. |
 | GBP-SVC-02 | Understand | 2/3 | STRONG SIGNAL | The profile lists repair work but does not distinguish the highest-value repipe and water-heater jobs. Commercial priority is unclear. | Put the highest-value services first and make them easy to recognize. |
-| GBP-SVC-03 | Understand | 3/3 | VERIFIED | Profile description states emergency plumbing service and the preferred call action is present. Urgent work is represented. | State emergency availability and connect it to one usable urgent action. |
+| GBP-SVC-03 | Understand | 3/3 | VERIFIED | Profile description states emergency plumbing service and the preferred call action is present. Urgent work is represented. | — |
 | GBP-SVC-04 | Understand | 2/3 | STRONG SIGNAL | Service descriptions repeat category labels; they do not explain the customer problem or the work included. | Write one clear sentence per major service: problem, work, outcome. |
-| GBP-SVC-05 | Understand | 2/2 | VERIFIED | Services are grouped as drain cleaning and water heaters. The grouping is scannable, though leak detection is absent. | Group related services and remove duplicates. |
+| GBP-SVC-05 | Understand | 2/2 | VERIFIED | Services are grouped as drain cleaning and water heaters. The grouping is scannable, though leak detection is absent. | — |
 | GBP-SVC-06 | Understand | 1/2 | VERIFIED | Profile and destination service lists differ on leak detection and repiping. | Align the profile and website service list. |
-| GBP-SVC-07 | Understand | 1/1 | STRONG SIGNAL | No category-specific attribute explains emergency availability, financing, or service-area constraints. | Add the category attributes that materially help a customer decide. |
-| GBP-CON-01 | Act | 4/4 | VERIFIED | Places API phone present and the destination uses a tel: link for the same synthetic number. | Publish one primary number and make it tappable everywhere. |
-| GBP-CON-02 | Act | 2/2 | VERIFIED | Website action is labeled with the business name and points to the synthetic owned domain. | Use the business's primary website and a clear label. |
+| GBP-SVC-07 | Understand | 1/1 | STRONG SIGNAL | No category-specific attribute explains emergency availability, financing, or service-area constraints. | — |
+| GBP-CON-01 | Act | 4/4 | VERIFIED | Places API phone present and the destination uses a tel: link for the same synthetic number. | — |
+| GBP-CON-02 | Act | 2/2 | VERIFIED | Website action is labeled with the business name and points to the synthetic owned domain. | — |
 | GBP-CON-03 | Act | 0/3 | VERIFIED | No booking action is present; the destination contact form is not a scheduler. | Add one direct booking action with a branded destination. |
 | GBP-CON-04 | Act | N/A | NOT APPLICABLE | N/A: condition not enabled: messaging_expected | — |
 | GBP-CON-05 | Act | N/A | NOT APPLICABLE | N/A: condition not enabled: physical_storefront | — |
 | GBP-CON-06 | Act | 1/2 | STRONG SIGNAL | The destination is usable at mobile width, but its contact form sits below a large stock hero image. One extra scroll adds friction, not a dead end. | Make the first destination a mobile-usable page owned by the business. |
-| GBP-CON-07 | Act | 2/2 | VERIFIED | Emergency service is named and the primary phone action is usable, so an urgent path exists. | Make one urgent action unmistakable. |
+| GBP-CON-07 | Act | 2/2 | VERIFIED | Emergency service is named and the primary phone action is usable, so an urgent path exists. | — |
 | GBP-CON-08 | Act | 0/2 | STRONG SIGNAL | Hours end at 19:00 with no after-hours explanation or path. | State the after-hours policy and connect it to one action. |
-| GBP-CON-09 | Act | 2/2 | STRONG SIGNAL | Call is the clearest action; website and estimate request are secondary. The profile does not label a booking path. | Choose one primary action per intent and let the others support it. |
-| GBP-CON-10 | Act | 1/1 | VERIFIED | Phone and website actions point to the same synthetic business. No conflicting booking or messaging destination is present. | Remove stale numbers, domains, and booking destinations. |
-| GBP-TRU-01 | Trust | 3/3 | VERIFIED | Places API rating 4.6 across 38 reviews. This is above the synthetic local baseline for the example. | Investigate recurring causes of low ratings; do not chase a number. |
-| GBP-TRU-02 | Trust | 3/3 | VERIFIED | 38 reviews is a plausible base for a service business of this synthetic age and category. | Build a consistent review-request process; never buy reviews. |
+| GBP-CON-09 | Act | 2/2 | STRONG SIGNAL | Call is the clearest action; website and estimate request are secondary. The profile does not label a booking path. | — |
+| GBP-CON-10 | Act | 1/1 | VERIFIED | Phone and website actions point to the same synthetic business. No conflicting booking or messaging destination is present. | — |
+| GBP-TRU-01 | Trust | 3/3 | VERIFIED | Places API rating 4.6 across 38 reviews. This is above the synthetic local baseline for the example. | — |
+| GBP-TRU-02 | Trust | 3/3 | VERIFIED | 38 reviews is a plausible base for a service business of this synthetic age and category. | — |
 | GBP-TRU-03 | Trust | 3/4 | VERIFIED | The public review sample has no review newer than 2026-07-18. At the 2026-10-27 audit date, recent proof is weak. | Make review requests part of every completed job. |
 | GBP-TRU-04 | Trust | 1/3 | VERIFIED | Review timestamps cluster in 2025 and early 2026, then stop. The sample does not show a steady recent cadence. | Use a repeatable post-job request instead of sporadic campaigns. |
 | GBP-TRU-05 | Trust | 1/3 | VERIFIED | One 2-star review in January 2026 cites a missed arrival window; the rest of the sample is positive. This is a small but relevant recent negative. | Read recent negatives, fix the recurring cause, and respond publicly where appropriate. |
 | GBP-TRU-06 | Trust | 0/2 | VERIFIED | No owner responses are visible despite 38 reviews. | Respond to every review. |
 | GBP-TRU-07 | Trust | 0/1 | VERIFIED | No recent relevant owner response is visible. | Write specific replies, starting with the recent negative. |
-| GBP-TRU-08 | Trust | 1/1 | STRONG SIGNAL | Two sampled reviews name drain cleaning and water-heater work. Service-specific proof exists but is not repeated across the sample. | Ask satisfied customers to mention the job and the result, without scripting a fake review. |
-| GBP-CNT-01 | Trust | 2/2 | VERIFIED | Places API reports profile and cover media. A logo and cover image are present. | Add a clear cover image and a recognizable profile image. |
+| GBP-TRU-08 | Trust | 1/1 | STRONG SIGNAL | Two sampled reviews name drain cleaning and water-heater work. Service-specific proof exists but is not repeated across the sample. | — |
+| GBP-CNT-01 | Trust | 2/2 | VERIFIED | Places API reports profile and cover media. A logo and cover image are present. | — |
 | GBP-CNT-02 | Trust | 1/2 | STRONG SIGNAL | Two of six sampled images are stock graphics. The set is mixed rather than clearly business-specific. | Replace stock imagery with real, permissioned job and team photos. |
 | GBP-CNT-03 | Trust | 1/3 | STRONG SIGNAL | One job photo and one team photo are present; service variety is thin relative to the claimed services. | Add captioned photos for each major service, including before/after where appropriate. |
 | GBP-CNT-04 | Trust | 0/1 | VERIFIED | Only one recent media item is visible. | Add a small number of recent job photos. |
-| GBP-CNT-05 | Trust | 1/1 | VERIFIED | Two images carry business attribution; the remaining images are user-contributed or unattributed. | Upload a small, current set of owner-provided photos. |
+| GBP-CNT-05 | Trust | 1/1 | VERIFIED | Two images carry business attribution; the remaining images are user-contributed or unattributed. | — |
 | GBP-CNT-06 | Trust | N/A | NOT APPLICABLE | N/A: condition not enabled: content_posts_expected | — |
-| GBP-HND-01 | Handoff | 2/2 | VERIFIED | Destination fetch resolves over HTTPS with a valid certificate and no unrelated redirect. | Repair the destination and serve the site over HTTPS. |
-| GBP-HND-02 | Handoff | 2/2 | STRONG SIGNAL | Destination title and logo match Acme Plumbing, but the footer uses a shortened brand name. | Align the business name, logo, and location across Google and the site. |
+| GBP-HND-01 | Handoff | 2/2 | VERIFIED | Destination fetch resolves over HTTPS with a valid certificate and no unrelated redirect. | — |
+| GBP-HND-02 | Handoff | 2/2 | STRONG SIGNAL | Destination title and logo match Acme Plumbing, but the footer uses a shortened brand name. | — |
 | GBP-HND-03 | Handoff | 1/2 | VERIFIED | Phone and hours match; the destination adds leak detection not present on the profile. One material service inconsistency. | Update the destination and profile from one source of truth. |
 | GBP-HND-04 | Handoff | N/A | NOT APPLICABLE | N/A: not observable: booking_present | — |
-| GBP-HND-05 | Handoff | 1/1 | STRONG SIGNAL | The destination has a contact form and phone link, but the first mobile viewport has no visible next action. | Keep one visible action on the destination that matches the profile promise. |
+| GBP-HND-05 | Handoff | 1/1 | STRONG SIGNAL | The destination has a contact form and phone link, but the first mobile viewport has no visible next action. | — |
 | GBP-HND-06 | Handoff | 0/1 | STRONG SIGNAL | The handoff preserves no observable source context. | Preserve one source parameter through the handoff. |
 | GBP-MSR-01 | Measure | 0/2 | VERIFIED | The website action has no source parameter. | Add one stable source parameter. |
 | GBP-MSR-02 | Measure | N/A | NOT APPLICABLE | N/A: not observable: booking_resolves | — |
-| GBP-MSR-03 | Measure | 1/1 | VERIFIED | Destination uses a stable root URL with no redirect chain that would strip query context. | Use stable landing URLs and avoid redirect chains that strip query context. |
+| GBP-MSR-03 | Measure | 1/1 | VERIFIED | Destination uses a stable root URL with no redirect chain that would strip query context. | — |
 
 ---
 
@@ -188,6 +186,8 @@ The booking action and after-hours line remove the two clearest dead ends in the
 ---
 
 ## Revenue Opportunities to Investigate
+
+**OWNER DATA REQUIRED — not scored.**
 
 **Call answer rate** (response) — The profile can produce a call, but only the phone system can show whether it was answered.
   - How many profile-origin calls were answered, missed, or abandoned?
