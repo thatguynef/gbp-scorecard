@@ -122,7 +122,7 @@ Never open a public issue containing a live credential. See [SECURITY.md](SECURI
     fix-library.md
     one-page-template.md
     report-template.md
-    schema/                   audit, scores, verification
+    schema/                   raw audit, filled audit, scores, judgment, verification
   scripts/
     collect.mjs               public collector (fixture-first)
     score.py                  validator + deterministic scorer

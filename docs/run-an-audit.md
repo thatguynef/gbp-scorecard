@@ -76,9 +76,11 @@ node .opencode/skills/home-service-gbp-audit/scripts/collect.mjs \
 
 Public Mode uses:
 
-- Google Places API (New) for public place data,
+- [Google Places API (New)](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places) for public place data,
 - a non-destructive destination inspector,
 - public profile review for fields the Places API does not expose.
+
+The [Google Business Profile APIs](https://developers.google.com/my-business/reference/rest) are reserved for the future authorized/connected mode. V1 does not use them.
 
 It never posts, replies, books, calls, texts, submits a form, or changes the profile.
 
