@@ -2,6 +2,8 @@
 /** Check the local toolchain for a GBP Scorecard run. */
 
 import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
 
 const HELP = `GBP Scorecard — doctor
 
@@ -38,7 +40,14 @@ add("Python", Boolean(python) && (pythonMajor > 3 || (pythonMajor === 3 && pytho
 
 add("git", Boolean(version("git", ["--version"])), version("git", ["--version"]) || "not found");
 add("Places API key", Boolean(process.env.GOOGLE_MAPS_API_KEY), process.env.GOOGLE_MAPS_API_KEY ? "set in environment (value not printed)" : "not set; fixture mode needs none", false);
-add("Docs toolchain", Boolean(version("python3", ["-m", "mkdocs", "--version"])), "mkdocs not installed (optional for audits; needed for docs:build)", false);
+const venvDocs = fs.existsSync(path.join(process.cwd(), ".venv-docs", "bin", "python"));
+const systemMkdocs = version("python3", ["-m", "mkdocs", "--version"]);
+add(
+  "Docs toolchain",
+  Boolean(systemMkdocs) || venvDocs,
+  systemMkdocs || (venvDocs ? "available in .venv-docs (docs:build will use it)" : "mkdocs not installed (optional for audits; needed for docs:build)"),
+  false,
+);
 
 for (const row of rows) {
   console.log(`${row.ok ? "ok  " : row.required ? "FAIL" : "warn"}  ${row.name.padEnd(16)} ${row.detail}`);

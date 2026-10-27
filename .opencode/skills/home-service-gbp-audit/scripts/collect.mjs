@@ -21,6 +21,7 @@ const COLLECTOR_VERSION = "1.0.0";
 const PLACES_BASE = "https://places.googleapis.com/v1";
 const USER_AGENT = "gbp-scorecard/1.0 (+https://github.com/thatguynef/gbp-scorecard)";
 const MAX_BODY = 256 * 1024;
+const MAX_API_BODY = 2 * 1024 * 1024;
 
 const HELP = `GBP Scorecard public collector ${COLLECTOR_VERSION}
 
@@ -209,6 +210,36 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function readBounded(response, limit) {
+  if (!response.body) return "";
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (received + value.byteLength > limit) {
+        chunks.push(value.slice(0, limit - received));
+        received = limit;
+        await reader.cancel();
+        break;
+      }
+      chunks.push(value);
+      received += value.byteLength;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const merged = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    merged.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(merged);
+}
+
 async function fetchBounded(url, options = {}, timeoutMs = 10000, retries = 2) {
   let lastError;
   for (let attempt = 0; attempt <= retries; attempt += 1) {
@@ -276,7 +307,12 @@ async function placesRequest(pathname, options, fieldMask) {
   if (!response.ok) {
     throw new Error(`Places API request failed (HTTP ${response.status}). Check API enablement, key restrictions, and quota.`);
   }
-  return response.json();
+  const text = await readBounded(response, MAX_API_BODY);
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error("Places API returned a non-JSON or oversized response.");
+  }
 }
 
 const DETAILS_MASK = [
@@ -396,8 +432,7 @@ async function inspectDestination(rawUrl) {
       result.notes = `Destination returned ${contentType || "an unknown content type"}; no HTML identity inspection was possible.`;
       return result;
     }
-    const buffer = await response.arrayBuffer();
-    const html = new TextDecoder().decode(buffer.slice(0, MAX_BODY));
+    const html = await readBounded(response, MAX_BODY);
     result.destination_title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "").replace(/\s+/g, " ").trim().slice(0, 200);
     result.notes = "Non-destructive HTTP metadata inspection only; no form, booking, call, or message was submitted.";
     return result;
