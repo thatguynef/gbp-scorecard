@@ -128,6 +128,7 @@ Never open a public issue containing a live credential. See [SECURITY.md](SECURI
     score.py                  validator + deterministic scorer
     render.mjs                one-page + full report
     verify.mjs                invariants + mutation tests
+    apply_judgment.mjs        structured model/reviewer merge
     eval.mjs                  offline judgment eval harness
     fixtures/                 synthetic fixtures
 examples/acme-plumbing/       synthetic public example

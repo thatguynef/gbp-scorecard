@@ -77,6 +77,8 @@ Record the nine `facts` that drive caps. Facts must restate `profile`, `actions`
 
 Use `verified` only for direct observation or safe measurement. Use `strong_signal` when the observation is real but the business consequence is not proven. Owner-data questions are separate.
 
+If a model or external reviewer fills judgment checks, merge the structured proposal with `apply_judgment.mjs`. It accepts only checks whose evaluation is `model_judgment` and requires evidence references.
+
 ### 3. Score
 
 ```sh

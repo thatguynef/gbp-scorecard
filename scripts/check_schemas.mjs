@@ -154,6 +154,7 @@ const schemaFiles = [
   "raw-audit-v1.schema.json",
   "scores-v1.schema.json",
   "verification-v1.schema.json",
+  "judgment-v1.schema.json",
 ];
 const schemas = {};
 for (const file of schemaFiles) {

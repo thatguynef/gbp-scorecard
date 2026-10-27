@@ -136,6 +136,54 @@ test("verifier passes the synthetic example with mutations and fixture checks", 
   }
 });
 
+test("judgment merger accepts only applicable model-judgment checks", () => {
+  const dir = temp("judgment");
+  try {
+    const audit = JSON.parse(fs.readFileSync(FIXTURE, "utf8"));
+    const input = path.join(dir, "audit.json");
+    const proposal = path.join(dir, "judgment.json");
+    const out = path.join(dir, "reviewed.json");
+    fs.writeFileSync(input, JSON.stringify(audit), "utf8");
+    fs.writeFileSync(proposal, JSON.stringify({
+      schema_version: "1.0",
+      audit_mode: "public",
+      model: { name: "synthetic-reviewer", provider: "fixture" },
+      checks: {
+        "GBP-SVC-04": {
+          score: 2,
+          confidence: "strong_signal",
+          evidence: ["Synthetic test evidence."],
+          evidence_refs: ["places"],
+        },
+      },
+    }), "utf8");
+    const ok = run(process.execPath, [path.join(HERE, "apply_judgment.mjs"), "--audit", input, "--judgment", proposal, "--out", out, "--allow-partial"]);
+    assert.equal(ok.status, 0, ok.stderr);
+    const reviewed = JSON.parse(fs.readFileSync(out, "utf8"));
+    assert.equal(reviewed.checks["GBP-SVC-04"].score, 2);
+    assert.equal(reviewed.checks["GBP-SVC-04"].review.method, "model_judgment");
+
+    fs.writeFileSync(proposal, JSON.stringify({
+      schema_version: "1.0",
+      audit_mode: "public",
+      model: { name: "synthetic-reviewer" },
+      checks: {
+        "GBP-CON-01": {
+          score: 4,
+          confidence: "verified",
+          evidence: ["Deterministic test."],
+          evidence_refs: ["places"],
+        },
+      },
+    }), "utf8");
+    const bad = run(process.execPath, [path.join(HERE, "apply_judgment.mjs"), "--audit", input, "--judgment", proposal, "--out", out, "--allow-partial"]);
+    assert.equal(bad.status, 1);
+    assert.match(bad.stderr, /deterministic check cannot be model-judged/);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("privacy scanner fails on a synthetic secret and never prints it", () => {
   const dir = temp("privacy-bad");
   try {

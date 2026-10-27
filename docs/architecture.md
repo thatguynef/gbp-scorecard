@@ -42,7 +42,7 @@ A reviewer fills every applicable check in `audit.filled.json`:
 - confidence state,
 - cap facts that restate structured observations.
 
-Only judgment checks should use a model. Facts such as rating, review count, link resolution, and hours are deterministic. The reviewer must not invent unavailable data.
+Only judgment checks should use a model. Facts such as rating, review count, link resolution, and hours are deterministic. A model proposal is merged with `apply_judgment.mjs`, which accepts only model-judgment checks and requires evidence references. The reviewer must not invent unavailable data.
 
 ## Stage 3 — Score
 

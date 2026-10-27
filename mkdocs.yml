@@ -59,6 +59,7 @@ nav:
       - Architecture: architecture.md
       - Configuration: configuration.md
       - Structured output: structured-output.md
+      - Judgment layer: judgment.md
       - Portable checklist: portable-checklist.md
       - Development: development.md
       - Model evaluation: eval.md

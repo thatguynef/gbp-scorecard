@@ -20,6 +20,7 @@ Start with the question you are trying to answer.
 | See the collector → scorer → renderer → verifier pipeline | [`architecture.md`](architecture.md) |
 | Configure booking, messaging, emergency, and storefront applicability | [`configuration.md`](configuration.md) |
 | Consume the JSON output | [`structured-output.md`](structured-output.md) |
+| Merge structured model judgments | [`judgment.md`](judgment.md) |
 | Use an external browser agent | [`portable-checklist.md`](portable-checklist.md) |
 | Set up the repo, run tests, add a check | [`development.md`](development.md) |
 | Evaluate judgment checks across models | [`eval.md`](eval.md) |

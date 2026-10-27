@@ -10,6 +10,7 @@ Every artifact is versioned and carries enough provenance to answer: where did t
 | `audit.filled.json` | `audit-v1.schema.json` | Scored audit input with facts and checks |
 | `scores.json` | `scores-v1.schema.json` | Deterministic score output |
 | `verification.json` | `verification-v1.schema.json` | Verifier record |
+| `judgment.json` | `judgment-v1.schema.json` | Structured model/reviewer proposal |
 
 Schemas live in `.opencode/skills/home-service-gbp-audit/references/schema/`.
 

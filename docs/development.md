@@ -41,6 +41,7 @@ npm run check
 | `npm run check:links` | Broken relative Markdown links |
 | `npm run check:assets` | Image existence, alt text, SVG titles, budgets |
 | `npm run check:privacy` | Tracked/untracked secret and PII scan |
+| `npm run judge` | Merge a structured judgment proposal into an audit |
 | `npm run verify:example` | Verify the synthetic example with mutations |
 | `npm run docs:build` | Strict MkDocs build |
 | `npm run render:assets` | Regenerate SVG documentation art |

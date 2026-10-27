@@ -259,10 +259,24 @@ def validate(audit: dict, rubric: dict) -> list[str]:
         if fact != observed:
             errors.append(f"facts.{label} conflicts with the structured observation")
 
+    profile = audit.get("profile") or {}
+    if not isinstance(profile.get("name"), str) or not profile.get("name"):
+        errors.append("profile.name is required")
+    if not isinstance(profile.get("primary_category"), str) or not profile.get("primary_category"):
+        errors.append("profile.primary_category is required")
+    for key in ["additional_categories", "attributes", "regular_hours"]:
+        if not isinstance(profile.get(key), list) or any(not isinstance(entry, str) for entry in profile[key]):
+            errors.append(f"profile.{key} must be an array of strings")
+    if "description" in profile and not isinstance(profile["description"], str):
+        errors.append("profile.description must be a string")
+
     handoff = audit.get("handoff") or {}
     for key in ["https", "resolves", "identity_match"]:
         if not isinstance(handoff.get(key), bool):
             errors.append(f"handoff.{key} must be a boolean")
+    for key in ["final_url", "destination_title", "notes"]:
+        if key in handoff and not isinstance(handoff[key], str):
+            errors.append(f"handoff.{key} must be a string")
 
     review = audit.get("reviews") or {}
     if review.get("rating") is not None and (not is_number(review.get("rating")) or not 0 <= review["rating"] <= 5):
@@ -271,13 +285,38 @@ def validate(audit: dict, rubric: dict) -> list[str]:
         errors.append("reviews.count must be a non-negative integer")
     if not isinstance(review.get("sample"), list):
         errors.append("reviews.sample must be an array")
+    else:
+        for index, entry in enumerate(review["sample"]):
+            if not isinstance(entry, dict):
+                errors.append(f"reviews.sample[{index}] must be an object")
+                continue
+            if not isinstance(entry.get("rating"), int) or isinstance(entry.get("rating"), bool) or not 1 <= entry["rating"] <= 5:
+                errors.append(f"reviews.sample[{index}].rating must be 1-5")
+            if not isinstance(entry.get("published_at"), str) or not entry.get("published_at"):
+                errors.append(f"reviews.sample[{index}].published_at is required")
+            if not isinstance(entry.get("owner_response"), bool):
+                errors.append(f"reviews.sample[{index}].owner_response must be a boolean")
+            if "service_terms" in entry and (not isinstance(entry["service_terms"], list) or any(not isinstance(term, str) for term in entry["service_terms"])):
+                errors.append(f"reviews.sample[{index}].service_terms must be an array of strings")
+    distribution = review.get("distribution")
+    if not isinstance(distribution, dict):
+        errors.append("reviews.distribution must be an object")
+    else:
+        for key, value in distribution.items():
+            if key not in {"1", "2", "3", "4", "5"} or not isinstance(value, int) or isinstance(value, bool) or value < 0:
+                errors.append("reviews.distribution must use keys 1-5 and non-negative integers")
 
     media = audit.get("media") or {}
     for key in ["count", "business_owned_count", "recent_count"]:
         if not isinstance(media.get(key), int) or isinstance(media.get(key), bool) or media[key] < 0:
             errors.append(f"media.{key} must be a non-negative integer")
-    if not isinstance(media.get("categories"), list):
-        errors.append("media.categories must be an array")
+    if not isinstance(media.get("categories"), list) or any(not isinstance(entry, str) for entry in media["categories"]):
+        errors.append("media.categories must be an array of strings")
+
+    measurement = audit.get("measurement") or {}
+    for key in ["website_source_parameter", "booking_source_parameter"]:
+        if measurement.get(key) is not None and not isinstance(measurement.get(key), str):
+            errors.append(f"measurement.{key} must be a string or null")
 
     check_values = audit.get("checks")
     if not isinstance(check_values, dict):

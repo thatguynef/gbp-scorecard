@@ -197,6 +197,18 @@ class ScorerTests(unittest.TestCase):
         self.assertTrue(any("credential-like" in error for error in errors))
         self.assertFalse(any("A" * 35 in error for error in errors))
 
+    def test_malformed_review_sample_fails(self):
+        audit, rubric = self.fresh()
+        audit["reviews"]["sample"][0]["rating"] = 9
+        errors = score.validate(audit, rubric)
+        self.assertTrue(any("reviews.sample[0].rating" in error for error in errors))
+
+    def test_measurement_parameter_must_be_string_or_null(self):
+        audit, rubric = self.fresh()
+        audit["measurement"]["website_source_parameter"] = 42
+        errors = score.validate(audit, rubric)
+        self.assertTrue(any("measurement.website_source_parameter" in error for error in errors))
+
     def test_half_up_display_rounding(self):
         self.assertEqual(score.round_to(68.5, 0), 69)
         self.assertEqual(score.round_to(68.4, 0), 68)
