@@ -2,6 +2,21 @@
 
 All notable changes to GBP Scorecard are documented here. The format follows Keep a Changelog. The project uses semantic versioning for the rubric, schemas, scorer, and collector.
 
+## [1.0.1] — 2026-10-27
+
+### Changed
+
+- Hardened the collector with bounded Places API and destination response reads.
+- Recorded HTTP method metadata alongside source endpoints without credentials.
+- Added structured judgment proposals and a merger that accepts only model-judgment checks with evidence references.
+- Made report labels explicit for owner-data sections and made the verifier mutation suite adapt to synthetic versus live reports.
+- Improved full-report fixes so passing checks are not presented as defects.
+
+### Security
+
+- Strengthened audit validation for review samples, distribution, measurement fields, and profile structures.
+- Kept current-tree and Git-history privacy scans clean.
+
 ## [1.0.0] — 2026-10-27
 
 ### Added

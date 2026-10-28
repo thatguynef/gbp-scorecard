@@ -1,6 +1,6 @@
 {
   "name": "gbp-scorecard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Evidence-based Google Business Profile scorecard for local home-service businesses.",
   "license": "MIT",
   "private": false,
