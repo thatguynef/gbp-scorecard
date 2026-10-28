@@ -21,7 +21,7 @@ Upload **`docs/assets/social-preview.png`** as the repository social preview.
 - Opaque PNG
 - No client data; synthetic framing only
 
-The source artwork is `docs/assets/social-preview.svg`. The PNG is committed because GitHub expects a raster image, and the text rasterization is intentionally done outside CI so the local font rendering can be reviewed.
+The canonical social preview is `docs/assets/social-preview.png` (1200×630, under 1 MB). It is generated from the shared scorecard-family template and committed because GitHub expects a raster image. Local font rendering is reviewed before commit.
 
 ## Security
 

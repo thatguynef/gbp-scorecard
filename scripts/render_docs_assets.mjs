@@ -39,10 +39,13 @@ const banner = svg(1200, 320, "GBP Scorecard — find where the public profile l
   <rect width="1200" height="320" fill="url(#grid)"/>
   <rect width="1200" height="320" fill="url(#glow)"/>
   <g transform="translate(64 56)">
-    <path d="M18 0C8.1 0 0 8.1 0 18c0 13.5 18 34 18 34s18-20.5 18-34C36 8.1 27.9 0 18 0Z" fill="${C.red}"/>
-    <circle cx="18" cy="18" r="6" fill="${C.ink}"/>
+    <rect width="44" height="44" rx="10" fill="${C.card}" stroke="#2A2A2E"/>
+    <path d="M12 30 A 12 12 0 0 1 32 30" fill="none" stroke="${C.red}" stroke-width="5" stroke-linecap="round"/>
+    <path d="M12 30 A 12 12 0 0 1 18 20" fill="none" stroke="${C.paper}" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="22" cy="30" r="2.5" fill="${C.paper}"/>
+    <path d="M22 30 L28 23" stroke="${C.paper}" stroke-width="2.5" stroke-linecap="round"/>
   </g>
-  <text x="120" y="92" fill="${C.soft}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" letter-spacing="4">GBP SCORECARD</text>
+  <text x="126" y="94" fill="${C.soft}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" letter-spacing="4">GBP SCORECARD</text>
   <text x="64" y="166" fill="${C.paper}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">Find where the public profile</text>
   <text x="64" y="218" fill="${C.paper}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">leaks ready local customers.</text>
   <text x="64" y="270" fill="${C.muted}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18">Identity · Services · Reputation · Content · Conversion · Handoff · Measurement</text>
@@ -108,16 +111,16 @@ const preview = svg(1200, 820, "Synthetic Acme Plumbing GBP report showing 68 ou
     <text x="20" y="320" fill="${C.soft}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="1">OWNER DATA REQUIRED</text>
     <text x="238" y="320" fill="${C.muted}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13">A question for the phone and CRM, not a score penalty.</text>
   </g>
-  <g transform="translate(76 500)">
+  <g transform="translate(76 590)">
     <text x="0" y="0" fill="${C.soft}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2">SCORE BREAKDOWN</text>
     ${["Identity & Accuracy|15|13", "Relevance & Services|18|14", "Conversion & Actionability|22|15", "Reputation & Trust|20|12", "Content & Freshness|10|6", "Handoff & Continuity|10|8", "Measurement|5|2"].map((row, index) => {
       const [name, max, score] = row.split("|");
       const x = (index % 4) * 260;
-      const y = 28 + Math.floor(index / 4) * 74;
+      const y = 24 + Math.floor(index / 4) * 62;
       return `<g transform="translate(${x} ${y})">
-        <rect width="238" height="58" rx="8" fill="${C.card}"/>
-        <text x="14" y="23" fill="${C.muted}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12">${name}</text>
-        <text x="14" y="46" fill="${C.paper}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">${score} / ${max}</text>
+        <rect width="238" height="52" rx="8" fill="${C.card}"/>
+        <text x="14" y="20" fill="${C.muted}" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12">${name}</text>
+        <text x="14" y="42" fill="${C.paper}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">${score} / ${max}</text>
       </g>`;
     }).join("")}
   </g>
@@ -138,14 +141,19 @@ const social = svg(1200, 630, "GBP Scorecard — evidence-based diagnosis for lo
 `);
 
 const logo = svg(64, 64, "GBP Scorecard", `
-  <rect width="64" height="64" rx="14" fill="${C.ink}"/>
-  <path d="M32 12c-8 0-14 6-14 14 0 10.5 14 26 14 26s14-15.5 14-26c0-8-6-14-14-14Z" fill="${C.red}"/>
-  <circle cx="32" cy="26" r="5" fill="${C.ink}"/>
+  <rect width="64" height="64" rx="15" fill="${C.ink}"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="14.25" fill="none" stroke="#2A2A2E" stroke-width="1.5"/>
+  <path d="M17 42 A 15 15 0 0 1 47 42" fill="none" stroke="#2A2A2E" stroke-width="6" stroke-linecap="round"/>
+  <path d="M17 42 A 15 15 0 0 1 39.5 29" fill="none" stroke="${C.red}" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="42" r="3" fill="${C.paper}"/>
+  <path d="M32 42 L39 33" stroke="${C.paper}" stroke-width="3" stroke-linecap="round"/>
 `);
 const favicon = svg(32, 32, "GBP Scorecard", `
-  <rect width="32" height="32" rx="8" fill="${C.ink}"/>
-  <path d="M16 5c-4.4 0-8 3.6-8 8 0 5.8 8 14 8 14s8-8.2 8-14c0-4.4-3.6-8-8-8Z" fill="${C.red}"/>
-  <circle cx="16" cy="13" r="2.8" fill="${C.ink}"/>
+  <rect width="32" height="32" rx="7" fill="${C.red}"/>
+  <path d="M8.5 21 A 7.5 7.5 0 0 1 23.5 21" fill="none" stroke="${C.ink}" stroke-opacity="0.28" stroke-width="3" stroke-linecap="round"/>
+  <path d="M8.5 21 A 7.5 7.5 0 0 1 19.75 14.5" fill="none" stroke="${C.paper}" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="16" cy="21" r="1.5" fill="${C.paper}"/>
+  <path d="M16 21 L19.5 16.5" stroke="${C.paper}" stroke-width="1.5" stroke-linecap="round"/>
 `);
 
 const sanitizeSvg = (content) =>
@@ -157,8 +165,6 @@ const sanitizeSvg = (content) =>
 const files = {
   "banner.svg": banner,
   "journey.svg": journey,
-  "scorecard-preview.svg": preview,
-  "social-preview.svg": social,
   "logo.svg": logo,
   "favicon.svg": favicon,
 };

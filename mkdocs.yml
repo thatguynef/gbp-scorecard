@@ -5,7 +5,7 @@ site_author: Radical Red Rocket
 repo_url: https://github.com/thatguynef/gbp-scorecard
 repo_name: thatguynef/gbp-scorecard
 edit_uri: edit/main/docs/
-copyright: GBP Scorecard · MIT · maintained alongside Radical Red Rocket
+copyright: 'GBP Scorecard · MIT · Family: <a href="https://thatguynef.github.io/local-visibility-scorecard/">Local Visibility Scorecard</a> · <a href="https://thatguynef.github.io/website-scorecard/">Website Scorecard</a>'
 
 theme:
   name: material
@@ -56,7 +56,7 @@ nav:
   - Scoring: scoring.md
   - Evidence: evidence.md
   - Coverage: coverage-completeness.md
-  - Family: scorecard-family.md
+  - Scorecard family: scorecard-family.md
   - Guides:
       - Architecture: architecture.md
       - Configuration: configuration.md
