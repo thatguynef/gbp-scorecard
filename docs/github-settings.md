@@ -8,6 +8,17 @@ Recommended repository configuration for `thatguynef/gbp-scorecard`.
 - **Website:** https://thatguynef.github.io/gbp-scorecard/
 - **Topics:** `google-business-profile`, `local-seo`, `home-services`, `audit`, `scorecard`, `conversion`, `revenue-operations`, `open-source`
 
+## Social preview
+
+Upload **`docs/assets/social-preview.png`** as the repository social preview.
+
+- **1200 × 630** px
+- **188 KB**
+- Opaque PNG
+- No client data; synthetic framing only
+
+The source artwork is `docs/assets/social-preview.svg`. The PNG is committed because GitHub expects a raster image, and the text rasterization is intentionally done outside CI so the local font rendering can be reviewed.
+
 ## Security
 
 - Enable secret scanning.
