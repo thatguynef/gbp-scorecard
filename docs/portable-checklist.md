@@ -1,3 +1,7 @@
+---
+description: "A portable public-profile checklist for human or external agent collection without the repository scripts."
+---
+
 # Portable checklist
 
 The portable checklist is for a human or an external browser agent collecting public evidence without the repository's scripts. It is generated from the canonical rubric.

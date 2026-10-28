@@ -195,18 +195,22 @@ def main() -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     rendered = render(rubric)
-    outputs = [Path(args.out), Path(args.docs_out)]
+    docs_rendered = (
+        '---\ndescription: "The canonical 49-check GBP rubric: seven weighted categories, exact score anchors, evidence rules, five hard caps, owner-data questions, and opportunity flags."\n---\n\n'
+        + rendered
+    )
+    outputs = [(Path(args.out), rendered), (Path(args.docs_out), docs_rendered)]
     if args.check:
-        for out in outputs:
+        for out, expected in outputs:
             current = out.read_text(encoding="utf-8") if out.exists() else ""
-            if current != rendered:
+            if current != expected:
                 print(f"error: {out} is stale. Run: python3 {Path(__file__).name}", file=sys.stderr)
                 return 1
             print(f"ok: {out} is current")
         return 0
-    for out in outputs:
+    for out, expected in outputs:
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(rendered, encoding="utf-8")
+        out.write_text(expected, encoding="utf-8")
         print(f"wrote {out}")
     return 0
 

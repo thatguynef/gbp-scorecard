@@ -1,6 +1,7 @@
 site_name: GBP Scorecard
 site_description: Evidence-based Google Business Profile scorecard for local home-service businesses. Find where the public profile may be leaking ready customers.
 site_url: https://thatguynef.github.io/gbp-scorecard/
+site_author: Radical Red Rocket
 repo_url: https://github.com/thatguynef/gbp-scorecard
 repo_name: thatguynef/gbp-scorecard
 edit_uri: edit/main/docs/
@@ -55,6 +56,7 @@ nav:
   - Scoring: scoring.md
   - Evidence: evidence.md
   - Coverage: coverage-completeness.md
+  - Family: scorecard-family.md
   - Guides:
       - Architecture: architecture.md
       - Configuration: configuration.md
@@ -64,7 +66,6 @@ nav:
       - Development: development.md
       - Model evaluation: eval.md
   - Project:
-      - Scorecard family: scorecard-family.md
       - Style guide: style-guide.md
       - Privacy: privacy.md
       - Release checklist: release-checklist.md
@@ -112,3 +113,16 @@ extra_javascript:
 
 extra:
   generator: false
+  social:
+    - icon: material/github
+      link: https://github.com/thatguynef/gbp-scorecard
+      name: GBP Scorecard on GitHub
+    - icon: material/map-search
+      link: https://thatguynef.github.io/local-visibility-scorecard/
+      name: Local Visibility Scorecard
+    - icon: material/storefront
+      link: https://thatguynef.github.io/gbp-scorecard/
+      name: GBP Scorecard
+    - icon: material/web
+      link: https://thatguynef.github.io/website-scorecard/
+      name: Website Scorecard

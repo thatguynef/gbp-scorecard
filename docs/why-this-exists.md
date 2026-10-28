@@ -1,3 +1,7 @@
+---
+description: "Why the Google Business Profile needs its own scorecard: public profile trust and action, separate from website conversion and local visibility."
+---
+
 # Why this exists
 
 A Google Business Profile can look complete and still fail the customer.
@@ -40,6 +44,12 @@ RAD                          Remediation and operations
 ```
 
 The engines remain separate. A website defect should not be scored twice. A local ranking should not be disguised as a profile defect. RAD consumes findings; it does not rewrite the public score with private operational data.
+
+Published scorecards:
+
+- [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/)
+- [GBP Scorecard](https://thatguynef.github.io/gbp-scorecard/)
+- [Website Scorecard](https://thatguynef.github.io/website-scorecard/)
 
 ## What makes this credible
 

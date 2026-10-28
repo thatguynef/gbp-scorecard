@@ -1,3 +1,7 @@
+---
+description: "How the GBP Scorecard calculates 0–100: applicability-aware normalization, five deterministic caps, bands, owner-data exclusion, and worked examples."
+---
+
 # Scoring
 
 The score answers one question: **how effectively does the observable Google Business Profile support a local customer's journey from discovery to meaningful action?**
@@ -37,7 +41,7 @@ Rounding:
 | 40–59 | D | Weak |
 | 0–39 | F | Critical |
 
-The bands match Website Scorecard for family consistency.
+The bands match [Website Scorecard](https://thatguynef.github.io/website-scorecard/) for family consistency.
 
 ## N/A normalization
 

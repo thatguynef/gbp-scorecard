@@ -1,3 +1,7 @@
+---
+description: "The ten-stage GBP customer journey and seven weighted categories: identity, services, conversion, reputation, content, handoff, and measurement."
+---
+
 # Framework
 
 The GBP Scorecard follows the customer journey, not the profile's field list.
@@ -84,8 +88,8 @@ They are reported as opportunities when the evidence supports them. An optional 
 
 ## What is deliberately excluded
 
-- Local Pack rank, grid visibility, organic ranking, AI answer inclusion — Local Visibility Scorecard.
-- Website form usability, page speed, mobile layout, on-site analytics — Website Scorecard.
+- Local Pack rank, grid visibility, organic ranking, AI answer inclusion — [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/).
+- Website form usability, page speed, mobile layout, on-site analytics — [Website Scorecard](https://thatguynef.github.io/website-scorecard/).
 - Call answer rate, speed-to-lead, booking conversion, close rate, revenue — owner data or authorized connected diagnostics.
 - Competitor benchmarking with invented market data.
 - Reviews or business facts that were not observed.

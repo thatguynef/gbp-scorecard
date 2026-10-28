@@ -1,3 +1,7 @@
+---
+description: "The versioned GBP audit, score, judgment, and verification schemas, provenance fields, and downstream fields."
+---
+
 # Structured output
 
 Every artifact is versioned and carries enough provenance to answer: where did this come from, when was it collected, was it observed or API-derived, and which audit mode produced it?

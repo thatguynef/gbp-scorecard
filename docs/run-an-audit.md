@@ -1,3 +1,7 @@
+---
+description: "Run a public-mode GBP audit: collect, review, score, render, and verify, with fixture mode, destination checks, and privacy rules."
+---
+
 # Run an audit
 
 There are two paths: the synthetic fixture (no credentials) and a public audit (Places API key required). Start with the fixture.
@@ -177,6 +181,15 @@ node .opencode/skills/home-service-gbp-audit/scripts/verify.mjs \
 Use `--synthetic` only for a synthetic or explicitly sanitized example. A real client audit must keep its reports local unless the client has approved publication.
 
 A run is not delivered unless the verifier exits 0.
+
+## Complete the diagnostic
+
+GBP is the middle layer. Use the other two published scorecards when the question moves outside the profile:
+
+- [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/) — can prospective customers discover the business across Search, Maps, AI answers, competitors, and external authority?
+- [Website Scorecard](https://thatguynef.github.io/website-scorecard/) — can the owned website convert the demand into a lead, booking, or estimate?
+
+The engines are independent. Do not merge the scores; use the boundary matrix in [The Scorecard Family](scorecard-family.md).
 
 ## Re-render without rescoring
 

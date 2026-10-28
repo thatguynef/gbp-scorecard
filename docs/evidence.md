@@ -1,3 +1,7 @@
+---
+description: "The four GBP evidence states, source provenance, model judgment rules, and what public profile data can and cannot prove."
+---
+
 # Evidence
 
 A finding without evidence is an opinion.

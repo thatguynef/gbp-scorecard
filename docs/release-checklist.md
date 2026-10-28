@@ -1,3 +1,7 @@
+---
+description: "The GBP Scorecard release gate: security, rubric, pipeline, documentation, GitHub settings, and live validation."
+---
+
 # Release Checklist
 
 Use this before publishing a release, enabling GitHub Pages, or merging a change that alters the rubric or output.
@@ -44,7 +48,7 @@ Use this before publishing a release, enabling GitHub Pages, or merging a change
 - [ ] Images exist, have alt text, and respect budgets.
 - [ ] README explains audience, purpose, framework, privacy, and the run process.
 - [ ] `docs/privacy.md` matches actual repository behavior.
-- [ ] `docs/scorecard-family.md` states the boundaries with Website Scorecard and Local Visibility Scorecard.
+- [ ] `docs/scorecard-family.md` states the boundaries with [Website Scorecard](https://thatguynef.github.io/website-scorecard/) and [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/).
 - [ ] The home page can be published without private data.
 
 ## GitHub

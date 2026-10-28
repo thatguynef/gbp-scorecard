@@ -1,3 +1,7 @@
+---
+description: "Developer setup, commands, test structure, generated artifacts, cap authoring, and privacy checks for the GBP Scorecard."
+---
+
 # Development
 
 ## Requirements

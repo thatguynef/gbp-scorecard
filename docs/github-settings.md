@@ -1,3 +1,7 @@
+---
+description: "Recommended GitHub settings for the public GBP Scorecard repository: security, Pages, CI, releases, and social preview."
+---
+
 # GitHub settings
 
 Recommended repository configuration for `thatguynef/gbp-scorecard`.

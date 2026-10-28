@@ -1,3 +1,7 @@
+---
+description: "Deterministic GBP check-to-fix mappings, priority order, and optional RAD modules. Evidence and score limits stay in the report."
+---
+
 # Fix Library
 
 > **Generated from `rubric.json`.** Do not edit by hand. Run `python3 render_fix_library.py`.

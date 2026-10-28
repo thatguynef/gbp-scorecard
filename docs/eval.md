@@ -1,3 +1,7 @@
+---
+description: "The offline GBP judgment evaluation harness: agreement, evidence citation, unsupported claims, stability, and synthetic-only rules."
+---
+
 # Model evaluation
 
 Only judgment-dependent checks should be evaluated across models. Deterministic facts are not re-judged.

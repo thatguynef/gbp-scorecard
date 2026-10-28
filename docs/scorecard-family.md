@@ -1,6 +1,20 @@
+---
+description: "How the Local Visibility, GBP, and Website Scorecards fit together without duplicate scoring — ownership boundaries, shared conventions, and published sites."
+---
+
 # The Scorecard Family
 
-GBP Scorecard is the second member of a coordinated family. It is designed to sit beside [Website Scorecard](https://github.com/thatguynef/website-scorecard) without copying its job.
+GBP Scorecard is the profile layer of a three-part diagnostic family. Each score is independently meaningful, and none rewrites another. It is designed to sit beside [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/) and [Website Scorecard](https://thatguynef.github.io/website-scorecard/) without copying their jobs.
+
+## Published scorecards
+
+| Scorecard | Question it answers | Live site |
+|---|---|---|
+| **Local Visibility** | Can prospective customers discover the business across Search, Maps, AI answers, competitors, and external authority? | [Open Local Visibility](https://thatguynef.github.io/local-visibility-scorecard/) |
+| **GBP Scorecard** (this repository) | Does the Google Business Profile create trust and enable action? | [Open GBP Scorecard](https://thatguynef.github.io/gbp-scorecard/) |
+| **Website Scorecard** | Can the owned website convert that demand? | [Open Website Scorecard](https://thatguynef.github.io/website-scorecard/) |
+
+Use them in journey order — discovery, profile, website — or run one independently. Do not average the three into a single number.
 
 ```text
 LOCAL VISIBILITY SCORECARD
@@ -50,7 +64,7 @@ Remediation and operations live elsewhere.
 - Profile-origin attribution signals.
 - Owner-data questions about calls, messages, bookings, reviews, and profile revenue.
 
-## What belongs only to Website Scorecard
+## What belongs only to [Website Scorecard](https://thatguynef.github.io/website-scorecard/)
 
 - Website UX, mobile layout, page speed, accessibility, forms, navigation, and content depth.
 - Website conversion paths from the page itself, including form usability and on-site scheduling.
@@ -58,7 +72,7 @@ Remediation and operations live elsewhere.
 - Organic and on-site findability.
 - Website-specific hard caps, including broken forms and unreadable mobile layouts.
 
-## What belongs to Local Visibility Scorecard
+## What belongs to [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/)
 
 - Local Pack rank and grid visibility.
 - Organic ranking and query performance.
@@ -102,7 +116,7 @@ GBP Scorecard weights **Conversion & Actionability at 22**, because a profile's 
 
 Both scorecards use seven categories so a business owner can compare the shape of the diagnosis, not the underlying checks.
 
-## Future boundary
+## RAD boundary
 
 The family may eventually feed machine-readable findings into RAD:
 
@@ -114,3 +128,9 @@ The family may eventually feed machine-readable findings into RAD:
 ```
 
 The scoring engines remain separate. RAD consumes findings; it does not merge the rubrics or rewrite a public score with private operational metrics.
+
+## Published sites
+
+- [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/)
+- [GBP Scorecard](https://thatguynef.github.io/gbp-scorecard/)
+- [Website Scorecard](https://thatguynef.github.io/website-scorecard/)

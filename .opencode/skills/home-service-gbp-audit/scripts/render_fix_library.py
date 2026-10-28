@@ -91,18 +91,22 @@ def main() -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     rendered = render(rubric)
-    outputs = [Path(args.out), Path(args.docs_out)]
+    docs_rendered = (
+        '---\ndescription: "Deterministic GBP check-to-fix mappings, priority order, and optional RAD modules. Evidence and score limits stay in the report."\n---\n\n'
+        + rendered
+    )
+    outputs = [(Path(args.out), rendered), (Path(args.docs_out), docs_rendered)]
     if args.check:
-        for out in outputs:
+        for out, expected in outputs:
             current = out.read_text(encoding="utf-8") if out.exists() else ""
-            if current != rendered:
+            if current != expected:
                 print(f"error: {out} is stale. Run: python3 {Path(__file__).name}", file=sys.stderr)
                 return 1
             print(f"ok: {out} is current")
         return 0
-    for out in outputs:
+    for out, expected in outputs:
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(rendered, encoding="utf-8")
+        out.write_text(expected, encoding="utf-8")
         print(f"wrote {out}")
     return 0
 

@@ -1,3 +1,7 @@
+---
+description: "Configure trade, service-area, booking, messaging, emergency, storefront, after-hours, and posts applicability for a GBP audit."
+---
+
 # Configuration
 
 Applicability is configuration, not guesswork. A plumbing business and an interior painter do not share the same journey.

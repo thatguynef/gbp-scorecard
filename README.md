@@ -32,6 +32,18 @@ It is also for the people who run the marketing: in-house marketers, local agenc
 
 **Not a fit:** SaaS, e-commerce, national brands with mature analytics teams, and anyone looking for a guaranteed revenue lift or an automated fix. [Read the audience guide →](docs/audience.md)
 
+## Part of the scorecard family
+
+This is the profile layer of a three-part diagnostic. Each score is independently meaningful, and none rewrites another.
+
+| Scorecard | Question it answers | Live site |
+|---|---|---|
+| **Local Visibility** | Can prospective customers discover the business across Search, Maps, AI answers, competitors, and external authority? | [thatguynef.github.io/local-visibility-scorecard](https://thatguynef.github.io/local-visibility-scorecard/) |
+| **GBP Scorecard** (this repository) | Does the Google Business Profile create trust and enable action? | [thatguynef.github.io/gbp-scorecard](https://thatguynef.github.io/gbp-scorecard/) |
+| **Website Scorecard** | Can the owned website convert that demand? | [thatguynef.github.io/website-scorecard](https://thatguynef.github.io/website-scorecard/) |
+
+Use them in journey order — discovery, profile, website — or run one independently. The ownership boundaries, shared evidence states, and the RAD handoff are documented in [The Scorecard Family](docs/scorecard-family.md).
+
 ## Quick start
 
 Requirements: Node.js 22+ and Python 3.10+. No runtime npm dependencies.
@@ -150,7 +162,7 @@ GBP Scorecard diagnoses the observable profile and marks the rest as owner data.
 
 ## Status
 
-V1 is a deterministic, fixture-first public-mode implementation. Connected mode, local visibility, and RAD integration are future work. The diagnostic engine stays separate from remediation.
+V1 is a deterministic, fixture-first public-mode implementation. It is one of three published scorecards: Local Visibility, Google Business Profile, and Website. Connected mode and RAD integration remain future work; the diagnostic engine stays separate from remediation.
 
 ## License
 

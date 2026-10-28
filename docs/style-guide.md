@@ -1,6 +1,10 @@
+---
+description: "The shared scorecard-family style guide: voice, structure, evidence labels, visual tokens, images, and links."
+---
+
 # Style guide
 
-GBP Scorecard is part of a scorecard family. It should look and read like Website Scorecard while making its own diagnosis.
+GBP Scorecard is part of a scorecard family. It should look and read like [Website Scorecard](https://thatguynef.github.io/website-scorecard/) and [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/) while making its own diagnosis.
 
 ## Voice
 
@@ -63,7 +67,7 @@ Avoid:
 | Green | `#3FBF7F` |
 | Amber | `#F5C766` |
 
-The site shares the Website Scorecard tokens and typography. Do not fork the visual language.
+The site shares the [Website Scorecard](https://thatguynef.github.io/website-scorecard/) tokens and typography. Do not fork the visual language.
 
 ## Images
 

@@ -1,3 +1,7 @@
+---
+description: "Who the GBP Scorecard is for: local home-service businesses, marketers, agencies, and analysts — and when to use the Website or Local Visibility Scorecard instead."
+---
+
 # Who this is for
 
 GBP Scorecard is for **local home-service businesses** and the people who market them.
@@ -37,8 +41,8 @@ Plumbing, HVAC, roofing, electrical, pest control, garage door, landscaping, res
 
 This scorecard diagnoses the **public GBP**. It does not diagnose:
 
-- the website's mobile form or page speed (Website Scorecard),
-- Local Pack rank or grid visibility (Local Visibility Scorecard),
+- the website's mobile form or page speed ([Website Scorecard](https://thatguynef.github.io/website-scorecard/)),
+- Local Pack rank or grid visibility ([Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/)),
 - CRM response time, close rate, or revenue (owner data or authorized connected diagnostics),
 - the operational remediation itself (RAD).
 

@@ -1,3 +1,7 @@
+---
+description: "Structured model judgment proposals for the GBP Scorecard: schema, merger, evidence requirements, and separation from deterministic facts."
+---
+
 # Judgment layer
 
 Deterministic facts are not judged. A model is used only where interpretation is unavoidable: review themes, description clarity, media usefulness, service coverage, consistency, and conversion friction.

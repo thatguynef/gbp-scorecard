@@ -1,3 +1,7 @@
+---
+description: "Privacy and public-repository safety for GBP audits: credentials, client reports, PII, evidence paths, and Git history."
+---
+
 # Privacy and Public-Repository Safety
 
 > **For:** anyone publishing audit work from this public repository.

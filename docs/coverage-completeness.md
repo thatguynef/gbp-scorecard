@@ -1,3 +1,7 @@
+---
+description: "What the GBP Scorecard scores, diagnoses, leaves to Website or Local Visibility, and marks owner data — the completeness matrix."
+---
+
 # Coverage and completeness
 
 The scorecard is complete when every material question is either **scored**, **diagnosed**, **conditional**, **owner data required**, **observed but unscored**, or **not applicable** — and no material issue is silently ignored or scored twice.
@@ -21,7 +25,7 @@ The machine-readable matrix is `references/coverage-matrix.json`.
 
 ## Cross-scorecard ownership
 
-| Question | GBP Scorecard | Website Scorecard | Local Visibility |
+| Question | GBP Scorecard | [Website Scorecard](https://thatguynef.github.io/website-scorecard/) | [Local Visibility](https://thatguynef.github.io/local-visibility-scorecard/) |
 |---|---|---|---|
 | GBP category quality | SCORE | — | explanatory only |
 | GBP service coverage | SCORE | — | explanatory only |
@@ -42,8 +46,8 @@ The only deliberate overlap is HTTPS at the handoff. GBP Scorecard judges whethe
 
 ## Not silently ignored
 
-- **Local discovery:** out of scope; assigned to Local Visibility Scorecard.
-- **On-site conversion:** out of scope; assigned to Website Scorecard.
+- **Local discovery:** out of scope; assigned to [Local Visibility Scorecard](https://thatguynef.github.io/local-visibility-scorecard/).
+- **On-site conversion:** out of scope; assigned to [Website Scorecard](https://thatguynef.github.io/website-scorecard/).
 - **Response, booking, revenue:** reported as owner data; never scored.
 - **Suspicious review patterns:** observed and flagged only when evidence supports it; not a separate scored check in V1.
 - **Special hours:** observed when available; represented in the hours check and limitations when the API does not expose it.

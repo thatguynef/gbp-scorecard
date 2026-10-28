@@ -1,3 +1,7 @@
+---
+description: "How GBP collection, review, scoring, rendering, and verification stay separate and independently runnable."
+---
+
 # Architecture
 
 GBP Scorecard keeps collection, judgment, scoring, rendering, and verification separate. Each stage is independently runnable.
